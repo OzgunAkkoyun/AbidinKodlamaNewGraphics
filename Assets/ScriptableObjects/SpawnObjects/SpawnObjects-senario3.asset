@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78656bb58b182214ca5a4144fd4565cf, type: 3}
+  m_Name: SpawnObjects-senario3
+  m_EditorClassIdentifier: 
+  startGameObject: {fileID: 8659874756527542646, guid: 1084e8225b3b99347a7bb58b890c94e3,
+    type: 3}
+  targetGameObject:
+  - {fileID: 4904347399780221657, guid: 4fe3ce7034e58f848bd99aaf293b739b, type: 3}
+  - {fileID: 4904347399780221657, guid: 4fe3ce7034e58f848bd99aaf293b739b, type: 3}
+  - {fileID: 4904347399780221657, guid: 4fe3ce7034e58f848bd99aaf293b739b, type: 3}
+  targetNewGameObject:
+  - {fileID: 4904347399780221657, guid: 4fe3ce7034e58f848bd99aaf293b739b, type: 3}
+  - {fileID: 4904347399780221657, guid: 4fe3ce7034e58f848bd99aaf293b739b, type: 3}
+  - {fileID: 4904347399780221657, guid: 4fe3ce7034e58f848bd99aaf293b739b, type: 3}
+  tileGameObject: {fileID: 195019098710043781, guid: 41002f2e140d2fa4baece902f3dc994c,
+    type: 3}
+  pathGameObject: {fileID: 195019098710043781, guid: 41ec3fecb9f622f4d81c5715b5e4194d,
+    type: 3}
+  environmentGameObjects:
+  - {fileID: 2120730648125032584, guid: 87cfbe45914501c4c84ee3f1bdc98d3f, type: 3}
+  - {fileID: 925601600343283681, guid: d7e241bc0de5888478bf1964597949db, type: 3}
+  - {fileID: 8237560403996749191, guid: afca681fd16a14c48b168cb3bea46d62, type: 3}
+  vehicleGameObject: {fileID: 5495186631573836075, guid: 691b0dfa9024cf14a9350c8c66a6019a,
+    type: 3}

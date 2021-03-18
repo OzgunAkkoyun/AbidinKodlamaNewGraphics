@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87681d5f3eeee2c4db66e83af3d7c707, type: 3}
+  m_Name: IfObjectsForSenario3
+  m_EditorClassIdentifier: 
+  ifObjects:
+  - ifName: "Mavi Ku\u015F"
+    ifGameObjects: {fileID: 2240215759897353016, guid: 3b6c6db0b81865a44ab0ed4ca628711f,
+      type: 3}
+    ifGameObjectsImage: {fileID: 21300000, guid: 2c4712dfd0e25e84dbd9012437995c6a,
+      type: 3}
+  - ifName: "K\u0131rm\u0131z\u0131 Ku\u015F"
+    ifGameObjects: {fileID: 1895461757687074455, guid: adaca8428a60ca64296d16a177ef62ac,
+      type: 3}
+    ifGameObjectsImage: {fileID: 21300000, guid: 19c8564f25cc98447b8682818c3b1dde,
+      type: 3}
+  - ifName: "Ye\u015Fil Ku\u015F"
+    ifGameObjects: {fileID: 5315020854397043449, guid: a4dcda2295f36ad40bd6ade263f80195,
+      type: 3}
+    ifGameObjectsImage: {fileID: 21300000, guid: 749697668e8e2a4428504a7a9087d262,
+      type: 3}
+  - ifName: "siyah Ku\u015F"
+    ifGameObjects: {fileID: 3206463483138593332, guid: a466af101e0e5db44bc7bc8da21b382c,
+      type: 3}
+    ifGameObjectsImage: {fileID: 21300000, guid: cabc69f6b9e1d1745b93ed6331158ac7,
+      type: 3}
+  - ifName: "Mor Ku\u015F"
+    ifGameObjects: {fileID: 3206463483138593332, guid: a466af101e0e5db44bc7bc8da21b382c,
+      type: 3}
+    ifGameObjectsImage: {fileID: 21300000, guid: 1ac89a81125499b459c92f09cb345644,
+      type: 3}
