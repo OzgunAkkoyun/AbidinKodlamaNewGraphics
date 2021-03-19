@@ -42,6 +42,11 @@ public class CharacterMovement : MonoBehaviour
         inputVector = transform.position;
         anim = gameObject.transform.GetChild(0).GetComponentInChildren<Animator>();
         scaleFactor = mapGenerate.tileSize;
+
+        if (gm.currentSenario.senarioIndex == 2 && gm.currentLevel.levelIndex == 3)
+        {
+            anim.SetBool("isBag",true);
+        }
     }
 
     public IEnumerator ApplyMoveCommand(Direction moveCommand, bool isLastCommand, int i)
@@ -288,7 +293,7 @@ public class CharacterMovement : MonoBehaviour
                 StartCoroutine(CameraMovementForAnimations.instance.CameraMoveToTargetPosition());
                 anim.SetBool("animationStart", true);
                 AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
-                var animLength = gm.currentSenario.senarioIndex ==1 ? clips[0].length: clips[1].length;
+                var animLength = gm.currentSenario.senarioIndex ==1 ? clips[0].length: clips[3].length;
                 Invoke("OnCompleteCharacterAnimation", animLength);
             }
             else

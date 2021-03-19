@@ -108,6 +108,11 @@ public class GetInputs : MonoBehaviour
         
         if (ct == touchCountCorrect && canUseToy)
         {
+            if (!isFirstCommand)
+            {
+                isFirstCommand = true;
+                timer = new Timer();
+            }
             canUseToy = false;
 
             Vector2 p1, p2, p3;

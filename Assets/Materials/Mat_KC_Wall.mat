@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: bd1ce12ac96a78c40b1eb6adf7a8f518, type: 3}
+        m_Texture: {fileID: 2800000, guid: ff7a674d58b09894ea66ac68c01e6f0c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -65,7 +65,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _OcclusionStrength: 1
+    - _OcclusionStrength: 0.918
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.6965349, b: 0, a: 1}
+    - _Color: {r: 0.6226415, g: 0.4346282, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using Newtonsoft.Json;
+using TMPro;
 
 [Serializable]
 public class SavedGameData
@@ -88,25 +89,11 @@ public class GameManager : MonoBehaviour
     public LevelStats.Senarios currentSenario;
 
     public int[] senarioAndLevelIndexs;
-    public bool DeleteAllPlayerPrefs;
-    public Camera minimapCamera;
-    public LayerMask playerMask ;
+
+    public TextMeshProUGUI text;
 
     void Awake()
     {
-        uh = FindObjectOfType<UIHandler>();
-        map = FindObjectOfType<MapGenerator>();
-        load = FindObjectOfType<LoadGameData>();
-        sc = FindObjectOfType<SoundController>();
-        uiVideoController = FindObjectOfType<UiVideoController>();
-        levelLoader = FindObjectOfType<LevelLoader>();
-        getInputs = FindObjectOfType<GetInputs>();
-
-        if (DeleteAllPlayerPrefs)
-        {
-            PlayerPrefs.DeleteAll();
-        }
-
         var gameDataString = PlayerPrefs.GetString("gameDatas");
         var playerDataString = PlayerPrefs.GetString("playerDatas");
        
@@ -265,16 +252,17 @@ public class GameManager : MonoBehaviour
     public void GameAnimationStart()
     {
         is3DStarted = true;
-
+        text.text = "Start";
         if (isGameOrLoad != 1)//Watch game
             getInputs.timer.Finish();
-
+        text.text += "input";
         character = FindObjectOfType<CharacterMovement>();
         ShowInputsCode.Instance.ShowCodesString();
 
-        miniMapController.StartCoroutine("MiniMapSetStartPosition");
-        uh.StartCoroutine("CameraSmoothMovingToTargetPosition");
-
+        StartCoroutine(miniMapController.MiniMapSetStartPosition());
+        text.text += "mini";
+        StartCoroutine(uh.CameraSmoothMovingToTargetPosition());
+        text.text += "uh";
         commander.ApplyCommands();
     }
 

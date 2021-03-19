@@ -422,6 +422,7 @@ public class MapGenerator : MonoBehaviour {
             {
                 Vector3 tilePosition = CoordToPosition(x, y);
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
+                newTile.gameObject.SetActive(false);
                 newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
                 newTile.parent = mapHolder;
                 tileMap[x, y] = newTile;

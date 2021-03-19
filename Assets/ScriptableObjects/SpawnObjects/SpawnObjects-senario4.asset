@@ -28,5 +28,5 @@ MonoBehaviour:
     type: 3}
   environmentGameObjects:
   - {fileID: 3045533123998791788, guid: e1f0efec6b7b3ad48a5d6476e84195c3, type: 3}
-  vehicleGameObject: {fileID: 9109852836970003132, guid: e5f7f4139a9ad7c47bc5b6a0b02f8bed,
+  vehicleGameObject: {fileID: 1940238265206280590, guid: 959a01e9bf47d9b4ab1e249ec26b8000,
     type: 3}

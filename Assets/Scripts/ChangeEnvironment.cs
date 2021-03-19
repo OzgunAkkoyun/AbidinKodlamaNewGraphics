@@ -74,6 +74,7 @@ public class ChangeEnvironment : MonoBehaviour
             var pathTile = mapGenerator.allTileGameObject[PathIndex].gameObject;
             if (PathIndex > 0)
             {
+                pathTile.SetActive(true);
                 pathTile.GetComponent<Renderer>().material =
                     loopMapPathMaterial;
                 pathTile.transform.position = pathTile.transform.position + new Vector3(0,0.1f,0);

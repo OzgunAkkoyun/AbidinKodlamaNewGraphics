@@ -56,7 +56,7 @@ public class UiMiniMapController : MonoBehaviour
 
         miniMapCamera.transform.position = new Vector3(map.currentMap.mapSize.x - 1, miniMapCamera.transform.position.y, miniMapZPos);
         miniMapCameraOnlyVehicle.transform.position = new Vector3(map.currentMap.mapSize.x - 1, miniMapCamera.transform.position.y, miniMapZPos);
-        Invoke("CloseCamera",2f);
+        Invoke("CloseCamera",1f);
         
     }
 
@@ -92,6 +92,7 @@ public class UiMiniMapController : MonoBehaviour
 
     public void MiniMapFullSize()
     {
+        miniMapCamera.gameObject.SetActive(true);
         miniMapCloseButton.SetActive(true);
 
         miniMapRect.SetAnchor(AnchorPresets.StretchAll);
@@ -121,6 +122,7 @@ public class UiMiniMapController : MonoBehaviour
 
     public IEnumerator MiniMapSetStartPosition()
     {
+        gm.text.text +=" minimap";
         miniMapRect.SetAnchor(AnchorPresets.TopRight);
         miniMapRect.SetPivot(PivotPresets.TopRight);
         miniMapRect.sizeDelta = new Vector2(screenH, screenH);

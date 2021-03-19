@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 4448455887358481343, guid: 8eb3446abce7eab4e95db2d832b1029a, type: 3}
   - {fileID: 4448455887358481343, guid: 8eb3446abce7eab4e95db2d832b1029a, type: 3}
   - {fileID: 4448455887358481343, guid: 8eb3446abce7eab4e95db2d832b1029a, type: 3}
-  tileGameObject: {fileID: 195019098710043781, guid: 848e2688d9929de42bb54e2c188e15ea,
+  tileGameObject: {fileID: 195019098710043781, guid: 41002f2e140d2fa4baece902f3dc994c,
     type: 3}
   pathGameObject: {fileID: 0}
   environmentGameObjects:
