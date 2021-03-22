@@ -253,8 +253,18 @@ public class GameManager : MonoBehaviour
     {
         is3DStarted = true;
         text.text = "Start";
-        if (isGameOrLoad != 1)//Watch game
-            getInputs.timer.Finish();
+        if (isGameOrLoad != 1) //Watch game
+        {
+            if (getInputs.timer != null)
+            {
+                getInputs.timer.Finish();
+            }
+            else
+            {
+
+            }
+            
+        }
         text.text += "input";
         character = FindObjectOfType<CharacterMovement>();
         ShowInputsCode.Instance.ShowCodesString();

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Net.Mime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiMiniMapController : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class UiMiniMapController : MonoBehaviour
     public GameManager gm;
 
     public GameObject minimap;
+    public Image minimapBg;
     public GameObject minimapTexture;
     public GameObject minimapPipBoy;
     public GameObject miniMapGraphics;
@@ -15,7 +18,7 @@ public class UiMiniMapController : MonoBehaviour
     public Camera miniMapCameraOnlyVehicle;
 
     private bool mapZoomed = false;
-    private float mapSizeMultiplier = 0.15f;
+    private float mapSizeMultiplier = 0.05f;
 
     public RectTransform miniMapRect;
     public RectTransform miniMapGraphicsRect;
@@ -116,60 +119,70 @@ public class UiMiniMapController : MonoBehaviour
     }
     public void MiniMapZoom()
     {
+        Debug.Log("zoom1");
         if (gm.is3DStarted)
             StartCoroutine(MiniMapSizeChange());
     }
-
+    public Animator miniMapAnim;
     public IEnumerator MiniMapSetStartPosition()
     {
-        gm.text.text +=" minimap";
-        miniMapRect.SetAnchor(AnchorPresets.TopRight);
-        miniMapRect.SetPivot(PivotPresets.TopRight);
-        miniMapRect.sizeDelta = new Vector2(screenH, screenH);
+        miniMapAnim.SetBool("miniMapOpen", true);
+        AnimationClip[] clips = miniMapAnim.runtimeAnimatorController.animationClips;
+        var animLength = clips[0].length;
+        GetComponent<UIHandler>().CodePanelOpen();
+        yield return null;//new WaitForSeconds(animLength);
+       // miniMapAnim.SetBool("miniMapOpen", false);
+        //gm.text.text += " minimap";
+        //miniMapRect.SetAnchor(AnchorPresets.TopRight);
+        //miniMapRect.SetPivot(PivotPresets.TopRight);
+        //miniMapRect.sizeDelta = new Vector2(screenH, screenH);
 
-        minimapTextureRect.SetLeft(30);
-        minimapTextureRect.SetRight(30);
-        minimapTextureRect.SetTop(30);
-        minimapTextureRect.SetBottom(30);
-        //minimapPipBoy.SetActive(false);
-        float t = 0;
+        //minimapTextureRect.SetLeft(30);
+        //minimapTextureRect.SetRight(30);
+        //minimapTextureRect.SetTop(30);
+        //minimapTextureRect.SetBottom(30);
+        ////minimapPipBoy.SetActive(false);
+        //float t = 0;
 
-        while (true)
-        {
-            t += Time.deltaTime / 10;
-            miniMapRect.sizeDelta =
-                Vector2.Lerp(miniMapRect.sizeDelta, new Vector2(300, 300), t);
+        //while (true)
+        //{
+        //    t += Time.deltaTime / 10;
+        //    miniMapRect.sizeDelta =
+        //        Vector2.Lerp(miniMapRect.sizeDelta, new Vector2(300, 300), t);
 
-            miniMapGraphics.transform.localScale =
-                Vector2.Lerp(miniMapGraphics.transform.localScale, new Vector3(1, 1, 1), t * 2);
+        //    miniMapGraphics.transform.localScale =
+        //        Vector2.Lerp(miniMapGraphics.transform.localScale, new Vector3(1, 1, 1), t * 2);
 
-            miniMapGraphicsRect.sizeDelta = new Vector2(
-                (miniMapRect.sizeDelta.y - 20 - 1 * 30),
-                (miniMapRect.sizeDelta.y - 20 - 1 * 30));
+        //    miniMapGraphicsRect.sizeDelta = new Vector2(
+        //        (miniMapRect.sizeDelta.y - 20 - 1 * 30),
+        //        (miniMapRect.sizeDelta.y - 20 - 1 * 30));
 
-           // minimapTextureRect.sizeDelta = Vector2.Lerp(minimapTextureRect.sizeDelta, new Vector2(240, 240), t);
+        //    minimapBg.color = new Color(0,0,0,255*t);
 
-            miniMapGraphicsRect.SetLeft(0);
-            miniMapGraphicsRect.SetRight(0);
-            miniMapGraphicsRect.SetTop(0);
-            miniMapGraphicsRect.SetBottom(0);
+        //    // minimapTextureRect.sizeDelta = Vector2.Lerp(minimapTextureRect.sizeDelta, new Vector2(240, 240), t);
 
-            miniMapGraphicsRect.SetAnchor(AnchorPresets.StretchAll);
+        //    miniMapGraphicsRect.SetLeft(0);
+        //    miniMapGraphicsRect.SetRight(0);
+        //    miniMapGraphicsRect.SetTop(0);
+        //    miniMapGraphicsRect.SetBottom(0);
 
-            miniMapGraphicsRect.SetPivot(PivotPresets.MiddleCenter);
+        //    miniMapGraphicsRect.SetAnchor(AnchorPresets.StretchAll);
 
-            if (Mathf.Round(miniMapRect.sizeDelta.x) == 300)
-            {
+        //    miniMapGraphicsRect.SetPivot(PivotPresets.MiddleCenter);
 
-                yield break;
-            }
+        //    if (Mathf.Round(miniMapRect.sizeDelta.x) == 300)
+        //    {
 
-            yield return new WaitForSeconds(0f);
-        }
+        //        yield break;
+        //    }
+
+        //    yield return new WaitForSeconds(0f);
+        //}
     }
 
     public IEnumerator MiniMapSizeChange()
     {
+        Debug.Log("zoom");
         for (int i = 0; i < 10; i++)
         {
             if (!mapZoomed)

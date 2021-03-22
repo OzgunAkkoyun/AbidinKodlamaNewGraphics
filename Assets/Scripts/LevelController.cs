@@ -38,19 +38,28 @@ public class LevelController : MonoBehaviour
             for (int j = 0; j < levelLoader.currentLevelStats.senarios[i].levels.Length; j++)
             {
                 var currenLevel = levelLoader.currentLevelStats.GetLevel(i+1,j+1);
-
+                
                 allButtons[i].allLevelButtons[j].interactable = true;
 
-                var count = 0;
-                foreach (Transform stars in allButtons[i].allLevelButtons[j].gameObject.transform)
+                var allLevelButtons = allButtons[i].allLevelButtons[j].gameObject.transform;
+                for (int k = 0; k < 3; k++)
                 {
-                    if (currenLevel.subLevels[count].passed)
+                    if (currenLevel.subLevels[k].passed)
                     {
-                        stars.GetComponent<Image>().color = Color.white;
+                        allLevelButtons.GetChild(k).GetComponent<Image>().color = Color.white;
                     }
 
-                    count++;
                 }
+
+                //foreach (Transform stars in allButtons[i].allLevelButtons[j].gameObject.transform)
+                //{
+                //    if (currenLevel.subLevels[count].passed)
+                //    {
+                //        stars.GetComponent<Image>().color = Color.white;
+                //    }
+
+                //    count++;
+                //}
 
                 if (!currenLevel.levelComplated)
                 {

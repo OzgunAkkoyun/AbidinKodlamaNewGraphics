@@ -46,6 +46,8 @@ public class UIHandler : MonoBehaviour
     public Sprite[] gameOverScoreImages;
     public Image gameOverScoreObject;
 
+    
+
     void Awake()
     {
         codePaneleWidth = Mathf.Abs(codePanel.transform.position.x);
@@ -91,28 +93,32 @@ public class UIHandler : MonoBehaviour
 
     public IEnumerator CodePanel()
     {
+        var rectTransform = codePanel.GetComponent<RectTransform>();
         for (int i = 0; i < 10; i++)
         {
-            if (!codePanelOpened)
+            if (codePanelOpened)
             {
-                codePanel.transform.localPosition =
-                    codePanel.transform.localPosition + new Vector3(codePaneleWidth / 10, 0, 0);
-                codePanelOpenButton.transform.localPosition =
-                    codePanelOpenButton.transform.localPosition + new Vector3(codePaneleWidth / 10, 0, 0);
+                codePanelOpenButton.gameObject.SetActive(false);
+                rectTransform.DOMoveX(57, 0.5f);
+                //codePanel.transform.localPosition =
+                //    codePanel.transform.localPosition + new Vector3(codePaneleWidth / 10, 0, 0);
+                //codePanelOpenButton.transform.localPosition =
+                //    codePanelOpenButton.transform.localPosition + new Vector3(codePaneleWidth / 10, 0, 0);
 
                 yield return new WaitForSeconds(0f);
             }
             else
             {
-                codePanel.transform.localPosition =
-                    codePanel.transform.localPosition - new Vector3(codePaneleWidth / 10, 0, 0);
-                codePanelOpenButton.transform.localPosition =
-                    codePanelOpenButton.transform.localPosition - new Vector3(codePaneleWidth / 10, 0, 0);
+                codePanelOpenButton.gameObject.SetActive(true);
+                rectTransform.DOMoveX(-913f, 1f);
+                //codePanel.transform.localPosition =
+                //    codePanel.transform.localPosition - new Vector3(codePaneleWidth / 10, 0, 0);
+                //codePanelOpenButton.transform.localPosition =
+                //    codePanelOpenButton.transform.localPosition - new Vector3(codePaneleWidth / 10, 0, 0);
                 yield return new WaitForSeconds(0f);
             }
         }
 
-        codePanelOpenButton.transform.Find("Button/Arrow").transform.Rotate(new Vector3(0, 0, 180));
         codePanelOpened = !codePanelOpened;
     }
 
@@ -154,7 +160,7 @@ public class UIHandler : MonoBehaviour
         }
 
         var codeInputWait = Instantiate(codeWaitObject, codeWaitObject.transform.position, Quaternion.identity);
-        codeInputWait.transform.Find("seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
+        codeInputWait.transform.Find("Wait/seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
             waitCommandSeconds.ToString();
 
         codeInputWait.transform.parent = panel.transform;
@@ -183,11 +189,11 @@ public class UIHandler : MonoBehaviour
 
         var codeInput = Instantiate(codeIfObjectChild, codeIfObjectChild.transform.position, Quaternion.identity);
 
-        codeInput.transform.parent = codeInputIf.transform.Find("CodeInputArea").transform;
+        codeInput.transform.parent = codeInputIf.transform.Find("CodeWhole/CodeInputArea").transform;
         Destroy(codeInput.GetComponent<DeleteCommand>());
 
-        codeInputIf.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.x, codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.y + 75);
-        codeInput.transform.localScale = new Vector3(1, 1, 1);
+        codeInputIf.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.x, codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.y);
+        codeInput.transform.localScale = new Vector3(.7f, .7f, .7f);
 
         codeInputsObjects.Add(codeInputIf);
 
@@ -215,15 +221,17 @@ public class UIHandler : MonoBehaviour
             int keyRotate = SetDirectionRotate(direction[i]);
 
             var codeInput = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
-            codeInput.transform.parent = codeInputFor.transform.Find("CodeInputArea").transform;
+            codeInput.transform.parent = codeInputFor.transform.Find("CodeWhole/CodeInputArea").transform;
             Destroy(codeInput.GetComponent<DeleteCommand>());
 
-            codeInputFor.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(codeInputFor.transform.GetComponent<RectTransform>().sizeDelta.x, codeInputFor.transform.GetComponent<RectTransform>().sizeDelta.y+75);
-            codeInput.transform.localScale = new Vector3(1, 1, 1);
+            var codeInputForRect = codeInputFor.transform.GetComponent<RectTransform>();
+
+            codeInputForRect.sizeDelta = new Vector2(codeInputForRect.sizeDelta.x, codeInputForRect.sizeDelta.y);
+            codeInput.transform.localScale = new Vector3(.7f, .7f, .7f);
 
             codeInputsObjects.Add(codeInputFor);
 
-            var arrow = codeInput.transform.Find("Image");
+            var arrow = codeInput.transform.Find("Image/Arrow");
             arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
             GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
         }
@@ -245,7 +253,7 @@ public class UIHandler : MonoBehaviour
         codeInput.transform.parent = panel.transform;
         codeInput.transform.localScale = new Vector3(2.5f, 1, 1);
         codeInput.transform.name = commandIndex.ToString();
-        var arrow = codeInput.transform.Find("Image");
+        var arrow = codeInput.transform.Find("Image/Arrow");
         arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
         GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
     }

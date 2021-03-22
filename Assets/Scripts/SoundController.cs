@@ -13,7 +13,7 @@ public class SoundController : MonoBehaviour
     public Sound[] sounds;
     public bool toggle = false;
     public Sprite[] soundImages;
-    public GameObject soundButton;
+    public Image soundButton;
     public static SoundController instance;
     void Awake()
     {
@@ -48,13 +48,13 @@ public class SoundController : MonoBehaviour
 
         if (toggle)
         {
-            soundButton.GetComponent<Image>().sprite = soundImages[1];
+            soundButton.sprite = soundImages[1];
             sounds.ToList().ForEach( sound => sound.source.volume = 0);
             PlayerPrefs.SetInt("soundOptions",1);//Sound off
         }
         else
         {
-            soundButton.GetComponent<Image>().sprite = soundImages[0];
+            soundButton.sprite = soundImages[0];
             sounds.ToList().ForEach(sound => sound.source.volume = 1);
             PlayerPrefs.SetInt("soundOptions",0);//Sound on
         }
