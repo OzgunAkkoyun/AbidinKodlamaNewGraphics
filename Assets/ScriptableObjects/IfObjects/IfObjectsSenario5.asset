@@ -16,25 +16,25 @@ MonoBehaviour:
   - ifName: Patates
     ifGameObjects: {fileID: 3727847657416898085, guid: 21997d3d25cc45c46a259a9c2f4ca8a9,
       type: 3}
-    ifGameObjectsImage: {fileID: 21300000, guid: d8adc50d44d98224eb1855023006ccb2,
+    ifGameObjectsImage: {fileID: 21300000, guid: 19d9ed95dc5486e46b93457b9aa11f21,
       type: 3}
   - ifName: "Havu\xE7"
     ifGameObjects: {fileID: 3030463838153105929, guid: e4427b5418797b7418dc6d243196051f,
       type: 3}
-    ifGameObjectsImage: {fileID: 21300000, guid: a565e97cfc2ce2d449e6055c6c3e837e,
+    ifGameObjectsImage: {fileID: 21300000, guid: 0fb9cf101db452346ae8b2f2cd859f1a,
       type: 3}
   - ifName: "So\u011Fan"
     ifGameObjects: {fileID: 668006308373733655, guid: 02becf2df6a0c9047a9344aeffe0a055,
       type: 3}
-    ifGameObjectsImage: {fileID: 21300000, guid: a565e97cfc2ce2d449e6055c6c3e837e,
+    ifGameObjectsImage: {fileID: 21300000, guid: aaaab9939c77e7b44b2a7699e2ce7103,
       type: 3}
   - ifName: "Havu\xE7"
     ifGameObjects: {fileID: 3179593219365151647, guid: 1dc5f6dc2e21dd149a67cae17099a996,
       type: 3}
-    ifGameObjectsImage: {fileID: 21300000, guid: 170302ca2a0ddb34aa5af059dbb7b3c6,
+    ifGameObjectsImage: {fileID: 21300000, guid: aaaab9939c77e7b44b2a7699e2ce7103,
       type: 3}
   - ifName: "Havu\xE7"
     ifGameObjects: {fileID: 3179593219365151647, guid: 1dc5f6dc2e21dd149a67cae17099a996,
       type: 3}
-    ifGameObjectsImage: {fileID: 21300000, guid: 0347f2fe9043e3d48a4c71b7a0b83f12,
+    ifGameObjectsImage: {fileID: 21300000, guid: 19d9ed95dc5486e46b93457b9aa11f21,
       type: 3}

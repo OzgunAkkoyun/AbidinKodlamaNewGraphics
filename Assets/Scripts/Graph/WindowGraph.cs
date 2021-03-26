@@ -33,8 +33,7 @@ public class WindowGraph : MonoBehaviour
 
         gameObjectList = new List<GameObject>();
         //List<float> valueList = new List<float>() {5, 98, 56, 45, 30, 22, 17, 15, 13, 17, 25, 37, 40, 36, 33};
-        float[] a = new [] {50f, 65.7f, 89f, 12.55f, 44f};
-        ShowPieGraph(a);
+     
         //IGraphVisual barGraphVisual = new BarChartVisual(graphContainer, Color.cyan, .8f);
 
 
@@ -55,7 +54,7 @@ public class WindowGraph : MonoBehaviour
         valueList = graphValues;
         //List<float> valueList = new List<float>() { 50.87f };
         //IGraphVisual graphVisual = new LineGraphVisual(barLineGraphContainer, circleSprite, Color.cyan, new Color(1, 1, 1, .5f));
-        IGraphVisual graphVisual = new BarChartVisual(barLineGraphContainer, Color.cyan, .8f);
+        IGraphVisual graphVisual = new BarChartVisual(barLineGraphContainer, new Color(5/255,128/255f,176/255f), .8f);
         ShowGraph(valueList, graphVisual, -1, (int _i) => (_i + 1).ToString(), (float _f) => ""+ Mathf.Round(_f * 100f) / 100f);
     }
 
@@ -175,7 +174,7 @@ public class WindowGraph : MonoBehaviour
 
     public void ShowPieGraph(float[] fillAmount)
     {
-        PieChartVisual a = new PieChartVisual(pieContainer,Color.black, Color.white);
+        PieChartVisual a = new PieChartVisual(pieContainer,Color.white, Color.white);
         a.SetPiePercent(fillAmount);
     }
     private interface IGraphVisual
@@ -310,7 +309,7 @@ public class WindowGraph : MonoBehaviour
 
                 percentImage.color = pieFrontColor;
                 percentImage.fillAmount = fillAmount[i]/100;
-                percentText.text = "%" + fillAmount[i] + " tamamlandı.";
+                percentText.text = "%" + fillAmount[i].ToString("F2") + " tamamlandı.";
             }
         }
     }

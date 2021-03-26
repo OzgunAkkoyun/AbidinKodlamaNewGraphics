@@ -24,6 +24,33 @@ public class SaveLoadUserData : MonoBehaviour
         return getSpesificList;
     }
 
+    public int HowManyTimeLevelPlayed(int senarioIndex,int levelIndex)
+    {
+        return userDataList.FindAll(v => (v.senarioIndex == senarioIndex && v.levelIndex == levelIndex)).ToList().Count;
+    }
+
+    public int[] LevelTrueFalse(int senarioIndex, int levelIndex)
+    {
+        var trueFalse = new int[2]{0,0};
+        trueFalse[0] =  userDataList.FindAll(v => (v.senarioIndex == senarioIndex && v.levelIndex == levelIndex)).FindAll(v=> v.levelSuccessed).ToList().Count;
+
+        trueFalse[1] = userDataList.FindAll(v => (v.senarioIndex == senarioIndex && v.levelIndex == levelIndex)).FindAll(v => !v.levelSuccessed).ToList().Count;
+
+        return trueFalse;
+    }
+    public float SenarioTotalTime(int senarioIndex)
+    {
+        var time = userDataList.FindAll(v => (v.senarioIndex == senarioIndex)).Select(v => v.userTime).Sum();
+
+        return time;
+    }
+    public float LevelTotalTime(int senarioIndex, int levelIndex)
+    {
+        var time = userDataList.FindAll(v => (v.senarioIndex == senarioIndex && v.levelIndex == levelIndex)).Select(v => v.userTime).Sum();
+
+        return time;
+    }
+
     public void SaveUserData(int senarioIndex, int levelIndex, int subLevelIndex, float duration, bool isSuccess)
     {
         userDataList.Add(new UserData(senarioIndex, levelIndex, subLevelIndex, duration, isSuccess));

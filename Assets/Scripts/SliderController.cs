@@ -3,11 +3,13 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SliderController : MonoBehaviour
 {
     public LevelController levelController;
     public GameObject mapsContainer;
+    public RectTransform bgImage;
     public float duration = 1;
     [SerializeField] Ease easeType;
 
@@ -63,7 +65,7 @@ public class SliderController : MonoBehaviour
         {
             if (clikCount <= 0)
             {
-                rectTransform.DOAnchorPosX(rectTransform.rect.width * clikCount, 0.5f).SetDelay(0.1f);
+                rectTransform.DOAnchorPosX(bgImage.rect.width * clikCount, 0.5f).SetDelay(0.1f);
             }
             else
             {

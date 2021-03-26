@@ -117,24 +117,28 @@ public class CheckTargetReached : MonoBehaviour
     }
     public void CheckWaitObjectsCount(CharacterMovement characterMovement)
    {
+       Debug.Log(characterMovement.waitObjectsAnimation.howManyDirtCleaned +" " + characterMovement.gm.currentSubLevel.dirtCount);
        if (characterMovement.waitObjectsAnimation.howManyDirtCleaned == characterMovement.gm.currentSubLevel.dirtCount )
        {
            characterMovement.isPlayerReachedTarget = true;
            characterMovement.CharacterEndAnimationPlay();
-           
-        }
+           Debug.Log("eşit");
+       }
        else
        {
-           if (ShowWrongCleaningTile.instance.wrongWaitTiles.Count > 0)
+           Debug.Log("eşit değil");
+            if (ShowWrongCleaningTile.instance.wrongWaitTiles.Count > 0)
            {
                ShowWrongCleaningTile.instance.ShowWrongCleaningTiles();
                characterMovement.isPlayerReachedTarget = false;
-           }
+               Debug.Log("eşit değil 0dan büyük");
+            }
            else
            {
                characterMovement.isPlayerReachedTarget = false;
                characterMovement.gm.EndGame();
-           }
+               Debug.Log("eşit değil 0");
+            }
        }
    }
 }

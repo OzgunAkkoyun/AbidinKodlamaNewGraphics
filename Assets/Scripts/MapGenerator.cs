@@ -310,9 +310,9 @@ public class MapGenerator : MonoBehaviour {
             for (int j = -1; j < currentMap.mapSize.y + 1; j++)
             {
                 Vector3 tilePosition = CoordToPosition(i, j);
-                Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
-                newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
-                newTile.parent = mapHolder;
+                //Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
+                //newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
+                //newTile.parent = mapHolder;
 
                 float obstacleHeight = Mathf.Lerp(currentMap.minObstacleHeight, currentMap.maxObstacleHeight, (float)prng.NextDouble());
                 Transform newObstacle = Instantiate(obstaclePrefab[UnityEngine.Random.Range(0, obstaclePrefab.Length)], tilePosition + Vector3.up * obstacleHeight , Quaternion.identity) as Transform;
@@ -327,9 +327,9 @@ public class MapGenerator : MonoBehaviour {
             for (int i = 0; i < currentMap.mapSize.x; i++)
             {
                 Vector3 tilePosition = CoordToPosition(i, j);
-                Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
-                newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
-                newTile.parent = mapHolder;
+                //Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
+                //newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
+                //newTile.parent = mapHolder;
 
                 float obstacleHeight = Mathf.Lerp(currentMap.minObstacleHeight, currentMap.maxObstacleHeight, (float)prng.NextDouble());
                 Transform newObstacle = Instantiate(obstaclePrefab[UnityEngine.Random.Range(0, obstaclePrefab.Length)], tilePosition + Vector3.up * obstacleHeight, Quaternion.identity) as Transform;

@@ -59,7 +59,7 @@ public class UiMiniMapController : MonoBehaviour
 
         miniMapCamera.transform.position = new Vector3(map.currentMap.mapSize.x - 1, miniMapCamera.transform.position.y, miniMapZPos);
         miniMapCameraOnlyVehicle.transform.position = new Vector3(map.currentMap.mapSize.x - 1, miniMapCamera.transform.position.y, miniMapZPos);
-        Invoke("CloseCamera",1f);
+        //Invoke("CloseCamera",1f);
         
     }
 
@@ -119,7 +119,6 @@ public class UiMiniMapController : MonoBehaviour
     }
     public void MiniMapZoom()
     {
-        Debug.Log("zoom1");
         if (gm.is3DStarted)
             StartCoroutine(MiniMapSizeChange());
     }

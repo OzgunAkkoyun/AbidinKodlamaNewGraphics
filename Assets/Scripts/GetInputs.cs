@@ -51,6 +51,21 @@ public class GetInputs : MonoBehaviour
     private int selectedObjectIndex = 0;
     public TextMeshProUGUI rotatetext;
 
+    void Start()
+    {
+        //GetRotateObjects();
+    }
+    public void GetRotateObjects()
+    {
+        rotateObjects.Clear();
+        var rotateObjectsTemp = GameObject.Find("SelectionWheel/Container").transform;
+        for (int i = 0; i < rotateObjectsTemp.childCount; i++)
+        {
+            rotateObjects.Add(rotateObjectsTemp.GetChild(i).gameObject);
+        }
+
+        maxAngle = singleObjectAngle * rotateObjects.Count;
+    }
     public void TryToy()
     {
         touchList.Clear();
@@ -323,12 +338,11 @@ public class GetInputs : MonoBehaviour
         uh.waitInput.gameObject.SetActive(true);
     }
 
-    public void WaitListener()
+    public void WaitListener(string count)
     {
-        var currentSecond = int.Parse(EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>().text);
-
-        commander.AddWaitCommand(currentSecond);
-        seconds.Add(currentSecond);
+        var waitCount = int.Parse(count);
+        commander.AddWaitCommand(waitCount);
+        seconds.Add(waitCount);
         uh.waitInput.gameObject.SetActive(false);
     }
 
@@ -353,5 +367,10 @@ public class GetInputs : MonoBehaviour
     {
         forLoopCount = int.Parse(count);
         uh.forInput.gameObject.SetActive(false);
+    }
+
+    public void SetWaitCount(string count)
+    {
+        
     }
 }

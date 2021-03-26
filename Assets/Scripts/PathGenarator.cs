@@ -19,7 +19,7 @@ public class PathGenarator : MonoBehaviour
     public List<Coord> Path = new List<Coord>();
     public int expectedPathLength;
     public int PathLength => Path.Count;
-
+    public List<Coord> blackList;
     #region LoopPathGenerate
     //For Loop variables
     public enum forLoopDirections { Left, Right, Up, Down }
@@ -321,22 +321,7 @@ public class PathGenarator : MonoBehaviour
     #endregion
 
     #region IfPathGenerate
-    //[Serializable]
-    //public class IfObjects
-    //{
-    //    [Serializable]
-    //    public class IfObjectsForLevel
-    //    {
-    //        public string ifName;
-    //        public GameObject ifGameObjects;
-    //        public Sprite ifGameObjectsImage;
-    //    }
-    //    public IfObjectsForLevel[] ifObjectsForLevels;
 
-    //}
-    //[Space(15f)]
-    //[Header("If Objects")]
-    //public IfObjects[] ifObjects;
     [HideInInspector]
     public IfObjectsScriptable currentIfObjectsScriptable;
     [Space(10f)]
@@ -372,10 +357,23 @@ public class PathGenarator : MonoBehaviour
     public void CreatePathWithIfStatement()
     {
         Path = mapGenerator.allOpenCoords;
+        if (blackList.Count == 0)
+            blackList = new List<Coord>(Path);
         PrepareAnimals();
         //rotateToyUi.SetAllIfObjectsInContainer(3);
         rotateToyUi.SetAllIfObjectsInWheel(5);
         SetIfObjects();
+    }
+
+    private void RemoveStartAndTargetPointFromBlackList()
+    {
+        RemoveFromBlaclist(mapGenerator.currentMap.startPoint);
+        RemoveFromBlaclist(mapGenerator.currentMap.targetPoint);
+    }
+    void RemoveFromBlaclist(Coord removedCoord)
+    {
+        if (blackList.Contains(removedCoord))
+            blackList.Remove(removedCoord);
     }
 
     private void SetIfObjects()
@@ -384,7 +382,7 @@ public class PathGenarator : MonoBehaviour
         var howManyObject = gm.currentSubLevel.ifObjectCount;
         var levelIndex = gm.currentLevel.levelIndex;
         var subLevelIndex = gm.currentSubLevel.subLevelIndex;
-        
+        RemoveStartAndTargetPointFromBlackList();
         for (int i = 0; i < maxObject-howManyObject; i++)
         {
             var whichPathHaveObject = UnityEngine.Random.Range(1, PathLength - 1);
@@ -393,6 +391,7 @@ public class PathGenarator : MonoBehaviour
             if (selectedPath.whichCoord == AnimalsInIfPath.Empty)
             {
                 Path[whichPathHaveObject].whichCoord = AnimalsInIfPath.isEmptyAnimalCoord;
+                //RemoveFromBlaclist(Path[whichPathHaveObject]);
                 var spawnPosition = mapGenerator.CoordToPosition(selectedPath.x, selectedPath.y);
                 var onlySmoke = Instantiate(smoke, spawnPosition + Vector3.up, Quaternion.identity);
                 justEmtyQuestionMarks.Add(onlySmoke);
@@ -410,6 +409,7 @@ public class PathGenarator : MonoBehaviour
             if (selectedPath.whichCoord == AnimalsInIfPath.Empty)
             {
                 Path[whichPathHaveObject].whichCoord = AnimalsInIfPath.isAnimalCoord;
+                //RemoveFromBlaclist(Path[whichPathHaveObject]);
                 var spawnPosition = mapGenerator.CoordToPosition(selectedPath.x, selectedPath.y);
                 var animal = Instantiate(selectedAnimal.ifGameObjects, spawnPosition, Quaternion.identity);
                 animals.Add(animal);
@@ -471,6 +471,8 @@ public class PathGenarator : MonoBehaviour
     public void CreatePathForWait()
     {
         Path = mapGenerator.allOpenCoords;
+        if (blackList.Count == 0)
+            blackList = new List<Coord>(Path);
     }
 
     public void SetWaitScriptable()
@@ -495,6 +497,7 @@ public class PathGenarator : MonoBehaviour
 
         currentDirtObject = currentWaitObjectsScriptable.GetCurrentWaitObject(levelIndex);
 
+        RemoveStartAndTargetPointFromBlackList();
         var selectedDirtIndex = -1;
 
         for (int i = 0; i < dirtCount; )
@@ -510,7 +513,12 @@ public class PathGenarator : MonoBehaviour
 
             if (selectedPath.whichDirt == null)
             {
+                //Debug.Log(selectedPath.x +" " + selectedPath.y);
+                //Debug.Log("PathLenght: "+PathLength);
                 selectedPath.whichDirt = selectedDirtObject;
+                //RemoveFromBlaclist(selectedPath);
+                //Debug.Log("PathLenght: " + PathLength);
+
                 var spawnPos = new Vector3( selectedPath.x*mapGenerator.tileSize,1,selectedPath.y * mapGenerator.tileSize);
                 var insWaitObject = Instantiate(currentWaitObjectsScriptable.waitMetarials[selectedDirtIndex].dirtGameObject, spawnPos, Quaternion.identity);
                 currentDirtGameObjects.Add(insWaitObject);

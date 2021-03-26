@@ -20,7 +20,7 @@ public class UIHandler : MonoBehaviour
     public GameObject codeStringPanel;
     
     public GameObject forInput;
-    public TMP_InputField waitInput;
+    public GameObject waitInput;
 
     public GameObject mainCamera;
     public Transform cameraTarget;
@@ -30,7 +30,7 @@ public class UIHandler : MonoBehaviour
     private bool codePanelOpened = false;
     private float codePaneleWidth = 0;
 
-    [HideInInspector] public List<GameObject> codeInputsObjects = new List<GameObject>();
+    [HideInInspector] public List<Image> codeInputsObjects = new List<Image>();
     public GameObject codeMoveObject;
     public GameObject codeForObject;
     public GameObject codeIfObject;
@@ -78,7 +78,6 @@ public class UIHandler : MonoBehaviour
         ShowCommand(newCommand);
     }
 
-
     #region CodePanel
 
     public void CodePanelOpen()
@@ -100,21 +99,12 @@ public class UIHandler : MonoBehaviour
             {
                 codePanelOpenButton.gameObject.SetActive(false);
                 rectTransform.DOMoveX(57, 0.5f);
-                //codePanel.transform.localPosition =
-                //    codePanel.transform.localPosition + new Vector3(codePaneleWidth / 10, 0, 0);
-                //codePanelOpenButton.transform.localPosition =
-                //    codePanelOpenButton.transform.localPosition + new Vector3(codePaneleWidth / 10, 0, 0);
-
                 yield return new WaitForSeconds(0f);
             }
             else
             {
                 codePanelOpenButton.gameObject.SetActive(true);
                 rectTransform.DOMoveX(-913f, 1f);
-                //codePanel.transform.localPosition =
-                //    codePanel.transform.localPosition - new Vector3(codePaneleWidth / 10, 0, 0);
-                //codePanelOpenButton.transform.localPosition =
-                //    codePanelOpenButton.transform.localPosition - new Vector3(codePaneleWidth / 10, 0, 0);
                 yield return new WaitForSeconds(0f);
             }
         }
@@ -160,7 +150,7 @@ public class UIHandler : MonoBehaviour
         }
 
         var codeInputWait = Instantiate(codeWaitObject, codeWaitObject.transform.position, Quaternion.identity);
-        codeInputWait.transform.Find("Wait/seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
+        codeInputWait.transform.Find("CodeInputArea/Wait/seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
             waitCommandSeconds.ToString();
 
         codeInputWait.transform.parent = panel.transform;
@@ -168,7 +158,7 @@ public class UIHandler : MonoBehaviour
 
         codeInputWait.transform.localScale = new Vector3(2.5f, 1f, 1f);
 
-        codeInputsObjects.Add(codeInputWait);
+        codeInputsObjects.Add(codeInputWait.transform.Find("CodeInputArea/Wait").GetComponent<Image>());
     }
 
     private void ShowKeyForIf(string ifCommandAnimalName)
@@ -189,14 +179,14 @@ public class UIHandler : MonoBehaviour
 
         var codeInput = Instantiate(codeIfObjectChild, codeIfObjectChild.transform.position, Quaternion.identity);
 
-        codeInput.transform.parent = codeInputIf.transform.Find("CodeWhole/CodeInputArea").transform;
+        codeInput.transform.parent = codeInputIf.transform.Find("CodeInputArea").transform;
         Destroy(codeInput.GetComponent<DeleteCommand>());
 
         codeInputIf.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.x, codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.y);
         codeInput.transform.localScale = new Vector3(.7f, .7f, .7f);
 
-        codeInputsObjects.Add(codeInputIf);
-
+        codeInputsObjects.Add(codeInputIf.transform.Find("CodeInputArea").GetComponentInChildren<Image>());
+        
         var image = codeInput.transform.Find("Image").GetComponent<Image>();
 
         image.sprite = pathGenarator.allIfObjects.ToList().Find(v => v.ifName == ifCommandAnimalName).ifGameObjectsImage;
@@ -229,7 +219,7 @@ public class UIHandler : MonoBehaviour
             codeInputForRect.sizeDelta = new Vector2(codeInputForRect.sizeDelta.x, codeInputForRect.sizeDelta.y);
             codeInput.transform.localScale = new Vector3(.7f, .7f, .7f);
 
-            codeInputsObjects.Add(codeInputFor);
+            codeInputsObjects.Add(codeInputFor.transform.Find("CodeWhole/CodeInputArea/CodeInputImage/CodeInputArea").GetComponentInChildren<Image>());
 
             var arrow = codeInput.transform.Find("Image/Arrow");
             arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
@@ -248,12 +238,12 @@ public class UIHandler : MonoBehaviour
 
         var codeInput = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
 
-        codeInputsObjects.Add(codeInput);
+        codeInputsObjects.Add(codeInput.transform.Find("CodeInputArea").GetComponentInChildren<Image>());
        
         codeInput.transform.parent = panel.transform;
         codeInput.transform.localScale = new Vector3(2.5f, 1, 1);
         codeInput.transform.name = commandIndex.ToString();
-        var arrow = codeInput.transform.Find("Image/Arrow");
+        var arrow = codeInput.transform.Find("CodeInputArea/Image/Arrow");
         arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
         GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
     }
@@ -413,7 +403,7 @@ public class UIHandler : MonoBehaviour
 
     public void ShowWrongCommand(int wrongCommandIndex)
     {
-        codeInputsObjects[wrongCommandIndex].GetComponent<Image>().color = Color.red;
+        codeInputsObjects[wrongCommandIndex].color = Color.red;
         if (!codePanelOpened)
         {
             CodePanelOpen();
@@ -455,9 +445,9 @@ public class UIHandler : MonoBehaviour
 
     public void MarkCurrentCommand(int i)
     {
-        codeInputsObjects[i].GetComponent<Image>().color = new Color(163 / 255, 255 / 255, 131 / 255);
+        codeInputsObjects[i].color = new Color(163 / 255, 255 / 255, 131 / 255);
         if (i != 0)
-            codeInputsObjects[i - 1].GetComponent<Image>().color = Color.white;
+            codeInputsObjects[i - 1].color = Color.white;
     }
 
     public void StartCleaningCountDown(MapGenerator.Coord realCoord, int seconds)

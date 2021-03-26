@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Video;
 
 [CreateAssetMenu(menuName = "Abidin/LevelStats", order = 1)]
 public class LevelStats : ScriptableObject
@@ -89,10 +86,10 @@ public class LevelStats : ScriptableObject
 
         for (int i = 0; i < complatedPercent.Length; i++)
         {
-            complatedPercent[i] = completed[i] / 9 * 100;
+            complatedPercent[i] = (float)((float)completed[i] / 9f) * 100f;
+            Debug.Log(complatedPercent[i]);
         }
         return complatedPercent;
     }
-
 
 }

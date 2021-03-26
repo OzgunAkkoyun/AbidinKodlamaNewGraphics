@@ -43,7 +43,7 @@ public class CharacterMovement : MonoBehaviour
         anim = gameObject.transform.GetChild(0).GetComponentInChildren<Animator>();
         scaleFactor = mapGenerate.tileSize;
 
-        if (gm.currentSenario.senarioIndex == 2 && gm.currentLevel.levelIndex == 3)
+        if (gm.currentSenario.senarioIndex == 2 && gm.currentLevel.levelIndex == 2)
         {
             anim.SetBool("isBag",true);
         }
@@ -60,8 +60,9 @@ public class CharacterMovement : MonoBehaviour
         checkTargetReached.CheckIfReachedTarget(isLastCommand, this);
     }
 
-    public IEnumerator ApplyIfCommand(string ifObjectName, bool isLastCommand)
+    public IEnumerator ApplyIfCommand(string ifObjectName, bool isLastCommand, int i)
     {
+        uh.MarkCurrentCommand(i);
         if (gm.currentSenario.senarioIndex == 3)
         {
             yield return IfObjectAnimations.instance.SenarioTreeIfCheck(isLastCommand, this, inputVector);
@@ -131,6 +132,7 @@ public class CharacterMovement : MonoBehaviour
         currentPath = pathGenarator.Path.Find(v =>
             (v.x * 2 == inputVector.Vector3toXZ().x) && (v.y * 2 == inputVector.Vector3toXZ().z));
 
+        //if(pathGenarator.Path.Contains(currentPath))
         if (currentPath.whichCoord == AnimalsInIfPath.isAnimalCoord && !currentPath.isVisited)
         {
             currentPath.isVisited = true;

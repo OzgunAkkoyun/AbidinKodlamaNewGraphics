@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitObjects:
   - dirts:
-    - waitName: "G\xFCl"
+    - waitName: Flower1
       seconds: 1
   - dirts:
-    - waitName: "G\xFCl"
+    - waitName: Flower1
       seconds: 1
-    - waitName: Papatya
+    - waitName: Flower2
       seconds: 2
   - dirts:
-    - waitName: "G\xFCl"
+    - waitName: Flower1
       seconds: 1
-    - waitName: Papatya
+    - waitName: Flower2
       seconds: 2
-    - waitName: Lale
+    - waitName: Flower3
       seconds: 3
   waitMetarials:
-  - waitName: "G\xFCl"
-    dirtGameObject: {fileID: 2093710480782538891, guid: 559be3c52ba94ae4499bd540323dd687,
+  - waitName: Flower1
+    dirtGameObject: {fileID: 3624621466218965417, guid: 7e5bf311ef8f2774ab7ac72b2cdaf6c8,
       type: 3}
-  - waitName: Papatya
-    dirtGameObject: {fileID: 2093710480782538891, guid: 559be3c52ba94ae4499bd540323dd687,
+  - waitName: Flower2
+    dirtGameObject: {fileID: 964524893643434396, guid: fab59db7691bb274082cf8eb95c4d9fd,
       type: 3}
-  - waitName: Lale
-    dirtGameObject: {fileID: 2093710480782538891, guid: 559be3c52ba94ae4499bd540323dd687,
+  - waitName: Flower3
+    dirtGameObject: {fileID: 1174068876880512092, guid: e622b65a608ee12488c5bd828d8a20fc,
       type: 3}
