@@ -156,7 +156,7 @@ public class UIHandler : MonoBehaviour
         codeInputWait.transform.parent = panel.transform;
         codeInputWait.transform.name = commandIndex.ToString();
 
-        codeInputWait.transform.localScale = new Vector3(2.5f, 1f, 1f);
+        codeInputWait.transform.localScale = new Vector3(1f, 1f, 1f);
 
         codeInputsObjects.Add(codeInputWait.transform.Find("CodeInputArea/Wait").GetComponent<Image>());
     }
@@ -174,16 +174,15 @@ public class UIHandler : MonoBehaviour
         codeInputIf.transform.parent = panel.transform;
         codeInputIf.transform.name = commandIndex.ToString();
 
-        codeInputIf.transform.localScale = new Vector3(2.5f, 1, 1);
-
+        codeInputIf.transform.localScale = new Vector3(1, 1, 1);
 
         var codeInput = Instantiate(codeIfObjectChild, codeIfObjectChild.transform.position, Quaternion.identity);
 
         codeInput.transform.parent = codeInputIf.transform.Find("CodeInputArea").transform;
         Destroy(codeInput.GetComponent<DeleteCommand>());
 
-        codeInputIf.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.x, codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.y);
-        codeInput.transform.localScale = new Vector3(.7f, .7f, .7f);
+        //codeInputIf.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.x, codeInputIf.transform.GetComponent<RectTransform>().sizeDelta.y);
+        codeInput.transform.localScale = new Vector3(1f, 1f, 1f);
 
         codeInputsObjects.Add(codeInputIf.transform.Find("CodeInputArea").GetComponentInChildren<Image>());
         
@@ -205,7 +204,7 @@ public class UIHandler : MonoBehaviour
             loopCount.ToString();
         codeInputFor.transform.parent = panel.transform;
         codeInputFor.transform.name = commandIndex.ToString();
-        codeInputFor.transform.localScale = new Vector3(2.5f, 1, 1);
+        codeInputFor.transform.localScale = new Vector3(1f, 1, 1);
         for (int i = 0; i < direction.Count; i++)
         {
             int keyRotate = SetDirectionRotate(direction[i]);
@@ -217,7 +216,7 @@ public class UIHandler : MonoBehaviour
             var codeInputForRect = codeInputFor.transform.GetComponent<RectTransform>();
 
             codeInputForRect.sizeDelta = new Vector2(codeInputForRect.sizeDelta.x, codeInputForRect.sizeDelta.y);
-            codeInput.transform.localScale = new Vector3(.7f, .7f, .7f);
+            codeInput.transform.localScale = new Vector3(1f, 1f, 1f);
 
             codeInputsObjects.Add(codeInputFor.transform.Find("CodeWhole/CodeInputArea/CodeInputImage/CodeInputArea").GetComponentInChildren<Image>());
 
@@ -241,7 +240,7 @@ public class UIHandler : MonoBehaviour
         codeInputsObjects.Add(codeInput.transform.Find("CodeInputArea").GetComponentInChildren<Image>());
        
         codeInput.transform.parent = panel.transform;
-        codeInput.transform.localScale = new Vector3(2.5f, 1, 1);
+        codeInput.transform.localScale = new Vector3(1f, 1, 1);
         codeInput.transform.name = commandIndex.ToString();
         var arrow = codeInput.transform.Find("CodeInputArea/Image/Arrow");
         arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));

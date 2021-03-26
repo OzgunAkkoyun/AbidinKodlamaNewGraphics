@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 2544501728275192022}
   - component: {fileID: 6773583647166225862}
   - component: {fileID: 3835329088139583077}
-  - component: {fileID: 2405071460186539651}
   m_Layer: 0
   m_Name: IS_TreeSet01
   m_TagString: Untagged
@@ -267,20 +266,6 @@ MonoBehaviour:
   destroyCombinedChildren: 0
   folderPath: Prefabs/CombinedMeshes
   meshFiltersToSkip: []
---- !u!64 &2405071460186539651
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4873087547577788532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 358815d3d31354444bd6d6bb515662df, type: 2}
 --- !u!1 &4889317874133137119
 GameObject:
   m_ObjectHideFlags: 0

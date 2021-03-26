@@ -132,7 +132,12 @@ public class CharacterMovement : MonoBehaviour
         currentPath = pathGenarator.Path.Find(v =>
             (v.x * 2 == inputVector.Vector3toXZ().x) && (v.y * 2 == inputVector.Vector3toXZ().z));
 
-        //if(pathGenarator.Path.Contains(currentPath))
+        if (!pathGenarator.Path.Contains(currentPath))
+        {
+            isPlayerReachedTarget = false;
+            gm.EndGame();
+            yield break;
+        }
         if (currentPath.whichCoord == AnimalsInIfPath.isAnimalCoord && !currentPath.isVisited)
         {
             currentPath.isVisited = true;
@@ -181,7 +186,13 @@ public class CharacterMovement : MonoBehaviour
     {
         currentPath = pathGenarator.Path.Find(v =>
             (v.x * 2 == inputVector.Vector3toXZ().x) && (v.y * 2 == inputVector.Vector3toXZ().z));
-        
+
+        if (!pathGenarator.Path.Contains(currentPath))
+        {
+            isPlayerReachedTarget = false;
+            gm.EndGame();
+            yield break;
+        }
         if (currentPath.whichCoord == AnimalsInIfPath.isAnimalCoord && !currentPath.isVisited)
         {
             currentPath.isVisited = true;
