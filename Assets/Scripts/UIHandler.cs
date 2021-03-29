@@ -46,8 +46,6 @@ public class UIHandler : MonoBehaviour
     public Sprite[] gameOverScoreImages;
     public Image gameOverScoreObject;
 
-    
-
     void Awake()
     {
         codePaneleWidth = Mathf.Abs(codePanel.transform.position.x);
@@ -58,7 +56,6 @@ public class UIHandler : MonoBehaviour
         panel = GameObject.Find("CodePanel/Scroll");
 
         forInput.gameObject.SetActive(false);
-
     }
 
     void Start()
@@ -204,7 +201,7 @@ public class UIHandler : MonoBehaviour
             loopCount.ToString();
         codeInputFor.transform.parent = panel.transform;
         codeInputFor.transform.name = commandIndex.ToString();
-        codeInputFor.transform.localScale = new Vector3(1f, 1, 1);
+        codeInputFor.transform.localScale = new Vector3(1, 1, 1);
         for (int i = 0; i < direction.Count; i++)
         {
             int keyRotate = SetDirectionRotate(direction[i]);
@@ -218,7 +215,7 @@ public class UIHandler : MonoBehaviour
             codeInputForRect.sizeDelta = new Vector2(codeInputForRect.sizeDelta.x, codeInputForRect.sizeDelta.y);
             codeInput.transform.localScale = new Vector3(1f, 1f, 1f);
 
-            codeInputsObjects.Add(codeInputFor.transform.Find("CodeWhole/CodeInputArea/CodeInputImage/CodeInputArea").GetComponentInChildren<Image>());
+            codeInputsObjects.Add(codeInputFor.transform.Find("CodeWhole/CodeInputArea/CodeInputImage(Clone)").GetComponentInChildren<Image>());
 
             var arrow = codeInput.transform.Find("Image/Arrow");
             arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
@@ -237,12 +234,12 @@ public class UIHandler : MonoBehaviour
 
         var codeInput = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
 
-        codeInputsObjects.Add(codeInput.transform.Find("CodeInputArea").GetComponentInChildren<Image>());
+        codeInputsObjects.Add(codeInput.GetComponentInChildren<Image>());
        
         codeInput.transform.parent = panel.transform;
         codeInput.transform.localScale = new Vector3(1f, 1, 1);
         codeInput.transform.name = commandIndex.ToString();
-        var arrow = codeInput.transform.Find("CodeInputArea/Image/Arrow");
+        var arrow = codeInput.transform.Find("Image/Arrow");
         arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
         GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
     }

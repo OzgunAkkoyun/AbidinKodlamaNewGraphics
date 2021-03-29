@@ -38,10 +38,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 286175243482042711}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 273b90e2e1f9116468c506932c7c78cb,
+    - target: {fileID: -6057140222963153312, guid: 273b90e2e1f9116468c506932c7c78cb,
         type: 3}
-      propertyPath: m_Name
-      value: AZ_Bird_001_Blue
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 757ba51854acb3c478dea4184716c408, type: 2}
+    - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
         type: 3}
@@ -60,6 +65,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -72,16 +82,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 273b90e2e1f9116468c506932c7c78cb,
         type: 3}
@@ -98,11 +98,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 273b90e2e1f9116468c506932c7c78cb,
+    - target: {fileID: -927199367670048503, guid: 273b90e2e1f9116468c506932c7c78cb,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 757ba51854acb3c478dea4184716c408, type: 2}
+      propertyPath: m_Name
+      value: AZ_Bird_001_Blue
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273b90e2e1f9116468c506932c7c78cb, type: 3}
 --- !u!4 &5080629998357377522 stripped

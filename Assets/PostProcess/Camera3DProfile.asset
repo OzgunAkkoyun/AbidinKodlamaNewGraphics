@@ -130,13 +130,13 @@ MonoBehaviour:
     value: 7
   brightness:
     overrideState: 1
-    value: 24
+    value: 63.1
   postExposure:
     overrideState: 0
     value: 0
   contrast:
     overrideState: 1
-    value: 76
+    value: 47
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1394,7 +1394,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0
+    value: 0.38
   color:
     overrideState: 0
     value: {r: 0, g: 0, b: 0, a: 1}
@@ -1412,7 +1412,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 3.53
+    value: 1.91
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1444,7 +1444,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.273
+    value: 0
   fastMode:
     overrideState: 0
     value: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1

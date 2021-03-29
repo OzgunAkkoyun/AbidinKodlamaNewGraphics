@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2732024070525725537}
-  m_LocalRotation: {x: 0.19570184, y: -0, z: -0, w: 0.9806635}
-  m_LocalPosition: {x: 0.0021505356, y: 1.49, z: -1.46}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0021505356, y: 0.3, z: -0.974}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 6707948385565895714}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 40.933002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5552958198052391160
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,13 +141,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6679728533482656813}
-  m_LocalRotation: {x: 0.109382816, y: 2.5605754e-10, z: 4.795942e-11, w: 0.9939997}
-  m_LocalPosition: {x: 0.022717552, y: 2.58, z: -2.44}
+  m_LocalRotation: {x: -0.22238426, y: 2.2620306e-10, z: 1.2921973e-10, w: 0.9749591}
+  m_LocalPosition: {x: 0.022717552, y: 3.05, z: -1.46}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 6707948385565895714}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 12.559001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -25.698002, y: 0, z: 0}
 --- !u!1 &8647615996806762846
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,13 +177,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8647615996806762846}
-  m_LocalRotation: {x: 0.34965587, y: -0, z: -0, w: 0.93687826}
-  m_LocalPosition: {x: 0.129, y: 5.86, z: -4.58}
+  m_LocalRotation: {x: -0.044162884, y: -0, z: -0, w: 0.9990244}
+  m_LocalPosition: {x: 0.004378319, y: 3.872, z: -4.363}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 6707948385565895714}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 40.933002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.0620003, y: 0, z: 0}
 --- !u!20 &6846505429741955894
 Camera:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 7711630577689f446a36a46a1be08d2c, type: 2}
-  isGlobal: 0
+  isGlobal: 1
   blendDistance: 0
   weight: 1
   priority: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 9046045987116306186}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0

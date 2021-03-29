@@ -142,13 +142,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7145693051711085299}
-  m_LocalRotation: {x: 0.17292216, y: -0, z: -0, w: 0.9849356}
-  m_LocalPosition: {x: -0, y: 1.706, z: -2.389}
+  m_LocalRotation: {x: 0.013198099, y: -0, z: -0, w: 0.9999129}
+  m_LocalPosition: {x: 0, y: 0.154, z: -0.859}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 2229289503660701349}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 19.916, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.47400004, y: 0, z: 0}
 --- !u!1 &7294545314754736711
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7294545314754736711}
   m_LocalRotation: {x: 0.32547605, y: -0, z: -0, w: 0.94555026}
-  m_LocalPosition: {x: 0, y: 2.223, z: -1.906}
+  m_LocalPosition: {x: 0, y: 1.248, z: -0.545}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 2229289503660701349}
@@ -208,13 +208,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9213627803653127716}
-  m_LocalRotation: {x: 0.34311673, y: -0, z: -0, w: 0.93929285}
-  m_LocalPosition: {x: 1.28, y: 2.892, z: 0.24279991}
+  m_LocalRotation: {x: -0.004137862, y: -0, z: -0, w: 0.9999914}
+  m_LocalPosition: {x: 0, y: 0.87, z: -0.888}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 2229289503660701349}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 40.134003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.47400004, y: 0, z: 0}
 --- !u!20 &8929425210962749612
 Camera:
   m_ObjectHideFlags: 0
@@ -238,9 +238,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 2
+  near clip plane: 0.01
   far clip plane: 1000
-  field of view: 40
+  field of view: 55
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -273,7 +273,7 @@ Skybox:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9213627803653127716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CustomSkybox: {fileID: 2100000, guid: acef969085560684b9e35b00f14d23b2, type: 2}
 --- !u!114 &1228168536953114624
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 7711630577689f446a36a46a1be08d2c, type: 2}
-  isGlobal: 0
+  isGlobal: 1
   blendDistance: 0
   weight: 1
   priority: 0
@@ -320,7 +320,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 8624694558769239180}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
