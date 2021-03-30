@@ -7,19 +7,27 @@ using UnityEngine.UI;
 public class FPSDisplay : MonoBehaviour
 {
     float deltaTime = 0.0f;
+    int FPSCounter;
     public TextMeshProUGUI text;
+
+    private void OnEnable()
+    {
+        InvokeRepeating("RefreshText", 0f, 1f);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("RefreshText");
+    }
 
     void Update()
     {
-        ShowFps();
+        FPSCounter++;
     }
 
-    void ShowFps()
+    void RefreshText()
     {
-        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
-        float msec = deltaTime * 1000.0f;
-        float fps = 1.0f / deltaTime;
-        string text1 = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
-        text.text = text1;
+        text.text = FPSCounter.ToString();
+        FPSCounter = 0;
     }
 }
