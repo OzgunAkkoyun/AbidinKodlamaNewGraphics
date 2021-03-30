@@ -55,6 +55,18 @@ MonoBehaviour:
       ignoreCase: 0
       kind: 1
       value: Assets/TextMesh Pro
+    - enabled: 1
+      ignoreCase: 0
+      kind: 0
+      value: Assets/Prefabs/LastPrefabs/Grid_5x5_GARDEN_Wall.prefab
+    - enabled: 1
+      ignoreCase: 0
+      kind: 0
+      value: Assets/Prefabs/LastPrefabs/Grid_7x7_GARDEN_Wall.prefab
+    - enabled: 1
+      ignoreCase: 0
+      kind: 0
+      value: Assets/Prefabs/LastPrefabs/Grid_9x9_GARDEN_Wall.prefab
     pathIncludesFilters: []
     sceneIgnoresFilters: []
     ignoreScenesInBuild: 1
