@@ -31,7 +31,7 @@ public class Commander : MonoBehaviour
 
     public void AddIfCommand(string name)
     {
-        commands.Add(new PickIfAnyObjectExistsCommand{animalName = name});
+        commands.Add(new PickIfAnyObjectExistsCommand{animalName = name, senarioIndex = gm.currentSenario.senarioIndex});
         OnNewCommand.Invoke();
     }
 

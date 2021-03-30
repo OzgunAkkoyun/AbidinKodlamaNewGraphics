@@ -38,14 +38,16 @@ public class IfObjectAnimations : MonoBehaviour
                 });
             });
 
-            var cameraMovePosDirection = currentObject.transform.position - character.transform.position;
+            //var cameraMovePosDirection = currentObject.transform.position - character.transform.position;
 
-            var cameraMovePosTemp = characterCam.transform.position + cameraMovePosDirection * 1.3f;
+            //var cameraMovePosTemp = characterCam.transform.position + cameraMovePosDirection * 1.3f;
 
-            var cameraMovePos = new Vector3(cameraMovePosTemp.x, 3, cameraMovePosTemp.z);
+            //var cameraMovePos = new Vector3(cameraMovePosTemp.x, 3, cameraMovePosTemp.z);
+            var cameraMovePos = character.gameObject.transform.Find("SSTarget").transform;
             if (pathGenarator.gm.isGameOrLoad !=1)
             {
-                characterCam.transform.DOMove(cameraMovePos, 1);
+                //characterCam.transform.DOMove(cameraMovePos, 1);
+                StartCoroutine(CameraSmoothMovingToTargetPosition(characterCam, cameraMovePos));
             }
         }
         else
@@ -61,6 +63,18 @@ public class IfObjectAnimations : MonoBehaviour
             });
         }
 
+    }
+    public IEnumerator CameraSmoothMovingToTargetPosition(Camera mainCamera, Transform cameraTarget)
+    {
+        float t = 0;
+        while (Vector3.Distance(mainCamera.transform.position, cameraTarget.position) > 0.1f)
+        {
+            t += Time.deltaTime / 30;
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, cameraTarget.position, t);
+            mainCamera.transform.rotation = Quaternion.Slerp(mainCamera.transform.rotation, cameraTarget.rotation, t);
+
+            yield return new WaitForSeconds(0f);
+        }
     }
 
     public void RemoveOnlyQuestionMark(GameObject currentQuestionMark)

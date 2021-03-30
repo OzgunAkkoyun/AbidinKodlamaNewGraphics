@@ -15,9 +15,9 @@ MonoBehaviour:
   startGameObject: {fileID: 3045533123998791788, guid: e1f0efec6b7b3ad48a5d6476e84195c3,
     type: 3}
   targetGameObject:
-  - {fileID: 6494151395202852698, guid: 2e4435c817a998f4182fc99d89e8a6f4, type: 3}
-  - {fileID: 6494151395202852698, guid: 2e4435c817a998f4182fc99d89e8a6f4, type: 3}
-  - {fileID: 6494151395202852698, guid: 2e4435c817a998f4182fc99d89e8a6f4, type: 3}
+  - {fileID: 6494151395202852698, guid: abd902b3241869e478fd348dba8f6721, type: 3}
+  - {fileID: 6494151395202852698, guid: abd902b3241869e478fd348dba8f6721, type: 3}
+  - {fileID: 6494151395202852698, guid: abd902b3241869e478fd348dba8f6721, type: 3}
   targetNewGameObject:
   - {fileID: 4448455887358481343, guid: 8eb3446abce7eab4e95db2d832b1029a, type: 3}
   - {fileID: 4448455887358481343, guid: 8eb3446abce7eab4e95db2d832b1029a, type: 3}

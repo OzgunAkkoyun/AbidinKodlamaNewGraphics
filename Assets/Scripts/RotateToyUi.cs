@@ -19,7 +19,7 @@ public class RotateToyUi : MonoBehaviour
 
     public GameObject wheelContainer;
     public GameObject whellChilds;
-    private int wheelObjectCount = 8;
+    private int wheelObjectCount = 5;
 
     void Start()
     {

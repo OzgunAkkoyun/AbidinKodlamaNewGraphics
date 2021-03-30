@@ -349,6 +349,10 @@ public class MapGenerator : MonoBehaviour {
         startHome.transform.LookAt(new Vector3(pathGenarator.Path[1].x * tileSize, 1, pathGenarator.Path[1].y * tileSize));
 
         targetHome.transform.LookAt(new Vector3(pathGenarator.Path[pathGenarator.PathLength - 2].x * tileSize, 1, pathGenarator.Path[pathGenarator.PathLength - 2].y * tileSize));
+        var targetIcon = targetHome.transform.Find("Icon");
+        var targetIconRotation = new Vector3(90, -targetHome.transform.rotation.y, targetIcon.transform.rotation.z);
+        targetIcon.transform.rotation =
+            Quaternion.Euler(targetIconRotation.x, targetIconRotation.y, targetIconRotation.z);
 
         if (home[2] != null)
         {

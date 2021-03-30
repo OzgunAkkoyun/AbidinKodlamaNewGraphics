@@ -84,15 +84,7 @@ public class UiMiniMapController : MonoBehaviour
         textureSize = (float)(miniMapGraphicsRect.sizeDelta.y - miniMapGraphicsRect.sizeDelta.y * 0.2);
         minimapTextureRect.sizeDelta = new Vector2(textureSize, textureSize);
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            MiniMapFullSize();
-        }
-    }
-
+    
     public void MiniMapFullSize()
     {
         miniMapCamera.gameObject.SetActive(true);

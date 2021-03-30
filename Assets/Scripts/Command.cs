@@ -63,10 +63,19 @@ public class ForCommand : Command
 public class PickIfAnyObjectExistsCommand : Command
 {
     public string animalName;
+    public int senarioIndex;
 
     public override string ToCodeString()
     {
-        return "if(" + animalName + " ise){\n Fotoğraf Çek();\n}";
+        if (senarioIndex == 3)
+        {
+            return "if(" + animalName + " ise){\n Fotoğraf Çek();\n}";
+        }
+        else
+        {
+            return "if(" + animalName + " ise){\n Topla();\n}";
+        }
+        
     }
 }
 public class WaitCommand : Command

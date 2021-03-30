@@ -18,6 +18,7 @@ public class UIHandler : MonoBehaviour
     public GameObject gameOverPanel;
     
     public GameObject codeStringPanel;
+    public GameObject codePanelInner;
     
     public GameObject forInput;
     public GameObject waitInput;
@@ -84,7 +85,28 @@ public class UIHandler : MonoBehaviour
 
     public void CodeStringPanelOpen()
     {
-        codeStringPanel.SetActive(!codeStringPanel.activeSelf);
+        if (codePanelInner.activeSelf)
+        {
+            codePanelInner.GetComponent<RectTransform>().DOAnchorPosX(-450f, .4f).OnComplete(() =>
+            {
+                codePanelInner.SetActive(!codePanelInner.activeSelf);
+            });
+
+            codeStringPanel.SetActive(!codeStringPanel.activeSelf);
+            codeStringPanel.GetComponent<RectTransform>().DOAnchorPosX(0f, .4f);
+        }
+        else
+        {
+            codeStringPanel.GetComponent<RectTransform>().DOAnchorPosX(-450f, .4f).OnComplete(() =>
+            {
+                codeStringPanel.SetActive(!codeStringPanel.activeSelf);
+
+            });
+            codePanelInner.SetActive(!codePanelInner.activeSelf);
+            codePanelInner.GetComponent<RectTransform>().DOAnchorPosX(0f, .4f);
+        }
+        
+        
     }
 
     public IEnumerator CodePanel()
@@ -158,6 +180,7 @@ public class UIHandler : MonoBehaviour
         codeInputsObjects.Add(codeInputWait.transform.Find("CodeInputArea/Wait").GetComponent<Image>());
     }
 
+    public Image[] collectAndPhotoImages = new Image[2];
     private void ShowKeyForIf(string ifCommandAnimalName)
     {
         if (panel == null)
@@ -185,9 +208,9 @@ public class UIHandler : MonoBehaviour
         
         var image = codeInput.transform.Find("Image").GetComponent<Image>();
 
-        image.sprite = pathGenarator.allIfObjects.ToList().Find(v => v.ifName == ifCommandAnimalName).ifGameObjectsImage;
+        //image.sprite = gm.currentSenario.senarioIndex == 3 ? collectAndPhotoImages[0].sprite : collectAndPhotoImages[1].sprite;
+            image.sprite = pathGenarator.allIfObjects.ToList().Find(v => v.ifName == ifCommandAnimalName).ifGameObjectsImage;
         GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
-        
     }
 
     private void ShowKeyForLoop(List<Direction> direction, int loopCount, int commandIndex)
@@ -202,6 +225,7 @@ public class UIHandler : MonoBehaviour
         codeInputFor.transform.parent = panel.transform;
         codeInputFor.transform.name = commandIndex.ToString();
         codeInputFor.transform.localScale = new Vector3(1, 1, 1);
+
         for (int i = 0; i < direction.Count; i++)
         {
             int keyRotate = SetDirectionRotate(direction[i]);
@@ -234,7 +258,7 @@ public class UIHandler : MonoBehaviour
 
         var codeInput = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
 
-        codeInputsObjects.Add(codeInput.GetComponentInChildren<Image>());
+        codeInputsObjects.Add(codeInput.transform.Find("Image").GetComponent<Image>());
        
         codeInput.transform.parent = panel.transform;
         codeInput.transform.localScale = new Vector3(1f, 1, 1);
