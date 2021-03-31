@@ -294,6 +294,8 @@ public class MapGenerator : MonoBehaviour {
         var vehiclePos = new Vector3(currentMap.startPoint.x, 0.6f, currentMap.startPoint.y) * tileSize;
 
         vehiclePrefab = Instantiate(vehiclePrefab, vehiclePos, Quaternion.identity);
+        vehiclePrefab.name = "car";
+        vehiclePrefab.transform.GetChild(0).name = "carin";
         gm.uh.mainCamera = vehiclePrefab.transform.Find("Main Camera").gameObject;
         gm.uh.cameraTarget = vehiclePrefab.transform.Find("CameraTarget");
 
@@ -317,6 +319,7 @@ public class MapGenerator : MonoBehaviour {
                 float obstacleHeight = Mathf.Lerp(currentMap.minObstacleHeight, currentMap.maxObstacleHeight, (float)prng.NextDouble());
                 Transform newObstacle = Instantiate(obstaclePrefab[UnityEngine.Random.Range(0, obstaclePrefab.Length)], tilePosition + Vector3.up * obstacleHeight , Quaternion.identity) as Transform;
                 newObstacle.parent = mapHolder;
+                newObstacle.name = "tree";
                // newObstacle.localScale = new Vector3((1 - outlinePercent) * tileSize, obstacleHeight*2, (1 - outlinePercent) * tileSize);
             }
         }
@@ -334,6 +337,7 @@ public class MapGenerator : MonoBehaviour {
                 float obstacleHeight = Mathf.Lerp(currentMap.minObstacleHeight, currentMap.maxObstacleHeight, (float)prng.NextDouble());
                 Transform newObstacle = Instantiate(obstaclePrefab[UnityEngine.Random.Range(0, obstaclePrefab.Length)], tilePosition + Vector3.up * obstacleHeight, Quaternion.identity) as Transform;
                 newObstacle.parent = mapHolder;
+                newObstacle.name = "tree";
                 //newObstacle.localScale = new Vector3((1 - outlinePercent) * tileSize, obstacleHeight*2, (1 - outlinePercent) * tileSize);
             }
         }
@@ -407,7 +411,7 @@ public class MapGenerator : MonoBehaviour {
 
         Transform newObstacle = Instantiate(obstaclePrefab[UnityEngine.Random.Range(0, obstaclePrefab.Length)], obstaclePosition + Vector3.up * obstacleHeight, Quaternion.identity) as Transform;
         newObstacle.parent = mapHolder;
-
+        newObstacle.name = "tree";
         int rand = UnityEngine.Random.Range(1,4);
         newObstacle.transform.Rotate(new Vector3(0, rand * 90, 0));
 

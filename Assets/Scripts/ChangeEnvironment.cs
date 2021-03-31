@@ -41,7 +41,7 @@ public class ChangeEnvironment : MonoBehaviour
     private Transform carInsideTarget;
     public GameObject[] carInsideObjects;
     public GameObject realCarInsideObject;
-
+    public GameObject directionalLight;
     public void AddForestEmptyTiles()
     {
         ChangeLightSettings();
@@ -60,7 +60,6 @@ public class ChangeEnvironment : MonoBehaviour
 
     private void ChangeLightSettings()
     {
-        var directionalLight = GameObject.Find("Directional Light");
         directionalLight.GetComponent<Light>().color = new Color(.5f,.5f,.5f);
     }
 

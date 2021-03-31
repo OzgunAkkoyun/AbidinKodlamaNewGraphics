@@ -3436,7 +3436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefix: '-'
   commands:
-  - {fileID: 11400000, guid: a967d24cda8ae2a4195c3ae7df7915e4, type: 2}
+  - {fileID: 11400000, guid: 0c08c34ab6319b748b61703702bda0d9, type: 2}
   uiCanvas: {fileID: 1164738697}
   inputField: {fileID: 1804833096}
 --- !u!1 &573974148
@@ -3901,6 +3901,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaneCITY
       objectReference: {fileID: 0}
+    - target: {fileID: 543988171818252548, guid: 7b30a5c83aa6ea24eb2dfb7f8f7eefcf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b30a5c83aa6ea24eb2dfb7f8f7eefcf, type: 3}
 --- !u!1 &662650988
@@ -4000,6 +4005,7 @@ MonoBehaviour:
   - {fileID: 6042312845778207502, guid: 36e1974d35debc84fbafa643a7f67779, type: 3}
   - {fileID: 6042312845778207502, guid: 36e1974d35debc84fbafa643a7f67779, type: 3}
   realCarInsideObject: {fileID: 0}
+  directionalLight: {fileID: 705507993}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4011,7 +4017,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4068,7 +4074,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -4218,7 +4224,7 @@ GameObject:
   - component: {fileID: 727535181}
   - component: {fileID: 727535180}
   m_Layer: 0
-  m_Name: MiniMapCameraOnlyVehicle
+  m_Name: cam2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7504,7 +7510,7 @@ GameObject:
   - component: {fileID: 1194004039}
   - component: {fileID: 1194004038}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: light2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7561,7 +7567,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -7595,7 +7601,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1195067197}
   - component: {fileID: 1195067196}
-  - component: {fileID: 1195067195}
   m_Layer: 5
   m_Name: TMP SubMeshUI [LiberationSans SDF - Outline + LiberationSans SDF Atlas]
   m_TagString: Untagged
@@ -7603,33 +7608,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1195067195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195067194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_spriteAsset: {fileID: 0}
-  m_material: {fileID: 0}
-  m_sharedMaterial: {fileID: 0}
-  m_isDefaultMaterial: 0
-  m_padding: 0
-  m_TextComponent: {fileID: 2052145861}
-  m_materialReferenceIndex: 1
 --- !u!222 &1195067196
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10238,10 +10216,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3285974630401526937, guid: 6db5a183145b0f845a3657656f57ebed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5907946911961195627, guid: 6db5a183145b0f845a3657656f57ebed,
         type: 3}
       propertyPath: m_Name
       value: PlaneISLAND
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907946911961195627, guid: 6db5a183145b0f845a3657656f57ebed,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db5a183145b0f845a3657656f57ebed, type: 3}
@@ -11577,10 +11565,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1774015901}
   - component: {fileID: 1774015900}
-  - component: {fileID: 1774015903}
-  - component: {fileID: 1774015902}
   m_Layer: 0
-  m_Name: MiniMapCamera
+  m_Name: cam1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11643,83 +11629,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
---- !u!114 &1774015902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774015898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1774015901}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 0
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
---- !u!114 &1774015903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774015898}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 8bae0ec1379b11542aab9d6ccf431c35, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!1 &1804833094
 GameObject:
   m_ObjectHideFlags: 0
@@ -13864,7 +13773,7 @@ GameObject:
   - component: {fileID: 2045371903}
   - component: {fileID: 2045371902}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: FPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14176,7 +14085,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -14189,8 +14098,8 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 513
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 20
@@ -14367,6 +14276,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlaneAZ
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880279864999756621, guid: cba03cd81b148e54dbc0a3b41c2406c1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cba03cd81b148e54dbc0a3b41c2406c1, type: 3}

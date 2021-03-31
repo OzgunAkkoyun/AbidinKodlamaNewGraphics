@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8237560403996749190}
   - component: {fileID: 5533408102691694409}
   - component: {fileID: 429690580192115856}
-  - component: {fileID: 4834291984063095670}
-  - component: {fileID: 6124620505625740753}
   m_Layer: 0
   m_Name: AZ_TreeSet_03
   m_TagString: Untagged
@@ -51,7 +49,7 @@ MeshRenderer:
   m_GameObject: {fileID: 8237560403996749191}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -83,37 +81,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4834291984063095670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237560403996749191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24fb3eb29eeebd04d87475bbfb984a31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  createMultiMaterialMesh: 1
-  combineInactiveChildren: 1
-  deactivateCombinedChildren: 1
-  deactivateCombinedChildrenMeshRenderers: 0
-  generateUVMap: 0
-  destroyCombinedChildren: 0
-  folderPath: Prefabs/CombinedMeshes
-  meshFiltersToSkip: []
---- !u!64 &6124620505625740753
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237560403996749191}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 593eaf37feac58448b8047ae7ec6b408, type: 2}

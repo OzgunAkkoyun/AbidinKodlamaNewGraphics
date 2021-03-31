@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EndSequanceAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 0312b7f9b7a2bd54784d22b7817a7865, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8f6e4d30043b9db4bbf706bac0ceb4bc, type: 3}
+  - {fileID: 21300000, guid: 52305770890ec61438564db80f2ed16a, type: 3}
+  - {fileID: 21300000, guid: a88b07b094bb5cf4a9b92176fca1fa85, type: 3}
+  - {fileID: 21300000, guid: 0fbd8f01ab8893149be637b710ac37dd, type: 3}
+  - {fileID: 21300000, guid: a969f24116e623248a5070b94579c1b5, type: 3}
+  - {fileID: 21300000, guid: d3b5be41cbca82c439873ae590d3e0a0, type: 3}
+  - {fileID: 21300000, guid: f2ee3922dd650df478e6dfbf98e061d5, type: 3}
+  - {fileID: 21300000, guid: 0ffbce03fcee4a24dbde61b93bf0fda9, type: 3}
+  - {fileID: 21300000, guid: 21aedc23da89d344dbb705f0476cb119, type: 3}
+  - {fileID: 21300000, guid: 145af6f42cf07a546bfa67db3dee8f2f, type: 3}
+  - {fileID: 21300000, guid: 8348627517b867348a245ee8b6b19f0d, type: 3}
+  - {fileID: 21300000, guid: 756e1c75fc741a04c8a48ffe9e0794e9, type: 3}
+  - {fileID: 21300000, guid: 3ee3b6850b378f54fa867ec0e33911cd, type: 3}
+  - {fileID: 21300000, guid: 821896472420aeb4dad81469b18df478, type: 3}
+  - {fileID: 21300000, guid: 51775008a8fd8de49997400301a25887, type: 3}
+  - {fileID: 21300000, guid: be6a13196f0734841a80aceadd415bdc, type: 3}
+  - {fileID: 21300000, guid: 43a19e592b1d44644aab137b1eb86569, type: 3}
+  - {fileID: 21300000, guid: f7b08d990cd11694b930e73eccc97cf6, type: 3}
+  - {fileID: 21300000, guid: bb9340e994a8bf3478c22d4fe86964ee, type: 3}
+  - {fileID: 21300000, guid: 8a2e868b903cf3a41afd6a0d93821e0f, type: 3}
+  - {fileID: 21300000, guid: aeb89f0ceeb9e8744815f81d80b5248a, type: 3}
+  - {fileID: 21300000, guid: a8cf446c32a227241abde125b17abb0b, type: 3}
+  - {fileID: 21300000, guid: 5fcc586d14b7e894cb8aaf7ae8ea61a4, type: 3}
+  - {fileID: 21300000, guid: a4be8f6d3780d65409563b5b10b5c517, type: 3}
+  - {fileID: 21300000, guid: b1d1617dcd846c44aaef04240a045fbf, type: 3}
+  - {fileID: 21300000, guid: 735f7f1e896181348a614048b6c609fa, type: 3}
+  - {fileID: 21300000, guid: d9f7a9be6770eaf44a185ac1a083a14b, type: 3}
+  - {fileID: 21300000, guid: 65841abea14d28f49a449bf69ed4f2eb, type: 3}
+  - {fileID: 21300000, guid: c95054defd9d2c54eaf4b372ff0b50d9, type: 3}
+  - {fileID: 21300000, guid: 3cc1232fb3107934bbbdb12cb05600cb, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - FinishSequence_0002
+  - FinishSequence_0016
+  - FinishSequence_0013
+  - FinishSequence_0010
+  - FinishSequence_0028
+  - FinishSequence_0007
+  - FinishSequence_0020
+  - FinishSequence_0005
+  - FinishSequence_0014
+  - FinishSequence_0026
+  - FinishSequence_0029
+  - FinishSequence_0008
+  - FinishSequence_0022
+  - FinishSequence_0003
+  - FinishSequence_0015
+  - FinishSequence_0027
+  - FinishSequence_0006
+  - FinishSequence_0024
+  - FinishSequence_0021
+  - FinishSequence_0012
+  - FinishSequence_0025
+  - FinishSequence_0023
+  - FinishSequence_0030
+  - FinishSequence_0001
+  - FinishSequence_0009
+  - FinishSequence_0018
+  - FinishSequence_0004
+  - FinishSequence_0017
+  - FinishSequence_0019
+  - FinishSequence_0011
+  m_Tag: EndSequanceAtlas
+  m_IsVariant: 0

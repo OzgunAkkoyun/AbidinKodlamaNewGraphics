@@ -49,7 +49,7 @@ MeshRenderer:
   m_GameObject: {fileID: 321896612944908453}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -160,7 +160,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1648729070198230934}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -239,7 +239,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1740500913942464335}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -318,7 +318,7 @@ MeshRenderer:
   m_GameObject: {fileID: 2122908881568389872}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10168,7 +10168,7 @@ MeshRenderer:
   m_GameObject: {fileID: 3102861275626171839}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10247,7 +10247,7 @@ MeshRenderer:
   m_GameObject: {fileID: 3890725983325470042}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10326,7 +10326,7 @@ MeshRenderer:
   m_GameObject: {fileID: 4250100611974333011}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10484,7 +10484,7 @@ MeshRenderer:
   m_GameObject: {fileID: 4982519045808594541}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10598,7 +10598,7 @@ MeshRenderer:
   m_GameObject: {fileID: 6075925103918254406}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -10713,7 +10713,7 @@ MeshRenderer:
   m_GameObject: {fileID: 6529697960196994451}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -15546,7 +15546,7 @@ MeshRenderer:
   m_GameObject: {fileID: 8432202213380452073}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -15664,7 +15664,7 @@ MeshRenderer:
   m_GameObject: {fileID: 9155237833343092638}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -15801,12 +15801,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sign
       objectReference: {fileID: 0}
+    - target: {fileID: 3463443727829227480, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5190756576943007378, guid: 3920b10a4bceb184abeed645148db4d5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 6466711397781862159, guid: aef7c6ac429d163499096b7561306d7b,
         type: 2}
+    - target: {fileID: 6019850708123637226, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8340907040260439912, guid: 3920b10a4bceb184abeed645148db4d5,
         type: 3}
       propertyPath: m_fontAsset
@@ -15815,10 +15825,40 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8340907040260439912, guid: 3920b10a4bceb184abeed645148db4d5,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340907040260439912, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 6466711397781862159, guid: aef7c6ac429d163499096b7561306d7b,
         type: 2}
+    - target: {fileID: 8340907040260439912, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340907040260439912, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340907040260439912, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702459683419876925, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001415173775933735, guid: 3920b10a4bceb184abeed645148db4d5,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9018594686614575130, guid: 3920b10a4bceb184abeed645148db4d5,
         type: 3}
       propertyPath: m_Mesh

@@ -30,6 +30,5 @@ MonoBehaviour:
   - {fileID: 9019556748665202291, guid: 11f313209d74c054e920f2a7c2dfdbca, type: 3}
   - {fileID: 8896293352452283074, guid: f831a3b97609f9a44b47ebf9cf49474a, type: 3}
   - {fileID: 6900239398940623218, guid: 28184eeca5802c049a2599ee30289785, type: 3}
-  - {fileID: 5588774660190644850, guid: 542d64111c76cf14c849cc75c6c3b179, type: 3}
   vehicleGameObject: {fileID: 5552958198052391160, guid: c95333641fcbd4e44b943c175c6c71ab,
     type: 3}
