@@ -34,7 +34,10 @@ namespace DapperDino.UDCT.Utilities.DeveloperConsole
                 instance = this;
             }
         }
-
+        public void CloseDeveloperConsole()
+        {
+            uiCanvas.SetActive(false);
+        }
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

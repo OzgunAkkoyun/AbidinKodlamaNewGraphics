@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8295160457182372884}
   - component: {fileID: 5903920103072845297}
   - component: {fileID: 3228466888302889038}
-  - component: {fileID: 4084603333054214582}
   m_Layer: 0
   m_Name: Tile-senario1
   m_TagString: Untagged
@@ -55,10 +54,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e3c50e0fce150c45980b46083e716ad, type: 2}
+  - {fileID: 2100000, guid: ce0702eb483486b488f7f5556d28ed42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,16 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4084603333054214582
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195019098710043781}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
