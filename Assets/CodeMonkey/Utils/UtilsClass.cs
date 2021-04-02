@@ -193,12 +193,6 @@ namespace CodeMonkey.Utils {
 
 
 
-        // Get Mouse Position in World with Z = 0f
-        public static Vector3 GetMouseWorldPosition() {
-            Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-            vec.z = 0f;
-            return vec;
-        }
 
         public static Vector3 GetMouseWorldPositionWithZ() {
             return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
@@ -212,12 +206,6 @@ namespace CodeMonkey.Utils {
             Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
             return worldPosition;
         }
-
-        public static Vector3 GetDirToMouse(Vector3 fromPosition) {
-            Vector3 mouseWorldPosition = GetMouseWorldPosition();
-            return (mouseWorldPosition - fromPosition).normalized;
-        }
-
         
 
         // Is Mouse over a UI Element? Used for ignoring World clicks through UI

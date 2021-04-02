@@ -87,7 +87,6 @@ public class LevelStats : ScriptableObject
         for (int i = 0; i < complatedPercent.Length; i++)
         {
             complatedPercent[i] = (float)((float)completed[i] / 9f) * 100f;
-            Debug.Log(complatedPercent[i]);
         }
         return complatedPercent;
     }

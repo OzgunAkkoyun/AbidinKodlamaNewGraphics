@@ -41,10 +41,6 @@ namespace CodeMonkey {
         // Text Updater in World, (parent == null) = world position
         
 
-        
-        public static GameObject DrawSpriteTimed(Sprite sprite, float scale, float timer) {
-            return DrawSpriteTimed(UtilsClass.GetMouseWorldPosition(), sprite, scale, timer);
-        }
 
         public static GameObject DrawSpriteTimed(Vector3 position, Sprite sprite, float scale, float timer) {
             GameObject gameObject = new GameObject("SpriteTimed", typeof(SpriteRenderer));
