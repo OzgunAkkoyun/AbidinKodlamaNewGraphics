@@ -234,7 +234,6 @@ public class CharacterMovement : MonoBehaviour
 
     private IEnumerator Turn()
     {
-        Debug.Log(transform.forward);
         var relativePos = new Vector3(inputVector.x, transform.position.y, inputVector.z) - transform.position;
         var targetRotation = Quaternion.LookRotation(relativePos);
 
@@ -243,7 +242,6 @@ public class CharacterMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
             yield return null;
         }
-        Debug.Log(transform.forward);
     }
 
     private IEnumerator Move()

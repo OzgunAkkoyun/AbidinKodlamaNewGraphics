@@ -383,18 +383,19 @@ public class PathGenarator : MonoBehaviour
         var levelIndex = gm.currentLevel.levelIndex;
         var subLevelIndex = gm.currentSubLevel.subLevelIndex;
         RemoveStartAndTargetPointFromBlackList();
-        for (int i = 0; i < maxObject-howManyObject; i++)
+        for (int i = 0; i < maxObject-howManyObject; )
         {
             var whichPathHaveObject = UnityEngine.Random.Range(1, PathLength - 1);
             var selectedPath = Path[whichPathHaveObject];
 
-            if (selectedPath.whichCoord == AnimalsInIfPath.Empty)
+            if (selectedPath.whichCoord == AnimalsInIfPath.Empty && selectedPath.x != mapGenerator.currentMap.startPoint.x && selectedPath.y != mapGenerator.currentMap.startPoint.y)
             {
                 Path[whichPathHaveObject].whichCoord = AnimalsInIfPath.isEmptyAnimalCoord;
                 //RemoveFromBlaclist(Path[whichPathHaveObject]);
                 var spawnPosition = mapGenerator.CoordToPosition(selectedPath.x, selectedPath.y);
                 var onlySmoke = Instantiate(smoke, spawnPosition + Vector3.up, Quaternion.identity);
                 justEmtyQuestionMarks.Add(onlySmoke);
+                i++;
             }
         }
         
@@ -406,7 +407,7 @@ public class PathGenarator : MonoBehaviour
 
             var selectedAnimal = currentIfObject;
 
-            if (selectedPath.whichCoord == AnimalsInIfPath.Empty)
+            if (selectedPath.whichCoord == AnimalsInIfPath.Empty && selectedPath.x != mapGenerator.currentMap.startPoint.x && selectedPath.y != mapGenerator.currentMap.startPoint.y)
             {
                 Path[whichPathHaveObject].whichCoord = AnimalsInIfPath.isAnimalCoord;
                 //RemoveFromBlaclist(Path[whichPathHaveObject]);
@@ -511,14 +512,9 @@ public class PathGenarator : MonoBehaviour
             var whichPathHaveObject = UnityEngine.Random.Range(1, PathLength - 1);
             var selectedPath = Path[whichPathHaveObject];
 
-            if (selectedPath.whichDirt == null)
+            if (selectedPath.whichDirt == null & selectedPath.whichCoord == AnimalsInIfPath.Empty && selectedPath.x != mapGenerator.currentMap.startPoint.x && selectedPath.y != mapGenerator.currentMap.startPoint.y)
             {
-                //Debug.Log(selectedPath.x +" " + selectedPath.y);
-                //Debug.Log("PathLenght: "+PathLength);
                 selectedPath.whichDirt = selectedDirtObject;
-                //RemoveFromBlaclist(selectedPath);
-                //Debug.Log("PathLenght: " + PathLength);
-
                 var spawnPos = new Vector3( selectedPath.x*mapGenerator.tileSize,1,selectedPath.y * mapGenerator.tileSize);
                 var insWaitObject = Instantiate(currentWaitObjectsScriptable.waitMetarials[selectedDirtIndex].dirtGameObject, spawnPos, Quaternion.identity);
                 currentDirtGameObjects.Add(insWaitObject);

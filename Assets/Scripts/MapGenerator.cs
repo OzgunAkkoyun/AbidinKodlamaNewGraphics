@@ -159,7 +159,7 @@ public class MapGenerator : MonoBehaviour {
         currentMap.startPoint = _startPoint;
         pathGenarator.Path = _Path;
        
-        currentMap.targetPoint = pathGenarator.Path[pathGenarator.Path.Count - 1];
+        currentMap.targetPoint = _targetPoint;
 
         if (gm.currentSenario.senarioIndex != 4)
         {
@@ -239,6 +239,7 @@ public class MapGenerator : MonoBehaviour {
             currentMap.startPoint = pathGenarator.GetRandomOpenCoord();
             pathGenarator.CreatePath();
             currentMap.targetPoint = pathGenarator.Path[pathGenarator.Path.Count - 1];
+            
         }
         else if (gm.currentSenario.senarioIndex == 2)
         {
@@ -346,11 +347,15 @@ public class MapGenerator : MonoBehaviour {
     public GameObject targetNewHome;
     public void SpawnHouses()
     {
-        var startHome = Instantiate(home[0], new Vector3((float)currentMap.startPoint.x * tileSize, 1f, (float)currentMap.startPoint.y * tileSize), Quaternion.identity);
+        var startHome = Instantiate(
+            home[0], 
+            new Vector3((float)currentMap.startPoint.x * tileSize, 1.2f, (float)currentMap.startPoint.y * tileSize), 
+            Quaternion.identity);
+        startHome.transform.eulerAngles = new Vector3(90,0,0);
         targetHome = Instantiate(home[1], new Vector3((float)currentMap.targetPoint.x * tileSize, 1f, (float)currentMap.targetPoint.y * tileSize), Quaternion.identity);
 
         targetHome.name = "Target";
-        startHome.transform.LookAt(new Vector3(pathGenarator.Path[1].x * tileSize, 1, pathGenarator.Path[1].y * tileSize));
+        //startHome.transform.LookAt(new Vector3(pathGenarator.Path[1].x * tileSize, 1, pathGenarator.Path[1].y * tileSize));
 
         targetHome.transform.LookAt(new Vector3(pathGenarator.Path[pathGenarator.PathLength - 2].x * tileSize, 1, pathGenarator.Path[pathGenarator.PathLength - 2].y * tileSize));
         var targetIcon = targetHome.transform.Find("Icon");
@@ -372,6 +377,7 @@ public class MapGenerator : MonoBehaviour {
         if (gm.currentSenario.senarioIndex == 1)
         {
             pathGenarator.changeEnvironment.AddSignNumber();
+            pathGenarator.Path = allOpenCoords;
         }
     }
 

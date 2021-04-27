@@ -29,6 +29,7 @@ public class GetInputs : MonoBehaviour
     private bool isFirstCommand;
 
     public Timer timer;
+    public GameManager gm;
 
 
     private List<Vector2> touchList = new List<Vector2>();
@@ -40,14 +41,14 @@ public class GetInputs : MonoBehaviour
     int touchCountCorrect = 3;
     public GameObject toyPanel;
     
-    private float rotationSensivity = 3;
+    private float rotationSensivity = 5;
     public float maxAngle;
     public float rotationAngle;
-    public float singleObjectAngle = 30;
+    public float singleObjectAngle = 72;
     public bool canUseRotate = false;
     private List<Touch> touchListforRotate = new List<Touch>();
     public List<GameObject> rotateObjects = new List<GameObject>();
-
+    public GameObject[] rotatableObjectsContainers = new GameObject[3];
     private int selectedObjectIndex = 0;
     public TextMeshProUGUI rotatetext;
 
@@ -55,10 +56,12 @@ public class GetInputs : MonoBehaviour
     {
         //GetRotateObjects();
     }
-    public void GetRotateObjects()
+    public void SetRotateObjects(int index)
     {
+        selectedObjectIndex = 0;
+        rotationAngle = 0;
         rotateObjects.Clear();
-        var rotateObjectsTemp = GameObject.Find("SelectionWheel/Container").transform;
+        var rotateObjectsTemp = rotatableObjectsContainers[index].transform.Find("Container").transform;
         for (int i = 0; i < rotateObjectsTemp.childCount; i++)
         {
             rotateObjects.Add(rotateObjectsTemp.GetChild(i).gameObject);
@@ -95,12 +98,23 @@ public class GetInputs : MonoBehaviour
 #endif
 
     }
+
+    public TextMeshProUGUI touchCountText;
     private void HandleUserInput()
     {
         float scwidth = Screen.width;
         float scheight = Screen.height;
         int ct = Input.touches.Length;
+        touchCountText.text = ct.ToString();
+        //rotatetext.text = ct.ToString();
 
+        if (ct==0)
+        {
+            if (canUseRotate == true)
+            {
+                rotateObjects[selectedObjectIndex].GetComponent<Button>().onClick.Invoke();
+            }
+        }
         if (ct == 0 || ct == 1)
         {
             canUseToy = true;
@@ -147,7 +161,7 @@ public class GetInputs : MonoBehaviour
             ToyRotate();
         }
     }
-    void ToyRotate(bool isCircle = false)
+    void ToyRotate()
     {
         touchListforRotate = Input.touches.ToList();
         var prevPos1 =
@@ -161,14 +175,15 @@ public class GetInputs : MonoBehaviour
         var angle = Vector2.Angle(prevDir, currDir);
 
         var a = Vector3.Cross(prevDir.ToVector3(), currDir.ToVector3());
-
+       //Debug.Log(angle);
         rotationAngle += a.z > 0 ? -angle * rotationSensivity : angle * rotationSensivity;
-
-        rotationAngle = rotationAngle > maxAngle ? maxAngle : rotationAngle;
+        //Debug.Log(rotationAngle);
+        rotationAngle = rotationAngle > maxAngle ? 0 : rotationAngle;
+        Debug.Log(rotationAngle);
         rotationAngle = rotationAngle < 0 ? 0 : rotationAngle;
 
         rotatetext.text = "Rotate: " + rotationAngle.ToString("F2");
-
+        
         RotationToySelect(rotationAngle);
     }
 
@@ -187,6 +202,7 @@ public class GetInputs : MonoBehaviour
     private void UseTool(string toolName, Vector2 toolPosition)
     {
         SoundController.instance.Play("touch");
+        
         if (toolName == "Forward")
         {
             if (!waitingMoveCommand)
@@ -235,6 +251,8 @@ public class GetInputs : MonoBehaviour
         {
             forDirections = new List<Direction>();
             waitingMoveCommand = true;
+            SetRotateObjects(0);
+            canUseRotate = true;
             WaitForInput();
         }
         else if (Input.GetKeyDown(KeyCode.P))
@@ -245,14 +263,23 @@ public class GetInputs : MonoBehaviour
         else if (toolName == "Condition")
         {
             //rotateToyUi.OpenIfObjectContainer();
+            SetRotateObjects(1);
             canUseRotate = true;
             rotateToyUi.OpenIfObjectWheel();
         }
         else if (toolName == "Wait")
         {
             //rotateToyUi.OpenIfObjectContainer();
+            SetRotateObjects(2);
             canUseRotate = true;
             WaitWaitInput();
+        }
+        else if (toolName == "Play")
+        {
+            //SetRotateObjects(1);
+            //canUseRotate = true;
+            //rotateToyUi.OpenIfObjectWheel();
+            gm.GameAnimationStart();
         }
 
     }

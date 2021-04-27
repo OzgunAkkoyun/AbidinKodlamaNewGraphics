@@ -31,8 +31,20 @@ public class DeleteCommand : MonoBehaviour, IPointerClickHandler
         if (commandIndex<0) return;
 
         gm.commander.commands.RemoveAt(commandIndex);
-        Destroy(uh.codeInputsObjects[commandIndex]);
+        var deleteCommand = FindDeletedObject(commandIndex);
+        Destroy(deleteCommand);
         uh.codeInputsObjects.RemoveAt(commandIndex);
+    }
+
+    private GameObject FindDeletedObject(int commandIndex)
+    {
+        GameObject deleteCommand = uh.codeInputsObjects[commandIndex].gameObject;
+        while (deleteCommand.GetComponent<DeleteCommand>() == null)
+        {
+            deleteCommand = deleteCommand.transform.parent.gameObject;
+        }
+
+        return deleteCommand;
     }
 
     public void DeleteAllCommands()
@@ -43,7 +55,8 @@ public class DeleteCommand : MonoBehaviour, IPointerClickHandler
         
         for (int i = 0; i < commandCount; i++)
         {
-            Destroy(uh.codeInputsObjects[i]);
+            var deleteCommand = FindDeletedObject(i);
+            Destroy(deleteCommand);
         }
         gm.commander.commands.Clear();
         uh.codeInputsObjects.Clear();

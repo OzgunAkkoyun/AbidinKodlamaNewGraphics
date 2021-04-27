@@ -6,8 +6,5 @@ public class FPSTarget : MonoBehaviour
     {
         Application.targetFrameRate = 0;
         QualitySettings.vSyncCount = 1;
-
-        
-        //Screen.SetResolution(640, 480, true);
     }
 }

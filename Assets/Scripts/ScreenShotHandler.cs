@@ -30,7 +30,13 @@ public class ScreenShotHandler : MonoBehaviour
         renderResult.ReadPixels(rect,0,0);
 
         byte[] byteArray = renderResult.EncodeToPNG();
-        System.IO.File.WriteAllBytes(Application.dataPath+"/CameraSS.png",byteArray);
+        //if (Application.platform == RuntimePlatform.Android)
+        //{
+        //    System.IO.File.WriteAllBytes(Application.dataPath + "/CameraSS.png", byteArray);
+        //}else if (Application.platform == RuntimePlatform.IPhonePlayer)
+        //{
+        //    System.IO.File.WriteAllBytes(Application.dataPath + "/CameraSS.png", byteArray);
+        //}
 
         RenderTexture.ReleaseTemporary(renderTexture);
         myCamera.targetTexture = null;

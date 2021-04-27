@@ -31,7 +31,7 @@ public class UIHandler : MonoBehaviour
     private bool codePanelOpened = false;
     private float codePaneleWidth = 0;
 
-    [HideInInspector] public List<Image> codeInputsObjects = new List<Image>();
+    public List<Image> codeInputsObjects = new List<Image>();
     public GameObject codeMoveObject;
     public GameObject codeForObject;
     public GameObject codeIfObject;
@@ -239,7 +239,7 @@ public class UIHandler : MonoBehaviour
             codeInputForRect.sizeDelta = new Vector2(codeInputForRect.sizeDelta.x, codeInputForRect.sizeDelta.y);
             codeInput.transform.localScale = new Vector3(1f, 1f, 1f);
 
-            codeInputsObjects.Add(codeInputFor.transform.Find("CodeWhole/CodeInputArea/CodeInputImage(Clone)").GetComponentInChildren<Image>());
+            codeInputsObjects.Add(codeInputFor.transform.Find("CodeWhole/CodeInputArea/CodeInputImage(Clone)/Image").GetComponentInChildren<Image>());
 
             var arrow = codeInput.transform.Find("Image/Arrow");
             arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
@@ -302,6 +302,8 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(0f);
         }
+
+        gm.is3DStarted = true;
     }
 
     //gm.isGameOrLoad for
@@ -439,16 +441,17 @@ public class UIHandler : MonoBehaviour
 
         hintObject.transform.localScale = new Vector3(1, 1, 1);
         hintObject.transform.parent = GameObject.Find("Canvas").transform;
+        
 
         Destroy(hintObject.GetComponent<DeleteCommand>());
 
-        var arrow = hintObject.transform.Find("Image");
+        var arrow = hintObject.transform.Find("Image/Arrow");
         arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
 
         hintObject.GetComponent<RectTransform>().SetAnchor(AnchorPresets.MiddleCenter);
 
         hintObject.GetComponent<RectTransform>().SetPivot(PivotPresets.MiddleCenter);
-
+        hintObject.transform.Translate(300, 0, 0);
         Invoke("DeleteHintCommandStarter",2f);
     }
 

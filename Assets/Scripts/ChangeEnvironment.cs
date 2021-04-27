@@ -44,7 +44,6 @@ public class ChangeEnvironment : MonoBehaviour
     public GameObject directionalLight;
     public void AddForestEmptyTiles()
     {
-        ChangeLightSettings();
         for (int i = 0; i < mapGenerator.allOpenCoords.Count; i++)
         {
             var openCoord = mapGenerator.allOpenCoords[i];
@@ -56,11 +55,6 @@ public class ChangeEnvironment : MonoBehaviour
             int rand = UnityEngine.Random.Range(1, 4);
             forestSpawn.transform.Rotate(new Vector3(0, rand * 90, 0));
         }
-    }
-
-    private void ChangeLightSettings()
-    {
-        directionalLight.GetComponent<Light>().color = new Color(.5f,.5f,.5f);
     }
 
     public void DestroyObstaclesInPath()

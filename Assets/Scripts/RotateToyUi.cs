@@ -102,7 +102,7 @@ public class RotateToyUi : MonoBehaviour
                 child.GetComponent<Button>().onClick.AddListener(() => getInputs.GetIfInput(getRandomIfObject.ifName));
 
                 //childImage.transform.Rotate(new Vector3(0,0,360/ wheelObjectCount * i));
-                getInputs.rotateObjects.Add(child.gameObject);
+               
             }
             else
             {

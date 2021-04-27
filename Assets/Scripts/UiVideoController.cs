@@ -18,6 +18,7 @@ public class UiVideoController : MonoBehaviour
     public AllVideosShowed currentAllVideosShowed;
 
     public AllVideosShowed.Videos.LevelVideos currentVideoObject;
+
     public void PrepareAllVideos()
     {
         var allVideosString = PlayerPrefs.GetString("allVideos");
@@ -53,16 +54,42 @@ public class UiVideoController : MonoBehaviour
         PlayerPrefs.SetString("allVideos", allVideosJsonString);
     }
 
-
     public void GetCurrentVideoObject(string videoName)
     {
         currentVideoObject = currentAllVideosShowed.GetVideoObject(gm.playerDatas.whichScenario, videoName);
     }
-    public void ShowVideo(string videoName)
+
+    public void ShowEndVideo(string videoName)
     {
         var pickedVideo = allVideos.GetVideo(gm.playerDatas.whichScenario, videoName);
         videoEndControlButtons.SetActive(false);
 
+        if (pickedVideo == null)
+            return;
+        SoundController.instance.Pause("Theme");
+        videoPanel.SetActive(true);
+        video = videoPanel.transform.Find("VideoPlayer").gameObject;
+
+        var videoPlayer = video.GetComponent<VideoPlayer>();
+
+        videoPlayer.clip = pickedVideo;
+        videoPlayer.Play();
+        videoPlayer.loopPointReached += VideoFinishingEnd;
+    }
+
+    private void VideoFinishingEnd(VideoPlayer source)
+    {
+        StartCoroutine("VideoFadeOut");
+        SoundController.instance.Play("Theme");
+        currentVideoObject.isShowed = true;
+        SaveVideos();
+    }
+
+    public void ShowVideo(string videoName)
+    {
+        var pickedVideo = allVideos.GetVideo(gm.playerDatas.whichScenario, videoName);
+        videoEndControlButtons.SetActive(false);
+        
         if (pickedVideo == null)
             return;
         SoundController.instance.Pause("Theme");
@@ -88,15 +115,19 @@ public class UiVideoController : MonoBehaviour
 
     public void CloseVideo()
     {
-        StartCoroutine("VideoFadeOut");
+        if (currentVideoObject.name != "Opening")
+        {
+            StartCoroutine("VideoFadeOut");
+        }
         SoundController.instance.Play("Theme");
         currentVideoObject.isShowed = true;
-        SaveVideos(); 
+        SaveVideos();
+        gm.WillVideoShown();
     }
 
     public void VideoShowAgain()
     {
-        ShowVideo(gm.playerDatas.whichScenario + "-" + gm.playerDatas.lastMapSize);
+        ShowVideo(currentVideoObject.name);
     }
 
     IEnumerator VideoFadeOut()
@@ -134,4 +165,6 @@ public class UiVideoController : MonoBehaviour
 
         ShowVideo(videoName);
     }
+
+    
 }

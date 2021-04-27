@@ -89,9 +89,7 @@ public class GameManager : MonoBehaviour
     public LevelStats.Senarios currentSenario;
 
     public int[] senarioAndLevelIndexs;
-
-    public TextMeshProUGUI text;
-
+    
     void Awake()
     {
         var gameDataString = PlayerPrefs.GetString("gameDatas");
@@ -110,7 +108,7 @@ public class GameManager : MonoBehaviour
         CheckLevels();
 
         GameorLoadCheck();
-        
+        //Time.timeScale = 3;
     }
 
     private void CheckLevels()
@@ -184,17 +182,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void WillVideoShown()
+    public void WillVideoShown()
     {
-        uiVideoController.GetCurrentVideoObject(playerDatas.whichScenario + "-" + playerDatas.lastMapSize);
+        uiVideoController.GetCurrentVideoObject("Opening");
+        var pickedVideo = uiVideoController.allVideos.GetVideo(playerDatas.whichScenario, "Opening");
 
-        if (!uiVideoController.currentVideoObject.isShowed)
+        if (pickedVideo != null && !uiVideoController.currentVideoObject.isShowed)
         {
-            uiVideoController.ShowVideo(playerDatas.whichScenario + "-" + playerDatas.lastMapSize);
+            uiVideoController.ShowVideo("Opening");
         }
         else
         {
-            uiVideoController.videoPanel.SetActive(false);
+            uiVideoController.GetCurrentVideoObject(playerDatas.whichScenario + "-" + playerDatas.lastMapSize);
+
+            if (!uiVideoController.currentVideoObject.isShowed)
+            {
+                uiVideoController.ShowVideo(playerDatas.whichScenario + "-" + playerDatas.lastMapSize);
+            }
+            else
+            {
+                uiVideoController.videoPanel.SetActive(false);
+            }
         }
     }
 
@@ -251,8 +259,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameAnimationStart()
     {
-        is3DStarted = true;
-        text.text = "Start";
+        
         if (isGameOrLoad != 1) //Watch game
         {
             if (getInputs.timer != null)
@@ -265,14 +272,13 @@ public class GameManager : MonoBehaviour
             }
             
         }
-        text.text += "input";
         character = FindObjectOfType<CharacterMovement>();
         ShowInputsCode.Instance.ShowCodesString();
 
         StartCoroutine(miniMapController.MiniMapSetStartPosition());
-        text.text += "mini";
+    
         StartCoroutine(uh.CameraSmoothMovingToTargetPosition());
-        text.text += "uh";
+        //is3DStarted = true;
         commander.ApplyCommands();
     }
 
@@ -291,8 +297,8 @@ public class GameManager : MonoBehaviour
                     currentLevel.levelComplated = true;
                     playerDatas.winStreak = 0;
                     playerDatas.showedOpeningVideo = false;
-
-                    uiVideoController.ShowVideo(currentSenario.senarioIndex + "-" + playerDatas.lastMapSize + "-end");
+                    
+                    ShowFinishingVideo();
 
                     if (playerDatas.lastMapSize != 9)
                     {
@@ -325,6 +331,11 @@ public class GameManager : MonoBehaviour
         }
 
         GameDataSave();
+    }
+
+    public void ShowFinishingVideo()
+    {
+        uiVideoController.ShowEndVideo(currentSenario.senarioIndex + "-" + playerDatas.lastMapSize + "-end");
     }
 
     public void UserDataSave(bool isSuccess)
@@ -363,5 +374,10 @@ public class GameManager : MonoBehaviour
     {
         string playerDataString = JsonUtility.ToJson(playerDatas);
         PlayerPrefs.SetString("playerDatas", playerDataString);
+    }
+
+    public void GameSpeedUp()
+    {
+        Time.timeScale = 3;
     }
 }

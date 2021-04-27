@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: Videos-senario4
   m_EditorClassIdentifier: 
   videos:
-  - name: 1-5
-    video: {fileID: 32900000, guid: 9b284592bb555634c8b8bbc8d13973f5, type: 3}
-  - name: 1-5-end
-    video: {fileID: 32900000, guid: 87905cd2c7d722443874555c9db72897, type: 3}
-  - name: 1-7
+  - name: Opening
+    video: {fileID: 32900000, guid: 5401e3524ef12174591792d2eb56c8c9, type: 3}
+  - name: 4-5
+    video: {fileID: 32900000, guid: de84c31955d46564fba1682d08681d95, type: 3}
+  - name: 4-5-end
+    video: {fileID: 32900000, guid: d7e1635d7896c5943940c3e1432e14c7, type: 3}
+  - name: 4-7
+    video: {fileID: 32900000, guid: 81e8112b7a964314d9258fc0c451d539, type: 3}
+  - name: 4-7-end
+    video: {fileID: 32900000, guid: e0f799c0c55576242aea585892672fc7, type: 3}
+  - name: 4-9
+    video: {fileID: 32900000, guid: f71b9067ecf4a5040a042c4b165a7225, type: 3}
+  - name: 4-9-end
+    video: {fileID: 32900000, guid: 750c228cec254ec4db7d5d4b551a90f9, type: 3}
+  - name: Finishing
     video: {fileID: 0}
-  - name: 1-7-end
-    video: {fileID: 32900000, guid: 6125e83e6dbea444b84edd9b30c7429c, type: 3}
-  - name: 1-9
-    video: {fileID: 0}
-  - name: 1-9-end
-    video: {fileID: 32900000, guid: 8355a902fe0174742a0e27f419cf4f47, type: 3}

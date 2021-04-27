@@ -30,7 +30,6 @@ public class ToyIdentifier
         dotsIndex.Clear();
         sortedTouchList.Clear();
         nearestObjectIndex = 0;
-        Debug.Log(_touchList.ListPrint());
         var touchListTemp = _touchList;
         var sortedVectorsX = touchListTemp.OrderBy(v => v.x).ToArray<Vector2>();
         var firstX = sortedVectorsX[0];

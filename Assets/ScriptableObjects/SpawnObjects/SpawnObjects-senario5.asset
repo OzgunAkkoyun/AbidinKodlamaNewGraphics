@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78656bb58b182214ca5a4144fd4565cf, type: 3}
   m_Name: SpawnObjects-senario5
   m_EditorClassIdentifier: 
-  startGameObject: {fileID: 3045533123998791788, guid: e1f0efec6b7b3ad48a5d6476e84195c3,
+  startGameObject: {fileID: 8007103833758648772, guid: f0af3c956792ea7439511af420a7225c,
     type: 3}
   targetGameObject:
   - {fileID: 4644379270013986926, guid: 9925c98b61a2bc840b2e2ec7dc2a5bf2, type: 3}

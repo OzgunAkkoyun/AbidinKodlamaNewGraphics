@@ -133,9 +133,9 @@ public class WindowGraph : MonoBehaviour
             RectTransform labelX = Instantiate(labelTemplateX);
             labelX.SetParent(barLineGraphContainer);
             labelX.gameObject.SetActive(true);
-            labelX.anchoredPosition = new Vector2(xPosition - 8f, -7f);
+            labelX.anchoredPosition = new Vector2(xPosition - 93f, -7f);
             labelX.localScale = Vector3.one;
-            labelX.GetComponent<TextMeshProUGUI>().text = getAxisLabelX(i);
+            labelX.GetComponent<TextMeshProUGUI>().text = "Blok Kodlama Oyunu";
             gameObjectList.Add(labelX.gameObject);
 
             RectTransform dashX = Instantiate(dashTemplateX);
@@ -166,7 +166,7 @@ public class WindowGraph : MonoBehaviour
             dashY.gameObject.SetActive(true);
             dashY.sizeDelta = new Vector2(graphWidth, dashY.sizeDelta.y);
             dashY.localScale = Vector3.one;
-            dashY.anchoredPosition = new Vector2(-4f, normalizedValue * graphHeight);
+            dashY.anchoredPosition = new Vector2(0, normalizedValue * graphHeight-1f);
             gameObjectList.Add(dashY.gameObject);
 
         }
@@ -309,7 +309,7 @@ public class WindowGraph : MonoBehaviour
 
                 percentImage.color = pieFrontColor;
                 percentImage.fillAmount = fillAmount[i]/100;
-                percentText.text = "%" + fillAmount[i].ToString("F2") + " tamamlandı.";
+                percentText.text = "%" + fillAmount[i].ToString("F2");
             }
         }
     }

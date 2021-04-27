@@ -29,7 +29,6 @@ public class GetDropdownValues : MonoBehaviour
         var complatedLevelPercentBySenario = allLevels.GetComplatedLevelPercentBySenario();
 
         List<float> data = new List<float>(){complatedAllLevelPercent};
-        Debug.Log(data[0]);
         windowGraph.StartShowGraph(data);
         windowGraph.ShowPieGraph(complatedLevelPercentBySenario);
     }

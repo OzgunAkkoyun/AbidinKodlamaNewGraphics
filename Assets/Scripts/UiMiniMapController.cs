@@ -121,8 +121,9 @@ public class UiMiniMapController : MonoBehaviour
         AnimationClip[] clips = miniMapAnim.runtimeAnimatorController.animationClips;
         var animLength = clips[0].length;
         GetComponent<UIHandler>().CodePanelOpen();
-        yield return null;//new WaitForSeconds(animLength);
-       // miniMapAnim.SetBool("miniMapOpen", false);
+        yield return null;
+        //new WaitForSeconds(animLength);
+        // miniMapAnim.SetBool("miniMapOpen", false);
         //gm.text.text += " minimap";
         //miniMapRect.SetAnchor(AnchorPresets.TopRight);
         //miniMapRect.SetPivot(PivotPresets.TopRight);
@@ -173,7 +174,6 @@ public class UiMiniMapController : MonoBehaviour
 
     public IEnumerator MiniMapSizeChange()
     {
-        Debug.Log("zoom");
         for (int i = 0; i < 10; i++)
         {
             if (!mapZoomed)

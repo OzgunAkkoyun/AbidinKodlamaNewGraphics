@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distances:
   - 3
-  - 6
   - 3
-  toolName: Condition
+  - 6
+  toolName: Right
   toolIndex: 6

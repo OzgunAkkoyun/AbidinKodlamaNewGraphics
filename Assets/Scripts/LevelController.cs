@@ -60,7 +60,7 @@ public class LevelController : MonoBehaviour
 
                 //    count++;
                 //}
-
+               
                 if (!currenLevel.levelComplated)
                 {
                     lastLevelIndexs = i + "-" + j;
@@ -114,7 +114,6 @@ public class LevelController : MonoBehaviour
                 }
             }
             levelLoader.playerDatas.whichScenario++;
-            Debug.Log(levelLoader.playerDatas.whichScenario);
             levelLoader.playerDatas.whichLevel = 1;
             levelLoader.playerDatas.whichSubLevel = 1;
             levelLoader.playerDatas.lastMapSize = 5;
