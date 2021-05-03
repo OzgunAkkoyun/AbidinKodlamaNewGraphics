@@ -108,15 +108,16 @@ public class GetInputs : MonoBehaviour
         touchCountText.text = ct.ToString();
         //rotatetext.text = ct.ToString();
 
-        if (ct==0)
+        //if (ct==0)
+        //{
+            
+        //}
+        if (ct == 0 || ct == 1)
         {
             if (canUseRotate == true)
             {
                 rotateObjects[selectedObjectIndex].GetComponent<Button>().onClick.Invoke();
             }
-        }
-        if (ct == 0 || ct == 1)
-        {
             canUseToy = true;
             canUseRotate = false;
         }
@@ -255,11 +256,6 @@ public class GetInputs : MonoBehaviour
             canUseRotate = true;
             WaitForInput();
         }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (commander != null) commander.AddForCommand(forDirections, forLoopCount);
-            waitingMoveCommand = false;
-        }
         else if (toolName == "Condition")
         {
             //rotateToyUi.OpenIfObjectContainer();
@@ -282,6 +278,17 @@ public class GetInputs : MonoBehaviour
             gm.GameAnimationStart();
         }
 
+    }
+
+    public void CompleteLoopButton()
+    {
+        if (commander != null)
+        {
+            commander.AddForCommand(forDirections, forLoopCount);
+            uh.forComplatePanel.SetActive(false);
+        }
+        waitingMoveCommand = false;
+        
     }
     public void GetKeys()
     {
@@ -394,6 +401,7 @@ public class GetInputs : MonoBehaviour
     {
         forLoopCount = int.Parse(count);
         uh.forInput.gameObject.SetActive(false);
+        uh.forComplatePanel.SetActive(true);
     }
 
     public void SetWaitCount(string count)

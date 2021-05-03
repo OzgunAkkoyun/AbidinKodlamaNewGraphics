@@ -6,6 +6,8 @@ using System.Collections;
 using System.Linq;
 using Newtonsoft.Json;
 using TMPro;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [Serializable]
 public class SavedGameData
@@ -378,6 +380,22 @@ public class GameManager : MonoBehaviour
 
     public void GameSpeedUp()
     {
-        Time.timeScale = 3;
+        var button = EventSystem.current.currentSelectedGameObject;
+        var buttonText = button.GetComponentInChildren<Text>();
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 2;
+            buttonText.text = ">>";
+        }
+        else if (Time.timeScale == 2)
+        {
+            Time.timeScale = 3;
+            buttonText.text = ">>>";
+        }
+        else if (Time.timeScale == 3)
+        {
+            Time.timeScale = 1;
+            buttonText.text = ">";
+        }
     }
 }

@@ -23,6 +23,8 @@ public class UIHandler : MonoBehaviour
     public GameObject forInput;
     public GameObject waitInput;
 
+    public GameObject forComplatePanel;
+
     public GameObject mainCamera;
     public Transform cameraTarget;
     
