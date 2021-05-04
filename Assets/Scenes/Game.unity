@@ -5783,7 +5783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &896910241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8167,7 +8167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1190638107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14565,7 +14565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1970853792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14934,6 +14934,9 @@ MonoBehaviour:
         waitName: 
         seconds: 0
       isVisited: 0
+      gCost: 0
+      hCost: 0
+      walkable: 0
     obstaclePercent: 0.531
     seed: 3
     minObstacleHeight: 1
@@ -14948,6 +14951,9 @@ MonoBehaviour:
         waitName: 
         seconds: 0
       isVisited: 0
+      gCost: 0
+      hCost: 0
+      walkable: 0
     targetPoint:
       x: 6
       y: 2
@@ -14958,6 +14964,9 @@ MonoBehaviour:
         waitName: 
         seconds: 0
       isVisited: 0
+      gCost: 0
+      hCost: 0
+      walkable: 0
   mapIndex: 0
   allSpawnObjects: {fileID: 11400000, guid: f3b45e70f244b1c4083e63cbb6cc23d5, type: 2}
   tilePrefab: {fileID: 0}
@@ -14983,6 +14992,9 @@ MonoBehaviour:
         waitName: 
         seconds: 0
       isVisited: 0
+      gCost: 0
+      hCost: 0
+      walkable: 0
     obstaclePercent: 0
     seed: 79
     minObstacleHeight: 0
@@ -14997,6 +15009,9 @@ MonoBehaviour:
         waitName: 
         seconds: 0
       isVisited: 0
+      gCost: 0
+      hCost: 0
+      walkable: 0
     targetPoint:
       x: 0
       y: 0
@@ -15007,6 +15022,9 @@ MonoBehaviour:
         waitName: 
         seconds: 0
       isVisited: 0
+      gCost: 0
+      hCost: 0
+      walkable: 0
   mapHolder: {fileID: 0}
   home:
   - {fileID: 4644379270013986926, guid: 9925c98b61a2bc840b2e2ec7dc2a5bf2, type: 3}

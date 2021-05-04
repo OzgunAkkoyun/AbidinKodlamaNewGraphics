@@ -530,6 +530,17 @@ public class MapGenerator : MonoBehaviour {
         public AnimalsInIfPath whichCoord;
         public WaitObjectsScriptable.WaitObjects.DirtsForLevel whichDirt;
         public bool isVisited;
+        public int gCost;
+        public int hCost;
+        public int fCost
+        {
+            get
+            {
+                return gCost + hCost;
+            }
+        }
+        public Coord parent;
+        public bool walkable;
 
         public List<Coord> GetNeighbours()
         {
@@ -556,6 +567,8 @@ public class MapGenerator : MonoBehaviour {
             whichCoord = AnimalsInIfPath.Empty;
             isVisited = false;
             whichDirt = null;
+            walkable = true;
+            parent = null;
         }
 
         public static bool operator ==(Coord c1, Coord c2)

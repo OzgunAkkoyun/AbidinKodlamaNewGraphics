@@ -204,6 +204,10 @@ public class CharacterMovement : MonoBehaviour
             var halfVector = inputVector - (Direction - Direction / 4);
             yield return CollectingAnim();
             IfObjectAnimations.instance.ShowIfObjectAnimation(currentAnimal, halfVector);
+            AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+            var animLength = clips[2].length;
+            yield return new WaitForSeconds(animLength);
+            anim.SetBool("isCollecting", false);
             yield return null;
         }
         else if (currentPath.whichCoord == AnimalsInIfPath.isEmptyAnimalCoord && !currentPath.isVisited)
@@ -226,10 +230,8 @@ public class CharacterMovement : MonoBehaviour
     private IEnumerator CollectingAnim()
     {
         anim.SetBool("isCollecting", true);
-        AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
-        var animLength = clips[2].length;
-        yield return new WaitForSeconds(animLength);
-        anim.SetBool("isCollecting", false);
+        yield return null;
+
     }
 
     private IEnumerator Turn()

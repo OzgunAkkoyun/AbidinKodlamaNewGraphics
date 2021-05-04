@@ -176,12 +176,12 @@ public class GetInputs : MonoBehaviour
         var angle = Vector2.Angle(prevDir, currDir);
 
         var a = Vector3.Cross(prevDir.ToVector3(), currDir.ToVector3());
-       //Debug.Log(angle);
+       
         rotationAngle += a.z > 0 ? -angle * rotationSensivity : angle * rotationSensivity;
-        //Debug.Log(rotationAngle);
+       
         rotationAngle = rotationAngle > maxAngle ? 0 : rotationAngle;
-        Debug.Log(rotationAngle);
-        rotationAngle = rotationAngle < 0 ? 0 : rotationAngle;
+        
+        rotationAngle = rotationAngle < 0 ? maxAngle : rotationAngle;
 
         rotatetext.text = "Rotate: " + rotationAngle.ToString("F2");
         
