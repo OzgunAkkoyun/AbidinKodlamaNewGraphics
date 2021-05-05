@@ -573,6 +573,8 @@ public class MapGenerator : MonoBehaviour {
 
         public static bool operator ==(Coord c1, Coord c2)
         {
+            //if (((object) c1) == null) return true;
+            //if (((object) c2) == null) return true;
             return c1.x == c2.x && c1.y == c2.y;
         }
 

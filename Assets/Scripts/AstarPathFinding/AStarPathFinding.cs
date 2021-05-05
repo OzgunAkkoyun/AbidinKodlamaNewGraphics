@@ -2,77 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static MapGenerator;
-public class CreateMap : MonoBehaviour
+
+public class AStarPathFinding : MonoBehaviour
 {
-    public GameObject tilePrefab;
-    public GameObject obstaclePrefab;
-    public List<Coord> allTileCoords = new List<Coord>();
-    public List<Coord> allObstacleCoords = new List<Coord>();
-    List<Coord> openList = new List<Coord>();
-    List<Coord> closedList = new List<Coord>();
-    public Coord startPos = new Coord(0,0);
-    public Coord endPos = new Coord(4,4);
-    public List<Coord> Path = new List<Coord>();
-    void Start()
-    {
-        CreateAllTiles();
-        CreateObstacles();
-        FindPath();
-    }
-
-    private void CreateObstacles()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            var rnd = UnityEngine.Random.Range(0, 5);
-            var a = Instantiate(obstaclePrefab, new Vector3(i, 1, rnd), Quaternion.identity);
-            a.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-            allObstacleCoords.Add(new Coord(i,rnd));
-        }
-    }
-
-    private void CreateAllTiles()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            for (int j = 0; j < 5; j++)
-            {
-                var a = Instantiate(tilePrefab, new Vector3(i, 0, j),Quaternion.identity);
-                a.transform.localScale = new Vector3(0.9f,0.9f,0.9f);
-                allTileCoords.Add(new Coord(i, j));
-            }
-        }
-    }
-    int GetDistance(Coord nodeA, Coord nodeB)
-    {
-        int dstX = Mathf.Abs(nodeA.x - nodeB.x);
-        int dstY = Mathf.Abs(nodeA.y - nodeB.y);
-
-        if (dstX > dstY)
-            return 14 * dstY + 10 * (dstX - dstY);
-        return 14 * dstX + 10 * (dstY - dstX);
-    }
-    List<Coord> RetracePath(Coord targetNode)
-    {
-        List<Coord> path = new List<Coord>();
-        Coord currentNode = targetNode;
-        
-        while (!CheckIsNull(currentNode.parent))
-        {
-            path.Add(currentNode);
-            currentNode = currentNode.parent;
-        }
-
-        path.Reverse();
-        return path;
-    }
-
-    bool CheckIsNull(object obj)
-    {
-        bool isNull = obj == null || (obj is UnityEngine.Object && ((obj as UnityEngine.Object) == null));
-        return isNull;
-    }
-    void FindPath()
+    public MapGenerator map;
+    public PathGenarator pathGenarator;
+    public HintButton hint;
+    
+    void FindPath(Coord startPos,Coord endPos)
     {
         Coord startNode = startPos;
         Coord targetNode = endPos;
@@ -96,14 +33,14 @@ public class CreateMap : MonoBehaviour
             closedSet.Add(currentNode);
             if (currentNode.x == targetNode.x && currentNode.y == targetNode.y)
             {
-                Path = RetracePath(currentNode);
+                hint.shortestPath = RetracePath(currentNode);
                 return;
             }
 
             foreach (Coord neighbour in GetAvailableNeighbours(currentNode))
             {
                 if (!neighbour.walkable || closedSet.Contains(neighbour)) continue;
-                
+
                 int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
                 if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                 {
@@ -117,14 +54,42 @@ public class CreateMap : MonoBehaviour
             }
         }
     }
-    
+    int GetDistance(Coord nodeA, Coord nodeB)
+    {
+        int dstX = Mathf.Abs(nodeA.x - nodeB.x);
+        int dstY = Mathf.Abs(nodeA.y - nodeB.y);
+
+        if (dstX > dstY)
+            return 14 * dstY + 10 * (dstX - dstY);
+        return 14 * dstX + 10 * (dstY - dstX);
+    }
+    List<Coord> RetracePath(Coord targetNode)
+    {
+        List<Coord> path = new List<Coord>();
+        Coord currentNode = targetNode;
+
+        while (!CheckIsNull(currentNode.parent))
+        {
+            path.Add(currentNode);
+            currentNode = currentNode.parent;
+        }
+
+        path.Reverse();
+        return path;
+    }
+
+    bool CheckIsNull(object obj)
+    {
+        bool isNull = obj == null || (obj is UnityEngine.Object && ((obj as UnityEngine.Object) == null));
+        return isNull;
+    }
     private List<Coord> GetAvailableNeighbours(Coord cell)
     {
         var neighbours = cell.GetNeighbours();
         List<Coord> availableCells = new List<Coord>();
         foreach (var neighbour in neighbours)
         {
-            
+
             if (CellinBounds(neighbour))
             {
                 if (CellUnavaliableNeighboursGet(neighbour, cell))
@@ -136,7 +101,7 @@ public class CreateMap : MonoBehaviour
                     availableCells.Add(neighbour);
                 }
             }
-            
+
         }
         return availableCells;
     }
@@ -153,10 +118,10 @@ public class CreateMap : MonoBehaviour
         }
 
     }
-    
+
     public bool CellUnavaliableNeighboursGet(Coord neighbours, Coord cell)
     {
-        if (allObstacleCoords.Contains(neighbours) || cell.UnavaliableNeighbours.Contains(neighbours))
+        if (map.allObstacleCoord.Contains(neighbours) || cell.UnavaliableNeighbours.Contains(neighbours))
         {
             return true;
         }

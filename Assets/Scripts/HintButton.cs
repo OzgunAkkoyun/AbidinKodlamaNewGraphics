@@ -7,13 +7,22 @@ public class HintButton : MonoBehaviour
     public PathGenarator pathGenarator;
     public UIHandler uh;
     public int wrongCommandIndex;
+    public List<MapGenerator.Coord> shortestPath;
+    public AStarPathFinding pathFinder;
 
     public void Hint()
     {
-        if (CheckCommandInputs())
-        {
-            FindNextCommand();
-        }
+        //if (CheckCommandInputs())
+        //{
+        //    FindNextCommand();
+        //}
+
+        FindActualPosition();
+    }
+
+    private void FindActualPosition()
+    {
+
     }
 
     private void FindNextCommand()

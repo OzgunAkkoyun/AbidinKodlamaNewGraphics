@@ -10157,12 +10157,12 @@ GameObject:
   - component: {fileID: 1027174586}
   - component: {fileID: 1027174585}
   m_Layer: 5
-  m_Name: Button
+  m_Name: OpenDevConsole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1027174584
 RectTransform:
   m_ObjectHideFlags: 0
