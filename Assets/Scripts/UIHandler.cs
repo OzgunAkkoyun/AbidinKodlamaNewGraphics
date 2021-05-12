@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class UIHandler : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class UIHandler : MonoBehaviour
     
     public GameObject codePanel;
     public GameObject codePanelOpenButton;
-    private bool codePanelOpened = false;
+    private bool codePanelOpened = true;
     private float codePaneleWidth = 0;
 
     public List<Image> codeInputsObjects = new List<Image>();
@@ -435,37 +436,20 @@ public class UIHandler : MonoBehaviour
     }
 
     private GameObject hintObject;
-    public void ShowHintCommand(int nextCommandIndex)
-    {
-        int keyRotate = SetDirectionRotate(pathGenarator.Path[nextCommandIndex].pathDirection);
-        
-        hintObject = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
+    public GameObject codeReachedObject;
 
-        hintObject.transform.localScale = new Vector3(1, 1, 1);
-        hintObject.transform.parent = GameObject.Find("Canvas").transform;
-        
-
-        Destroy(hintObject.GetComponent<DeleteCommand>());
-
-        var arrow = hintObject.transform.Find("Image/Arrow");
-        arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
-
-        hintObject.GetComponent<RectTransform>().SetAnchor(AnchorPresets.MiddleCenter);
-
-        hintObject.GetComponent<RectTransform>().SetPivot(PivotPresets.MiddleCenter);
-        hintObject.transform.Translate(300, 0, 0);
-        Invoke("DeleteHintCommandStarter",2f);
-    }
 
     private void DeleteHintCommandStarter()
     {
         //StartCoroutine(DeleteHintCommand());
-        var arrow = hintObject.transform.Find("Image").GetComponent<Image>();
-        arrow.DOFade(0f, 1f);
-        hintObject.GetComponent<Image>().DOFade(0f, 1f).OnComplete(() =>
-        {
-            Destroy(hintObject);
-        });
+        //var arrow = hintObject.transform.Find("Image").GetComponent<Image>();
+        //arrow.DOFade(0f, 1f);
+        //hintObject.GetComponent<Image>().DOFade(0f, 1f).OnComplete(() =>
+        //{
+        //    Destroy(hintObject);
+        //});
+
+        Destroy(hintObject);
     }
 
     public void MarkCurrentCommand(int i)
@@ -514,6 +498,76 @@ public class UIHandler : MonoBehaviour
 
         countDownText.gameObject.SetActive(false);
     }
-    
-    
+
+    public void ShowHintCommand(Direction direction)
+    {
+        int keyRotate = SetDirectionRotate(direction);
+
+        hintObject = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
+
+        hintObject.transform.localScale = new Vector3(1, 1, 1);
+        hintObject.transform.parent = GameObject.Find("Canvas").transform;
+
+
+        Destroy(hintObject.GetComponent<DeleteCommand>());
+
+        var arrow = hintObject.transform.Find("Image/Arrow");
+        arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
+
+        hintObject.GetComponent<RectTransform>().SetAnchor(AnchorPresets.MiddleCenter);
+
+        hintObject.GetComponent<RectTransform>().SetPivot(PivotPresets.MiddleCenter);
+        hintObject.transform.Translate(150, 0, 0);
+        Invoke("DeleteHintCommandStarter", 2f);
+    }
+    public void ShowHintIfCommand(string ifCommandAnimalName)
+    {
+        hintObject = Instantiate(codeIfObject, codeIfObject.transform.position, Quaternion.identity);
+
+        hintObject.transform.Find("ifObjectName").gameObject.GetComponent<TextMeshProUGUI>().text = ifCommandAnimalName;
+        hintObject.transform.localScale = new Vector3(1, 1, 1);
+        hintObject.transform.parent = GameObject.Find("Canvas").transform;
+
+        hintObject.transform.localScale = new Vector3(1, 1, 1);
+
+        var codeInput = Instantiate(codeIfObjectChild, codeIfObjectChild.transform.position, Quaternion.identity);
+
+        codeInput.transform.parent = hintObject.transform.Find("CodeInputArea").transform;
+        Destroy(codeInput.GetComponent<DeleteCommand>());
+
+        codeInput.transform.localScale = new Vector3(1f, 1f, 1f);
+        
+        var image = codeInput.transform.Find("Image").GetComponent<Image>();
+
+        image.sprite = pathGenarator.allIfObjects.ToList().Find(v => v.ifName == ifCommandAnimalName).ifGameObjectsImage;
+        hintObject.GetComponent<RectTransform>().SetAnchor(AnchorPresets.MiddleCenter);
+
+        hintObject.GetComponent<RectTransform>().SetPivot(PivotPresets.MiddleCenter);
+        Invoke("DeleteHintCommandStarter", 2f);
+    }
+
+    public void ShowHintWaitCommand(int waitCommandSeconds)
+    {
+        hintObject = Instantiate(codeWaitObject, codeWaitObject.transform.position, Quaternion.identity);
+        hintObject.transform.Find("CodeInputArea/Wait/seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
+            waitCommandSeconds.ToString();
+        hintObject.transform.localScale = new Vector3(1, 1, 1);
+        hintObject.transform.parent = GameObject.Find("Canvas").transform;
+
+        hintObject.GetComponent<RectTransform>().SetAnchor(AnchorPresets.MiddleCenter);
+        hintObject.GetComponent<RectTransform>().SetPivot(PivotPresets.MiddleCenter);
+        Invoke("DeleteHintCommandStarter", 2f);
+    }
+
+    public void ShowHintReachedTarget()
+    {
+        hintObject = Instantiate(codeReachedObject, codeReachedObject.transform.position, Quaternion.identity);
+        
+        hintObject.transform.localScale = new Vector3(1, 1, 1);
+        hintObject.transform.parent = GameObject.Find("Canvas").transform;
+
+        hintObject.GetComponent<RectTransform>().SetAnchor(AnchorPresets.MiddleCenter);
+        hintObject.GetComponent<RectTransform>().SetPivot(PivotPresets.MiddleCenter);
+        Invoke("DeleteHintCommandStarter", 2f);
+    }
 }

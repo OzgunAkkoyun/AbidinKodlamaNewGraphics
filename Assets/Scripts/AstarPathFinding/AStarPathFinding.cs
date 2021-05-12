@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using static MapGenerator;
 
 public class AStarPathFinding : MonoBehaviour
 {
     public MapGenerator map;
-    public PathGenarator pathGenarator;
-    public HintButton hint;
+    public TraceMap taraceMap;
     
-    void FindPath(Coord startPos,Coord endPos)
+    public void FindPath(Coord startPos,Coord endPos)
     {
         Coord startNode = startPos;
         Coord targetNode = endPos;
@@ -33,7 +31,7 @@ public class AStarPathFinding : MonoBehaviour
             closedSet.Add(currentNode);
             if (currentNode.x == targetNode.x && currentNode.y == targetNode.y)
             {
-                hint.shortestPath = RetracePath(currentNode);
+                taraceMap.shortestPath = RetracePath(currentNode);
                 return;
             }
 

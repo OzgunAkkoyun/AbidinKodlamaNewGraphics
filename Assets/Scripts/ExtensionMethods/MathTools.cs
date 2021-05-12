@@ -60,7 +60,11 @@ public static class MathTools
         return System.Math.Abs(_v1.x - _v2.x) <= _e.x &&
                System.Math.Abs(_v1.y - _v2.y) <= _e.y;
     }
-
+    public static bool CheckIsNull(this object obj)
+    {
+        bool isNull = obj == null || (obj is UnityEngine.Object && ((obj as UnityEngine.Object) == null));
+        return isNull;
+    }
     public static Vector2 SizeToParent(this RawImage image, float padding = 0)
     {
         float w = 0, h = 0;
