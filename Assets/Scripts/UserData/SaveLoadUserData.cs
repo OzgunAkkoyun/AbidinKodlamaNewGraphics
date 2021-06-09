@@ -65,6 +65,7 @@ public class SaveLoadUserData : MonoBehaviour
     public void GetUserData()
     {
         var userDataString = PlayerPrefs.GetString("userData");
+       
         if (userDataString != "")
         {
             userDataList = JsonConvert.DeserializeObject<List<UserData>>(userDataString, new JsonSerializerSettings

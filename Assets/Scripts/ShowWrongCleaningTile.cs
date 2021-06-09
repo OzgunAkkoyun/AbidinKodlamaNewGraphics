@@ -27,7 +27,7 @@ public class ShowWrongCleaningTile : MonoBehaviour
             //wrongTile.AddComponent<Renderer>();
             wrongTile.SetActive(true);
             wrongTile.transform.position = new Vector3(wrongTile.transform.position.x, wrongTile.transform.position.y+0.2f, wrongTile.transform.position.z);
-            wrongTile.GetComponent<Renderer>().material.DOColor(new Color(217/255f,33/255f,57/255f), 2).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
+            wrongTile.GetComponent<Renderer>().material.DOColor(new Color(217/255f,33/255f,57/255f), 2).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         }
     }
 
@@ -43,9 +43,7 @@ public class ShowWrongCleaningTile : MonoBehaviour
             wrongTile.SetActive(true);
             wrongTile.transform.position = new Vector3(wrongTile.transform.position.x, wrongTile.transform.position.y + 0.2f, wrongTile.transform.position.z);
 
-            wrongTile.GetComponent<Renderer>().material.DOColor(new Color(217 / 255f, 33 / 255f, 57 / 255f), 2).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
+            wrongTile.GetComponent<Renderer>().material.DOColor(new Color(217 / 255f, 33 / 255f, 57 / 255f), 2).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
         }
     }
-
-
 }
