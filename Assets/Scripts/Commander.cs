@@ -35,6 +35,12 @@ public class Commander : MonoBehaviour
         OnNewCommand.Invoke();
     }
 
+    public void AddIfCommandTutorial(string name)
+    {
+        commands.Add(new PickIfAnyObjectExistsCommandTutorial { animalName = name});
+        OnNewCommand.Invoke();
+    }
+
     public void AddWaitCommand(int seconds)
     {
         commands.Add(new WaitCommand { seconds = seconds });

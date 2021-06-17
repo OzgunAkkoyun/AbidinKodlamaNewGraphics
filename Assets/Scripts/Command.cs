@@ -78,6 +78,16 @@ public class PickIfAnyObjectExistsCommand : Command
         
     }
 }
+
+public class PickIfAnyObjectExistsCommandTutorial : Command
+{
+    public string animalName;
+
+    public override string ToCodeString()
+    {
+        return "if(" + animalName + " ise){\n Topla();\n}";
+    }
+}
 public class WaitCommand : Command
 {
     public int seconds;

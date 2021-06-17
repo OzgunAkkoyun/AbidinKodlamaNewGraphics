@@ -30,15 +30,13 @@ public class SliderController : MonoBehaviour
         PlayerPrefs.SetInt("isRestart",0);
         SoundController.instance.PrepareSounds();
         SoundController.instance.Play("Theme");
-        Debug.Log(playerDataString);
+
         if (playerDataString != "")
         {
-            Debug.Log("if");
             playerDatas = JsonUtility.FromJson<SavedPlayerData>(playerDataString);
         }
         else
         {
-            Debug.Log("else");
             playerDatas = new SavedPlayerData(0, 0, 1,1,1, 5, 0, 0, false);
         }
 

@@ -11,26 +11,19 @@ using UnityEngine.UI;
 
 public enum ActionPosition { Up,Down }
 [System.Serializable]
-public class TutorialActions
-{
-    public string tutorialText;
-    public AudioClip voice;
-    public List<GameObject> highlightObjects;
-    //public GameObject waitingActionObject;
-    public ActionPosition actionPosition;
-    
-}
 public class TutorialManager : MonoBehaviour,IPointerClickHandler
 {
-    public TutorialActions[] actions;
-    public TutorialActions currentAction;
+    public TutorialType currentAction;
     public int actionIndex;
     public TextMeshProUGUI text;
     private bool nextAction;
     public GameObject textPanel;
     public GameObject tutorialPanel;
     private List<Transform> currentHighLightObjectParent = new List<Transform>();
+    private List<Transform> currentHighLightObjects = new List<Transform>();
     public AudioSource audioSource;
+
+    public AllTutorialTypes actions;
 
     public void Start()
     {
@@ -42,7 +35,6 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
             tutorialPanel.SetActive(true);
             StartCoroutine(StartTutorial());
         }
-       
     }
 
     void Update()
@@ -50,35 +42,65 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         if (Input.GetMouseButtonDown(0) && !nextAction)
         {
             var clickName = EventSystem.current.currentSelectedGameObject?.name;
-            for (int i = 0; i < currentAction.highlightObjects.Count; i++)
+            var currentType = currentAction.GetType();
+
+            if (currentType == typeof(TutorialButton))
             {
-                if (clickName == currentAction.highlightObjects[i].name)
+                var action = currentAction as TutorialButton;
+
+                for (int i = 0; i < action.highlightObjects.Count; i++)
                 {
-                    nextAction = true;
+                    if (clickName == currentHighLightObjects[i].name)
+                    {
+                        nextAction = true;
+                    }
                 }
             }
+            
         }
     }
     private IEnumerator StartTutorial()
     {
-        foreach (var action in actions)
+        foreach (var action in actions.allTutorialTypes)
         {
             currentAction = action;
             nextAction = false;
             currentHighLightObjectParent.Clear();
-            SetTextPanelPosition();
-            yield return StartCoroutine(StartTextWrite());
-            yield return StartCoroutine(ShowHighLightObject());
+            currentHighLightObjects.Clear();
+            var currentType = currentAction.GetType();
 
-            yield return new WaitUntil(() => nextAction==true);
-            yield return new WaitForSeconds(1);
-            SetObjectsParentBack();
-            ResetButtonBouncingEffect();
-            actionIndex++;
+            if (currentType == typeof(TutorialButton))
+            {
+                currentAction = currentAction as TutorialButton;
+                SetCurrentHighlightObjects();
+                SetTextPanelPosition();
+                yield return StartCoroutine(StartTextWrite());
+                yield return StartCoroutine(ShowHighLightObject());
+
+                yield return new WaitUntil(() => nextAction == true);
+                yield return new WaitForSeconds(1);
+                SetObjectsParentBack();
+                ResetButtonBouncingEffect();
+                actionIndex++;
+            }
+            else if (currentType == typeof(TutorialToy))
+            {
+                currentAction = currentAction as TutorialToy;
+
+            }
         }
 
         FinishTutorial();
         
+    }
+
+    private void SetCurrentHighlightObjects()
+    {
+        var action = currentAction as TutorialButton;
+        for (int i = 0; i < action.highlightObjects.Count; i++)
+        {
+            currentHighLightObjects.Add(GameObject.Find(action.highlightObjects[i]).transform);
+        }
     }
 
     private void FinishTutorial()
@@ -89,20 +111,27 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
 
     private void SetObjectsParentBack()
     {
-        if (currentAction.highlightObjects.Count > 0)
+        var action = currentAction as TutorialButton;
+        if (action.highlightObjects.Count > 0)
         {
-            for (int i = 0; i < currentAction.highlightObjects.Count; i++)
+            for (int i = 0; i < action.highlightObjects.Count; i++)
             {
-                currentAction.highlightObjects[i].transform.SetParent(currentHighLightObjectParent[i]);
+                currentHighLightObjects[i].SetParent(currentHighLightObjectParent[i]);
             }
         }
     }
 
     private IEnumerator ShowHighLightObject()
     {
-        if (currentAction.highlightObjects.Count>0)
+        var action = currentAction as TutorialButton;
+        if (action.highlightObjects.Count>0)
         {
-            var highLights = currentAction.highlightObjects;
+            List<GameObject> highLights = new List<GameObject>();
+            for (int i = 0; i < action.highlightObjects.Count; i++)
+            {
+                highLights.Add(GameObject.Find(action.highlightObjects[i]));
+            }
+            
             foreach (var highLight in highLights)
             {
                 currentHighLightObjectParent.Add(highLight.transform.parent);
@@ -119,10 +148,11 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
     }
     private void ResetButtonBouncingEffect()
     {
-        for (int i = 0; i < currentAction.highlightObjects.Count; i++)
+        var action = currentAction as TutorialButton;
+        for (int i = 0; i < action.highlightObjects.Count; i++)
         {
-            currentAction.highlightObjects[i].transform.DOPause();
-            currentAction.highlightObjects[i].transform.localScale = new Vector3(1,1,1);
+            currentHighLightObjects[i].transform.DOPause();
+            currentHighLightObjects[i].transform.localScale = new Vector3(1,1,1);
         }
         
     }
@@ -133,7 +163,8 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
 
     private void SetTextPanelPosition()
     {
-        if (currentAction.actionPosition == ActionPosition.Up)
+        var action = currentAction as TutorialButton;
+        if (action.actionPosition == ActionPosition.Up)
         {
             textPanel.GetComponent<RectTransform>().SetAnchor(AnchorPresets.HorStretchTop);
             textPanel.GetComponent<RectTransform>().SetPivot(PivotPresets.TopLeft);
@@ -148,10 +179,11 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
 
     IEnumerator StartTextWrite()
     {
+        var action = currentAction as TutorialButton;
         audioSource.clip = currentAction.voice;
         audioSource.Play();
         text.text = "";
-        var story = currentAction.tutorialText;
+        var story = action.tutorialText;
         foreach (char c in story)
         {
             text.text += c;

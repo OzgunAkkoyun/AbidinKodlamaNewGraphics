@@ -231,7 +231,6 @@ public class CharacterMovement : MonoBehaviour
     {
         anim.SetBool("isCollecting", true);
         yield return null;
-
     }
 
     private IEnumerator Turn()

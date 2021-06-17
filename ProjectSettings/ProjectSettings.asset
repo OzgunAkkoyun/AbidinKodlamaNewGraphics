@@ -16,14 +16,14 @@ PlayerSettings:
   productName: GridBaseMap
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.1462264, g: 0.84163666, b: 1, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.49461553, g: 0.82253623, b: 0.8962264, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 2
   m_SplashScreenLogoStyle: 1
   m_SplashScreenDrawMode: 0
-  m_SplashScreenBackgroundAnimationZoom: 1
+  m_SplashScreenBackgroundAnimationZoom: 0
   m_SplashScreenLogoAnimationZoom: 1
   m_SplashScreenBackgroundLandscapeAspect: 1
   m_SplashScreenBackgroundPortraitAspect: 1
@@ -39,8 +39,10 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 714e31cb8c08027489f20df5786b8b2d,
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: 1724ba16c60d70a439c0d225fa7d2fec, type: 3}
+    duration: 6.4
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 1724ba16c60d70a439c0d225fa7d2fec,
     type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -268,7 +270,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: f88a0fbf372fc64438fa971d4106c948, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -772,7 +774,7 @@ PlayerSettings:
   monoEnv: 
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
-  blurSplashScreenBackground: 1
+  blurSplashScreenBackground: 0
   spritePackerPolicy: 
   webGLMemorySize: 16
   webGLExceptionSupport: 1
