@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -24,4 +23,5 @@ public class TutorialToy: TutorialType
 {
     public VideoClip showingVideo;
     public Sprite toyImage;
+    public string toyName;
 }

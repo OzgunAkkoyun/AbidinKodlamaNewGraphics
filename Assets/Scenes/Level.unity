@@ -151,38 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac182275c68e5a041ae39dd451073726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions:
-  - tutorialText: "Merhaba arkada\u015F\u0131m nas\u0131ls\u0131n"
-    voice: {fileID: 8300000, guid: 49a4daa4863c61a438f1cec7d70a85bb, type: 3}
-    highlightObjects:
-    - {fileID: 916184675}
-    - {fileID: 476212080}
-    actionPosition: 0
-  - tutorialText: "Naber Nas\u0131l gidiyor."
-    voice: {fileID: 8300000, guid: b44dd1d9bf3977746a2d5431e7ef5c79, type: 3}
-    highlightObjects:
-    - {fileID: 1056719755}
-    actionPosition: 1
-  - tutorialText: "Buras\u0131 ailen i\xE7in"
-    voice: {fileID: 0}
-    highlightObjects:
-    - {fileID: 1176235023}
-    actionPosition: 0
-  - tutorialText: "Sesi Buradan A\xE7"
-    voice: {fileID: 8300000, guid: 263f32bc460418543ac345d632f14412, type: 3}
-    highlightObjects:
-    - {fileID: 894301552}
-    actionPosition: 0
-  currentAction:
-    tutorialText: 
-    voice: {fileID: 0}
-    highlightObjects: []
-    actionPosition: 0
+  currentAction: {fileID: 0}
   actionIndex: 0
   text: {fileID: 33359655}
   textPanel: {fileID: 310721313}
   tutorialPanel: {fileID: 285529018}
   audioSource: {fileID: 6639950}
+  actions: {fileID: 11400000, guid: ab8307dc1eb6cea47b5296292ad71044, type: 2}
 --- !u!4 &6639949
 Transform:
   m_ObjectHideFlags: 0
@@ -3353,7 +3328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0.6745098}
+  m_Color: {r: 0, g: 0.45702758, b: 0.6132076, a: 0.6745098}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3427,7 +3402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.62352943}
+  m_Color: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 0.6862745}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4049,17 +4024,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340667477}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 310721314}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 0}
-  m_SizeDelta: {x: 180, y: 180}
+  m_AnchoredPosition: {x: 30, y: -6}
+  m_SizeDelta: {x: 165, y: 175}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &340667479
 MonoBehaviour:
@@ -4080,9 +4055,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce2b7bedc0210aa4a8f6239f52431c46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0347f2fe9043e3d48a4c71b7a0b83f12, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

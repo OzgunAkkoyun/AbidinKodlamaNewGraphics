@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 3
   m_EditorClassIdentifier: Game::TutorialButton
-  voice: {fileID: 0}
-  tutorialText: 
-  highlightObjects: []
+  voice: {fileID: 8300000, guid: 263f32bc460418543ac345d632f14412, type: 3}
+  tutorialText: 3. text deneme
+  highlightObjects:
+  - Sound
   actionPosition: 0

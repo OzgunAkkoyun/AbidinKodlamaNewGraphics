@@ -11,10 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
   m_Name: 1
-  m_EditorClassIdentifier: Game::TutorialButton
-  voice: {fileID: 8300000, guid: 49a4daa4863c61a438f1cec7d70a85bb, type: 3}
-  tutorialText: Merhaba ksdk skkjs
-  highlightObjects:
-  - Left
-  - Right
-  actionPosition: 0
+  m_EditorClassIdentifier: Game::TutorialToy
+  voice: {fileID: 0}
+  showingVideo: {fileID: 32900000, guid: 7a969de71c378d94d907a7363893c865, type: 3}
+  toyImage: {fileID: 21300000, guid: 89f03cf985a4aaa498a54b1a71f3e48f, type: 3}
+  toyName: Left

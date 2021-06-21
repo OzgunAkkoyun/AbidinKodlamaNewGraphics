@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using DapperDino.UDCT.Utilities.DeveloperConsole.Commands;
 using DG.Tweening;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public enum ActionPosition { Up,Down }
 [System.Serializable]
 public class TutorialManager : MonoBehaviour,IPointerClickHandler
 {
     public TutorialType currentAction;
-    public int actionIndex;
+    private int actionIndex;
     public TextMeshProUGUI text;
     private bool nextAction;
     public GameObject textPanel;
@@ -86,7 +83,6 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
             else if (currentType == typeof(TutorialToy))
             {
                 currentAction = currentAction as TutorialToy;
-
             }
         }
 
