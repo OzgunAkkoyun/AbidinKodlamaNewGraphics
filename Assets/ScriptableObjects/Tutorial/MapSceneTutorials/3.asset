@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
   m_Name: 3
-  m_EditorClassIdentifier: Game::TutorialButton
-  voice: {fileID: 8300000, guid: 263f32bc460418543ac345d632f14412, type: 3}
-  tutorialText: 3. text deneme
+  m_EditorClassIdentifier: 
+  voice: {fileID: 8300000, guid: 58522625447826d4f91a3174a6c4e25e, type: 3}
+  tutorialText: "Bu butonu kullanarak son oynad\u0131\u011F\u0131n oyunu tekrar izleyebilirsin.   "
   highlightObjects:
-  - Sound
-  actionPosition: 0
+  - Yonerge
+  actionPosition: 1

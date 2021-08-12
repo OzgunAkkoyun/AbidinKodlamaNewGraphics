@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
     public LevelStats.Senarios currentSenario;
 
     public int[] senarioAndLevelIndexs;
+    public bool toyCanBeClicked = true;
     
     void Awake()
     {
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
         }
         else if(isGameOrLoad == 1 /*|| isGameOrLoad == 2*/) // its mean loading one of the previous games
         {
+            toyCanBeClicked = false;
             playerDatas.whichScenario = gameDatas[gameDatas.Count - 1].scenarioIndex;
             currentSenario.senarioIndex = gameDatas[gameDatas.Count - 1].scenarioIndex;
             currentLevel.levelIndex = gameDatas[gameDatas.Count - 1].levelIndex;

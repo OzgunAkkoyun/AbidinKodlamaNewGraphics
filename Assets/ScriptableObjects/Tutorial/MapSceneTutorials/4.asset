@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
   m_Name: 4
-  m_EditorClassIdentifier: Game::TutorialButton
-  voice: {fileID: 8300000, guid: b44dd1d9bf3977746a2d5431e7ef5c79, type: 3}
-  tutorialText: 4. deneme demedme
+  m_EditorClassIdentifier: 
+  voice: {fileID: 8300000, guid: 904a59183028f784cb3c2ddb811731cd, type: 3}
+  tutorialText: "Uygulaman\u0131n sesini kapatmak istersen bu butonu kullanabilirsin "
   highlightObjects:
-  - Data
-  actionPosition: 0
+  - Sound
+  actionPosition: 1

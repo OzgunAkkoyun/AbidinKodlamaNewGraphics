@@ -156,7 +156,7 @@ public class WindowGraph : MonoBehaviour
             labelY.gameObject.SetActive(true);
 
             float normalizedValue = i * 1f / separatorCount;
-            labelY.anchoredPosition = new Vector2(-55f, normalizedValue * graphHeight - 8f);
+            labelY.anchoredPosition = new Vector2(-40f, normalizedValue * graphHeight - 8f);
             labelY.localScale = Vector3.one;
             labelY.GetComponent<TextMeshProUGUI>().text = getAxisLabelY(yMinimum + (normalizedValue * (yMaximum - yMinimum)));
             gameObjectList.Add(labelY.gameObject);

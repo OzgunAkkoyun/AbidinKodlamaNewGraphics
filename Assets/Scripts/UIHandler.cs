@@ -49,6 +49,9 @@ public class UIHandler : MonoBehaviour
     public int commandIndex = 0;
     public Sprite[] gameOverScoreImages;
     public Image gameOverScoreObject;
+    public GameObject DeleteAllCommandCorrectionPanel;
+    public RectTransform scrollRect;
+    public RectTransform scroll;
 
     void Awake()
     {
@@ -61,7 +64,7 @@ public class UIHandler : MonoBehaviour
 
         forInput.gameObject.SetActive(false);
     }
-
+    
     void Start()
     {
         gm.commander.OnNewCommand.AddListener(OnNewCommand);
@@ -81,6 +84,19 @@ public class UIHandler : MonoBehaviour
 
     #region CodePanel
 
+    private Vector3 lastPosition = Vector3.zero;
+    public void ScrollPanelSnapToBottom(float size)
+    {
+        if (scroll.rect.height >= scrollRect.rect.height - size)
+        {
+            var addPos = 0f;
+         
+            var vector = new Vector3(0, size, 0)+ new Vector3(0, addPos, 0) + lastPosition;
+            
+            scroll.anchoredPosition = vector;
+            lastPosition = scroll.anchoredPosition;
+        }
+    }
     public void CodePanelOpen()
     {
         StartCoroutine(CodePanel());
@@ -163,7 +179,6 @@ public class UIHandler : MonoBehaviour
             commandIndex++;
         }
     }
-
     private void ShowKeyForWait(int waitCommandSeconds)
     {
         if (panel == null)
@@ -172,6 +187,7 @@ public class UIHandler : MonoBehaviour
         }
 
         var codeInputWait = Instantiate(codeWaitObject, codeWaitObject.transform.position, Quaternion.identity);
+        
         codeInputWait.transform.Find("CodeInputArea/Wait/seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
             waitCommandSeconds.ToString();
 
@@ -181,6 +197,21 @@ public class UIHandler : MonoBehaviour
         codeInputWait.transform.localScale = new Vector3(1f, 1f, 1f);
 
         codeInputsObjects.Add(codeInputWait.transform.Find("CodeInputArea/Wait").GetComponent<Image>());
+
+
+        var height = codeInputWait.GetComponent<RectTransform>().rect.height;
+        ScrollPanelSnapToBottom(height);
+        /* Content changed here */
+
+
+
+        //codeInputWait.transform.parent.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputVertical();
+        //codeInputWait.transform.parent.GetComponent<ContentSizeFitter>().SetLayoutVertical();
+
+        //scrollRect.content.GetComponent<VerticalLayoutGroup>().CalculateLayoutInputVertical();
+        //scrollRect.content.GetComponent<ContentSizeFitter>().SetLayoutVertical();
+
+        //scrollRect.verticalNormalizedPosition = 0;
     }
 
     public Image[] collectAndPhotoImages = new Image[2];
@@ -214,6 +245,9 @@ public class UIHandler : MonoBehaviour
         //image.sprite = gm.currentSenario.senarioIndex == 3 ? collectAndPhotoImages[0].sprite : collectAndPhotoImages[1].sprite;
             image.sprite = pathGenarator.allIfObjects.ToList().Find(v => v.ifName == ifCommandAnimalName).ifGameObjectsImage;
         GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
+
+        var height = codeInputIf.GetComponent<RectTransform>().rect.height;
+        ScrollPanelSnapToBottom(height);
     }
 
     private void ShowKeyForLoop(List<Direction> direction, int loopCount, int commandIndex)
@@ -248,7 +282,10 @@ public class UIHandler : MonoBehaviour
             arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
             GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
         }
-       
+
+        var height = codeInputFor.GetComponent<RectTransform>().rect.height;
+        ScrollPanelSnapToBottom(height);
+
     }
 
     private void ShowKey(Direction direction, int commandIndex)
@@ -269,6 +306,8 @@ public class UIHandler : MonoBehaviour
         var arrow = codeInput.transform.Find("Image/Arrow");
         arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
         GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
+        var height = codeInput.GetComponent<RectTransform>().rect.height;
+        ScrollPanelSnapToBottom(height);
     }
 
     private int SetDirectionRotate(Direction direction)

@@ -150,7 +150,8 @@ public class UIInputManagerTutorial : MonoBehaviour
             commandIndex++;
         }
     }
-
+    
+   
     private void ShowKeyForWait(int waitCommandSeconds)
     {
         if (panel == null)
@@ -159,6 +160,9 @@ public class UIInputManagerTutorial : MonoBehaviour
         }
 
         var codeInputWait = Instantiate(codeWaitObject, codeWaitObject.transform.position, Quaternion.identity);
+        
+        Destroy(codeInputWait.GetComponent<DeleteCommand>());
+        codeInputWait.AddComponent<DeleteCommandTutorial>();
         codeInputWait.transform.Find("CodeInputArea/Wait/seconds").gameObject.GetComponent<TextMeshProUGUI>().text =
             waitCommandSeconds.ToString();
 
@@ -179,6 +183,8 @@ public class UIInputManagerTutorial : MonoBehaviour
         }
 
         var codeInputIf = Instantiate(codeIfObject, codeIfObject.transform.position, Quaternion.identity);
+        Destroy(codeInputIf.GetComponent<DeleteCommand>());
+        codeInputIf.AddComponent<DeleteCommandTutorial>();
         codeInputIf.transform.Find("ifObjectName").gameObject.GetComponent<TextMeshProUGUI>().text =
             ifCommandAnimalName;
         codeInputIf.transform.parent = panel.transform;
@@ -209,6 +215,8 @@ public class UIInputManagerTutorial : MonoBehaviour
             panel = GameObject.Find("CodePanel/Scroll");
         }
         var codeInputFor = Instantiate(codeForObject, codeForObject.transform.position, Quaternion.identity);
+        Destroy(codeInputFor.GetComponent<DeleteCommand>());
+        codeInputFor.AddComponent<DeleteCommandTutorial>();
         codeInputFor.transform.Find("LoopCountText").gameObject.GetComponent<TextMeshProUGUI>().text =
             loopCount.ToString();
         codeInputFor.transform.parent = panel.transform;
@@ -246,7 +254,8 @@ public class UIInputManagerTutorial : MonoBehaviour
         int keyRotate = SetDirectionRotate(direction);
 
         var codeInput = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
-
+        Destroy(codeInput.GetComponent<DeleteCommand>());
+        codeInput.AddComponent<DeleteCommandTutorial>();
         codeInputsObjects.Add(codeInput.transform.Find("Image").GetComponent<Image>());
 
         codeInput.transform.parent = panel.transform;

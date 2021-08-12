@@ -88,13 +88,28 @@ public class GetInputs : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        GetKeys();
+        if (gm.toyCanBeClicked)
+        {
+            GetKeys();
+        }
+#endif
+#if UNITY_STANDALONE_WIN
+        if (gm.toyCanBeClicked)
+        {
+            GetKeys();
+        }
 #endif
 #if UNITY_IOS
-      HandleUserInput();
+        if (gm.toyCanBeClicked)
+        {
+            HandleUserInput();
+        }
 #endif
 #if UNITY_ANDROID
-      HandleUserInput();
+      if (gm.toyCanBeClicked)
+        {
+            HandleUserInput();
+        }
 #endif
 
     }
@@ -200,9 +215,10 @@ public class GetInputs : MonoBehaviour
         }
 
     }
+
     private void UseTool(string toolName, Vector2 toolPosition)
     {
-        SoundController.instance.Play("touch");
+        SoundController.instance.PlayToySound();
         
         if (toolName == "Forward")
         {
@@ -310,6 +326,7 @@ public class GetInputs : MonoBehaviour
             {
                 forDirections.Add(Direction.Forward);
             }
+           
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -365,6 +382,7 @@ public class GetInputs : MonoBehaviour
             //rotateToyUi.OpenIfObjectContainer();
             WaitWaitInput();
         }
+       
     }
 
     private void WaitWaitInput()

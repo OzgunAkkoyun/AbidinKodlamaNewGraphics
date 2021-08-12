@@ -1,0 +1,72 @@
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class DeleteCommandTutorial : MonoBehaviour, IPointerClickHandler
+{
+    public Commander commander;
+    public UIInputManagerTutorial uh;
+
+    public void Start()
+    {
+        uh = FindObjectOfType<UIInputManagerTutorial>();
+        commander = FindObjectOfType<Commander>();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        var commandIndex = FindIndexOfChild(this.gameObject.name);
+        commander.commands.RemoveAt(commandIndex);
+        uh.codeInputsObjects.RemoveAt(commandIndex);
+        Destroy(gameObject);
+    }
+
+    public void OnBackButton()
+    {
+        var commandIndex = commander.commands.Count - 1;
+        if (commandIndex < 0) return;
+
+        commander.commands.RemoveAt(commandIndex);
+        var deleteCommand = FindDeletedObject(commandIndex);
+        Destroy(deleteCommand);
+        uh.codeInputsObjects.RemoveAt(commandIndex);
+    }
+
+    private GameObject FindDeletedObject(int commandIndex)
+    {
+        GameObject deleteCommand = uh.codeInputsObjects[commandIndex].gameObject;
+        while (deleteCommand.GetComponent<DeleteCommandTutorial>() == null)
+        {
+            deleteCommand = deleteCommand.transform.parent.gameObject;
+        }
+
+        return deleteCommand;
+    }
+
+    public void DeleteAllCommands()
+    {
+        var commands = commander.commands;
+        var commandCount = commander.commands.Count;
+        if (commandCount == 0) return;
+
+        for (int i = 0; i < commandCount; i++)
+        {
+            var deleteCommand = FindDeletedObject(i);
+            Destroy(deleteCommand);
+        }
+        commander.commands.Clear();
+        uh.codeInputsObjects.Clear();
+    }
+
+    private int FindIndexOfChild(string parse)
+    {
+        for (int i = 0; i < uh.panel.transform.childCount; i++)
+        {
+            if (uh.panel.transform.GetChild(i).name == parse)
+            {
+                return i - 1;
+                break;
+            }
+        }
+        return -1;
+    }
+}

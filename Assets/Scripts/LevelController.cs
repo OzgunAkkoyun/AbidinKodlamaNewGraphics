@@ -50,20 +50,10 @@ public class LevelController : MonoBehaviour
                     }
 
                 }
-
-                //foreach (Transform stars in allButtons[i].allLevelButtons[j].gameObject.transform)
-                //{
-                //    if (currenLevel.subLevels[count].passed)
-                //    {
-                //        stars.GetComponent<Image>().color = Color.white;
-                //    }
-
-                //    count++;
-                //}
-               
                 if (!currenLevel.levelComplated)
                 {
                     lastLevelIndexs = i + "-" + j;
+                    PlayerPrefs.SetInt("whichTutorial",i);
                     lastLevel = true;
                     break;
                 }
@@ -73,6 +63,7 @@ public class LevelController : MonoBehaviour
                 break;
             }
         }
+        
     }
     public void LevelButtonClick(string levelIndexs)
     {
@@ -84,18 +75,43 @@ public class LevelController : MonoBehaviour
 
         var senarioAndLevelIndexs = levelsInt[0].ToString()+"-"+ levelsInt[1].ToString()+"-"+ 1.ToString();
 
+        if (PlayerPrefs.GetInt("whichTutorial") != 4)
+        {
+            if (FindIfTuturialShowed())
+            {
+                SceneManager.LoadScene("Tutorial");
+                return;
+            }
+        }
+
+
         if (selectedLevel.levelComplated)
         {
             //Player wants to play again, this level already completed
-           
+
             PlayerPrefs.SetString("selectedLevelProps", senarioAndLevelIndexs);
-            PlayerPrefs.SetInt("isGameOrLoad",3);
+            PlayerPrefs.SetInt("isGameOrLoad", 3);
             SceneManager.LoadScene("Game");
         }
         else
         {
             PlayerPrefs.SetInt("isGameOrLoad", 0);
             SceneManager.LoadScene("Game");
+        }
+    }
+
+    private bool FindIfTuturialShowed()
+    {
+        var whichSenarioIndex = PlayerPrefs.GetInt("whichTutorial");
+        var senarioTutorialShowed = PlayerPrefs.GetString("levelTutorial" + whichSenarioIndex);
+       
+        if (senarioTutorialShowed == "")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -119,6 +135,8 @@ public class LevelController : MonoBehaviour
             levelLoader.playerDatas.lastMapSize = 5;
             string playerDataString = JsonUtility.ToJson(levelLoader.playerDatas);
             PlayerPrefs.SetString("playerDatas", playerDataString);
+            PlayerPrefs.SetString("levelTutorial"+ i, "finished");
+
         }
 
         levelLoader.SaveLevelStats();

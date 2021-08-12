@@ -13,6 +13,7 @@ public class UiVideoController : MonoBehaviour
     private GameObject video;
     public AllVideos allVideos;
     public GameObject videoPanel;
+    public GameObject videoContainer;
     public GameObject videoEndControlButtons;
     public AllVideosShowed allVideosShowed;
     public AllVideosShowed currentAllVideosShowed;
@@ -61,6 +62,7 @@ public class UiVideoController : MonoBehaviour
 
     public void ShowEndVideo(string videoName)
     {
+        gm.toyCanBeClicked = false;
         var pickedVideo = allVideos.GetVideo(gm.playerDatas.whichScenario, videoName);
         videoEndControlButtons.SetActive(false);
 
@@ -82,14 +84,20 @@ public class UiVideoController : MonoBehaviour
         StartCoroutine("VideoFadeOut");
         SoundController.instance.Play("Theme");
         currentVideoObject.isShowed = true;
+        gm.toyCanBeClicked = true;
         SaveVideos();
     }
 
     public void ShowVideo(string videoName)
     {
+        gm.toyCanBeClicked = false;
         var pickedVideo = allVideos.GetVideo(gm.playerDatas.whichScenario, videoName);
         videoEndControlButtons.SetActive(false);
-        
+        var videoRawImageObject = videoPanel.transform.Find("RawImage");
+
+        var videoRawImage = videoRawImageObject.GetComponent<RawImage>();
+        videoRawImage.color = new Color(1,1,1);
+
         if (pickedVideo == null)
             return;
         SoundController.instance.Pause("Theme");
@@ -121,6 +129,7 @@ public class UiVideoController : MonoBehaviour
         }
         SoundController.instance.Play("Theme");
         currentVideoObject.isShowed = true;
+        gm.toyCanBeClicked = true;
         SaveVideos();
         gm.WillVideoShown();
     }

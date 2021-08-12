@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distances:
   - 2
-  - 8
-  - 2
+  - 5
+  - 5
   toolName: Left
-  toolIndex: 7
+  toolIndex: 9

@@ -47,10 +47,16 @@ public class DeleteCommand : MonoBehaviour, IPointerClickHandler
         return deleteCommand;
     }
 
+    public void OpenCloseDeleteAllCommandCorrection()
+    {
+        uh.DeleteAllCommandCorrectionPanel.SetActive(!uh.DeleteAllCommandCorrectionPanel.activeSelf);
+    }
+
     public void DeleteAllCommands()
     {
         var commands = gm.commander.commands;
         var commandCount = gm.commander.commands.Count;
+        OpenCloseDeleteAllCommandCorrection();
         if (commandCount == 0) return;
         
         for (int i = 0; i < commandCount; i++)
@@ -61,6 +67,7 @@ public class DeleteCommand : MonoBehaviour, IPointerClickHandler
         gm.commander.commands.Clear();
         uh.codeInputsObjects.Clear();
         pathGenarator.selectedAnimals.Clear();
+        
     }
 
     private int FindIndexOfChild(string parse)

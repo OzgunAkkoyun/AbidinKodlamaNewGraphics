@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac382a35746bfce4da26755002e6ee33, type: 3}
+  m_Name: Senario4All
+  m_EditorClassIdentifier: 
+  allTutorialTypes:
+  - {fileID: 11400000, guid: 4db5c47250a58f741aa009971badddae, type: 2}
+  - {fileID: 11400000, guid: 70ad9e390ea48924787fb21963323d2d, type: 2}
+  - {fileID: 11400000, guid: a5518164058afe94fb387f23371c92c1, type: 2}
+  - {fileID: 11400000, guid: 223419f61070b20449d9e965b90aa086, type: 2}
+  - {fileID: 11400000, guid: fba00ffd996558541b02bc10e8ecf7dd, type: 2}

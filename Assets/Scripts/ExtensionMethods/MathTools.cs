@@ -65,6 +65,11 @@ public static class MathTools
         bool isNull = obj == null || (obj is UnityEngine.Object && ((obj as UnityEngine.Object) == null));
         return isNull;
     }
+
+    public static void ScrollToBottom(this ScrollRect scrollRect)
+    {
+        scrollRect.normalizedPosition = new Vector2(0, 0);
+    }
     public static Vector2 SizeToParent(this RawImage image, float padding = 0)
     {
         float w = 0, h = 0;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GetInputsTutorial : MonoBehaviour
@@ -15,6 +16,8 @@ public class GetInputsTutorial : MonoBehaviour
     public List<int> seconds = new List<int>();
 
     public Commander commander;
+    public TutorialManager tm;
+    public DeleteCommandTutorial deleteCommand;
 
     public List<Direction> forDirections;
 
@@ -39,9 +42,11 @@ public class GetInputsTutorial : MonoBehaviour
     public GameObject[] rotatableObjectsContainers = new GameObject[3];
     private int selectedObjectIndex = 0;
 
+    public UnityEvent NewCommand = new UnityEvent();
+
     void Start()
     {
-        //GetRotateObjects();
+        SoundController.instance.PrepareSounds();
     }
     public void SetRotateObjects(int index)
     {
@@ -77,6 +82,9 @@ public class GetInputsTutorial : MonoBehaviour
 #if UNITY_EDITOR
         GetKeys();
 #endif
+#if UNITY_STANDALONE_WIN
+        GetKeys();
+#endif
 #if UNITY_IOS
         HandleUserInput();
 #endif
@@ -91,12 +99,7 @@ public class GetInputsTutorial : MonoBehaviour
         float scwidth = Screen.width;
         float scheight = Screen.height;
         int ct = Input.touches.Length;
-        //rotatetext.text = ct.ToString();
 
-        //if (ct==0)
-        //{
-
-        //}
         if (ct == 0 || ct == 1)
         {
             if (canUseRotate == true)
@@ -132,7 +135,7 @@ public class GetInputsTutorial : MonoBehaviour
             p3 = new Vector2(touchList[2].x, touchList[2].y);
 
             string toolName = toolList.IdentifyTool(p1, p2, p3);
-
+            
             Vector2 center = (p1 + p2 + p3) / 3.0f;
             UseTool(toolName, center);
         }
@@ -177,84 +180,158 @@ public class GetInputsTutorial : MonoBehaviour
         }
 
     }
+
     private void UseTool(string toolName, Vector2 toolPosition)
     {
-        SoundController.instance.Play("touch");
+        SoundController.instance.PlayToySound();
+        var action = tm.currentAction as TutorialToy;
+        var actionLoop = tm.currentAction as TutorialLoopToy;
 
-        if (toolName == "Forward")
+        if (!actionLoop.CheckIsNull())
         {
-            if (!waitingMoveCommand)
+            if (tm.forToyCliked)
             {
-                commander.AddMoveCommand(Direction.Forward);
+                if (toolName == "Forward")
+                {
+                    commander.AddMoveCommand(Direction.Forward);
+                }
+                else if (toolName == "Left")
+                {
+                    commander.AddMoveCommand(Direction.Left);
+                }
+                else if (toolName == "Right")
+                {
+                    commander.AddMoveCommand(Direction.Right);
+                }
+                else if (toolName == "Backward")
+                {
+                    commander.AddMoveCommand(Direction.Backward);
+                }
             }
-            else
+            else if (toolName == "Loop")
             {
-                forDirections.Add(Direction.Forward);
+                forDirections = new List<Direction>();
+                waitingMoveCommand = true;
+                SetRotateObjects(0);
+                canUseRotate = true;
+                WaitForInput();
             }
-        }
-        else if (toolName == "Left")
-        {
-            if (!waitingMoveCommand)
-            {
-                commander.AddMoveCommand(Direction.Left);
-            }
-            else
-            {
-                forDirections.Add(Direction.Left);
-            }
-        }
-        else if (toolName == "Right")
-        {
-            if (!waitingMoveCommand)
-            {
-                commander.AddMoveCommand(Direction.Right);
-            }
-            else
-            {
-                forDirections.Add(Direction.Right);
-            }
-        }
-        else if (toolName == "Backward")
-        {
-            if (!waitingMoveCommand)
-            {
-                commander.AddMoveCommand(Direction.Backward);
-            }
-            else
-            {
-                forDirections.Add(Direction.Backward);
-            }
-        }
-        else if (toolName == "Loop")
-        {
-            forDirections = new List<Direction>();
-            waitingMoveCommand = true;
-            SetRotateObjects(0);
-            canUseRotate = true;
-            WaitForInput();
-        }
-        else if (toolName == "Condition")
-        {
-            //rotateToyUi.OpenIfObjectContainer();
-            SetRotateObjects(1);
-            canUseRotate = true;
-            OpenIfObjectWheel();
-        }
-        else if (toolName == "Wait")
-        {
-            //rotateToyUi.OpenIfObjectContainer();
-            SetRotateObjects(2);
-            canUseRotate = true;
-            WaitWaitInput();
-        }
-        else if (toolName == "Play")
-        {
-            //SetRotateObjects(1);
-            //canUseRotate = true;
-            //rotateToyUi.OpenIfObjectWheel();
-            //gm.GameAnimationStart();
         }
 
+        if (!action.CheckIsNull())
+        {
+            if (toolName == "Forward")
+            {
+                if (action.toyName == "Forward")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Forward);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Forward);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (toolName == "Left")
+            {
+                if (action.toyName == "Left")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Left);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Left);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (toolName == "Right")
+            {
+                if (action.toyName == "Right")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Right);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Right);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (toolName == "Backward")
+            {
+                if (action.toyName == "Backward")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Backward);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Backward);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+
+            else if (toolName == "Condition" )
+            {
+                if (action.toyName == "Condition")
+                {
+                    SetRotateObjects(1);
+                    canUseRotate = true;
+                    OpenIfObjectWheel();
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (toolName == "Wait" )
+            {
+                if (action.toyName == "Wait")
+                {
+                    SetRotateObjects(2);
+                    canUseRotate = true;
+                    WaitWaitInput();
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (toolName == "Play")
+            {
+                if (action.toyName == "Play")
+                {
+                    tm.tutorialPanel.SetActive(false);
+                    StartCoroutine(tm.DoApplyCommands());
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+        }
     }
 
     private void OpenIfObjectWheel()
@@ -270,75 +347,167 @@ public class GetInputsTutorial : MonoBehaviour
             uh.forComplatePanel.SetActive(false);
         }
         waitingMoveCommand = false;
-
     }
+
     public void GetKeys()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        var action = tm.currentAction as TutorialToy;
+        var actionLoop = tm.currentAction as TutorialLoopToy;
+        if (!actionLoop.CheckIsNull())
         {
-            if (!waitingMoveCommand)
+            if (tm.forToyCliked)
             {
-                commander.AddMoveCommand(Direction.Forward);
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    commander.AddMoveCommand(Direction.Forward);
+                    deleteCommand.OnBackButton();
+                    forDirections.Add(Direction.Forward);
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    commander.AddMoveCommand(Direction.Left);
+                    deleteCommand.OnBackButton();
+                    forDirections.Add(Direction.Left);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    commander.AddMoveCommand(Direction.Right);
+                    deleteCommand.OnBackButton();
+                    forDirections.Add(Direction.Right);
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    commander.AddMoveCommand(Direction.Backward);
+                    deleteCommand.OnBackButton();
+                    forDirections.Add(Direction.Backward);
+                }
             }
-            else
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                forDirections.Add(Direction.Forward);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (!waitingMoveCommand)
-            {
-                commander.AddMoveCommand(Direction.Left);
-            }
-            else
-            {
-                forDirections.Add(Direction.Left);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (!waitingMoveCommand)
-            {
-                commander.AddMoveCommand(Direction.Right);
-            }
-            else
-            {
-                forDirections.Add(Direction.Right);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (!waitingMoveCommand)
-            {
-                commander.AddMoveCommand(Direction.Backward);
-            }
-            else
-            {
-                forDirections.Add(Direction.Backward);
+                forDirections = new List<Direction>();
+                waitingMoveCommand = true;
+                WaitForInput();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.F))
+        
+        if (!action.CheckIsNull())
         {
-            forDirections = new List<Direction>();
-            waitingMoveCommand = true;
-            WaitForInput();
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (action.toyName == "Forward")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Forward);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Forward);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+                
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if (action.toyName == "Left")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Left);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Left);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (action.toyName == "Right")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Right);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Right);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (action.toyName == "Backward")
+                {
+                    if (!waitingMoveCommand)
+                    {
+                        commander.AddMoveCommand(Direction.Backward);
+                    }
+                    else
+                    {
+                        forDirections.Add(Direction.Backward);
+                    }
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.P))
+            {
+                if (commander != null) commander.AddForCommand(forDirections, forLoopCount);
+                waitingMoveCommand = false;
+            }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                //rotateToyUi.OpenIfObjectContainer();
+                if (action.toyName == "Condition")
+                {
+                    OpenIfObjectWheel();
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
+                //rotateToyUi.OpenIfObjectContainer();
+                if (action.toyName == "Wait")
+                {
+                    WaitWaitInput();
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
+            else if ((Input.GetKeyDown(KeyCode.T)))
+            {
+                if (action.toyName == "Play")
+                {
+                    tm.tutorialPanel.SetActive(false);
+                    StartCoroutine(tm.DoApplyCommands());
+                }
+                else
+                {
+                    tm.audioSource.Play();
+                }
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (commander != null) commander.AddForCommand(forDirections, forLoopCount);
-            waitingMoveCommand = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.I))
-        {
-            //rotateToyUi.OpenIfObjectContainer();
-            OpenIfObjectWheel();
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            //rotateToyUi.OpenIfObjectContainer();
-            WaitWaitInput();
-        }
+       
     }
 
     private void WaitWaitInput()
@@ -370,6 +539,7 @@ public class GetInputsTutorial : MonoBehaviour
         forLoopCount = int.Parse(count);
         uh.forInput.gameObject.SetActive(false);
         uh.forComplatePanel.SetActive(true);
+        tm.forToyCliked = true;
     }
 
     

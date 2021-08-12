@@ -5,9 +5,13 @@ using UnityEngine;
 public class ToggleGraphPanel : MonoBehaviour
 {
     [SerializeField] private GameObject graphPanel;
+    public TutorialManager tm;
 
     public void TogglePanel()
     {
-        graphPanel.SetActive(!graphPanel.activeSelf);
+        if (tm.tutorialFinished)
+        {
+            graphPanel.SetActive(!graphPanel.activeSelf);
+        }
     }
 }

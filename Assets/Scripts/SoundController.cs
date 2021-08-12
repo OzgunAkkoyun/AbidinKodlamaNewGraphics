@@ -15,10 +15,17 @@ public class SoundController : MonoBehaviour
     public Sprite[] soundImages;
     public Image soundButton;
     public static SoundController instance;
+
+    public AudioSource toySound;
     void Awake()
     {
         if (instance == null)
             instance = this;
+    }
+
+    public void PlayToySound()
+    {
+        toySound.Play();
     }
     
     public void Play(string name)

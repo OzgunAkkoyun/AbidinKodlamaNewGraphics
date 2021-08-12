@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
   m_Name: 2
-  m_EditorClassIdentifier: Game::TutorialButton
-  voice: {fileID: 8300000, guid: b44dd1d9bf3977746a2d5431e7ef5c79, type: 3}
-  tutorialText: 'Deneme denemed '
+  m_EditorClassIdentifier: 
+  voice: {fileID: 8300000, guid: bd567cd4d3dd0fa41b1ed14b3a7e075a, type: 3}
+  tutorialText: "Uygulamada istedi\u011Fin senaryoya gitmek i\xE7in bu butonlara
+    basabilirsin.   "
   highlightObjects:
-  - Yonerge
-  actionPosition: 0
+  - Left
+  - Right
+  actionPosition: 1

@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/TEMP/TemizSahne.unity
-    guid: 2f4d5ab9c1943f940b7d630094911c33
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 1399bf87211a8814d9bce80a5babb2eb
   m_configObjects: {}
