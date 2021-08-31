@@ -126,13 +126,13 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
     {
         yield return new WaitForSeconds(1.5f);
         yield return StartCoroutine(FindObjectOfType<UIInputManagerTutorial>().ShowPath());
+
         for (var i = 0; i < commander.commands.Count; i++)
         {
             var command = commander.commands[i];
             var type = command.GetType();
             var isLastCommand = i == commander.commands.Count - 1;
 
-            
             if (type == typeof(MoveCommand))
             {
                 var commandMove = command as MoveCommand;
