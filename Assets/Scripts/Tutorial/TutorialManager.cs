@@ -52,7 +52,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         {
             whichTutorial = PlayerPrefs.GetInt("whichTutorial");
             tutorialPanel.SetActive(true);
-            senarioAction = actions[whichTutorial].allTutorialTypes;
+            senarioAction = actions[0].allTutorialTypes;
             commander.OnNewCommand.AddListener(OnNewCommand);
             StartCoroutine(StartTutorial());
         }
@@ -125,33 +125,35 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
     public IEnumerator DoApplyCommands()
     {
         yield return new WaitForSeconds(1.5f);
-
+        yield return StartCoroutine(FindObjectOfType<UIInputManagerTutorial>().ShowPath());
         for (var i = 0; i < commander.commands.Count; i++)
         {
             var command = commander.commands[i];
             var type = command.GetType();
             var isLastCommand = i == commander.commands.Count - 1;
+
             
             if (type == typeof(MoveCommand))
             {
                 var commandMove = command as MoveCommand;
+                
                 yield return StartCoroutine(character.Move(commandMove.direction));
             }
-            else if (type == typeof(ForCommand))
-            {
-                var commandFor = command as ForCommand;
-                var isLastForCommand = false;
+            //else if (type == typeof(ForCommand))
+            //{
+            //    var commandFor = command as ForCommand;
+            //    var isLastForCommand = false;
 
-                for (int j = 0; j < commandFor.loopCount; j++)
-                {
-                    for (int k = 0; k < commandFor.directions.Count; k++)
-                    {
-                        isLastForCommand = isLastCommand && j == commandFor.loopCount - 1 && k == commandFor.directions.Count - 1;
+            //    for (int j = 0; j < commandFor.loopCount; j++)
+            //    {
+            //        for (int k = 0; k < commandFor.directions.Count; k++)
+            //        {
+            //            isLastForCommand = isLastCommand && j == commandFor.loopCount - 1 && k == commandFor.directions.Count - 1;
 
-                        yield return StartCoroutine(character.Move(commandFor.directions[k]));
-                    }
-                }
-            }
+            //            yield return StartCoroutine(character.Move(commandFor.directions[k]));
+            //        }
+            //    }
+            //}
         }
         tutorialPanel.SetActive(true);
         nextAction = true;
@@ -481,7 +483,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         else
         {
             PlayerPrefs.SetString("levelTutorial"+ whichTutorial, "finished");
-            SceneManager.LoadScene("Level");
+            SceneManager.LoadScene("Game");
         }
     }
 
@@ -491,7 +493,8 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         endPanel.SetActive(false);
         if (SceneManager.GetActiveScene().name == "Tutorial")
         {
-            deleteCommand.DeleteAllCommands();
+            //deleteCommand.DeleteAllCommands();
+            SceneManager.LoadScene("Tutorial");
         }
         StartCoroutine(StartTutorial());
     }

@@ -39,6 +39,7 @@ public class DeleteCommand : MonoBehaviour, IPointerClickHandler
     private GameObject FindDeletedObject(int commandIndex)
     {
         GameObject deleteCommand = uh.codeInputsObjects[commandIndex].gameObject;
+        
         while (deleteCommand.GetComponent<DeleteCommand>() == null)
         {
             deleteCommand = deleteCommand.transform.parent.gameObject;
@@ -67,7 +68,7 @@ public class DeleteCommand : MonoBehaviour, IPointerClickHandler
         gm.commander.commands.Clear();
         uh.codeInputsObjects.Clear();
         pathGenarator.selectedAnimals.Clear();
-        
+
     }
 
     private int FindIndexOfChild(string parse)

@@ -135,7 +135,7 @@ public class GetInputsTutorial : MonoBehaviour
             p3 = new Vector2(touchList[2].x, touchList[2].y);
 
             string toolName = toolList.IdentifyTool(p1, p2, p3);
-            
+            Debug.Log(toolName);
             Vector2 center = (p1 + p2 + p3) / 3.0f;
             UseTool(toolName, center);
         }
@@ -359,27 +359,32 @@ public class GetInputsTutorial : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
+                    
                     commander.AddMoveCommand(Direction.Forward);
                     deleteCommand.OnBackButton();
                     forDirections.Add(Direction.Forward);
+                    uh.AddKeyForLoopTemp(Direction.Forward);
                 }
                 else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
                     commander.AddMoveCommand(Direction.Left);
                     deleteCommand.OnBackButton();
                     forDirections.Add(Direction.Left);
+                    uh.AddKeyForLoopTemp(Direction.Left);
                 }
                 else if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
                     commander.AddMoveCommand(Direction.Right);
                     deleteCommand.OnBackButton();
                     forDirections.Add(Direction.Right);
+                    uh.AddKeyForLoopTemp(Direction.Right);
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     commander.AddMoveCommand(Direction.Backward);
                     deleteCommand.OnBackButton();
                     forDirections.Add(Direction.Backward);
+                    uh.AddKeyForLoopTemp(Direction.Backward);
                 }
             }
             if (Input.GetKeyDown(KeyCode.F))
@@ -537,6 +542,7 @@ public class GetInputsTutorial : MonoBehaviour
     public void SetForLoopCount(string count)
     {
         forLoopCount = int.Parse(count);
+        uh.ShowKeyForLoopTemp(forLoopCount);
         uh.forInput.gameObject.SetActive(false);
         uh.forComplatePanel.SetActive(true);
         tm.forToyCliked = true;

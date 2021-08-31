@@ -228,7 +228,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Forward);
+                uh.AddKeyForLoopTemp(Direction.Forward);
             }
         }
         else if (toolName == "Left")
@@ -239,7 +241,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Left);
+                uh.AddKeyForLoopTemp(Direction.Left);
             }
         }
         else if (toolName == "Right")
@@ -250,7 +254,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Right);
+                uh.AddKeyForLoopTemp(Direction.Right);
             }
         }
         else if (toolName == "Backward")
@@ -261,7 +267,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Backward);
+                uh.AddKeyForLoopTemp(Direction.Backward);
             }
         }
         else if (toolName == "Loop")
@@ -324,7 +332,10 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
+
                 forDirections.Add(Direction.Forward);
+                uh.AddKeyForLoopTemp(Direction.Forward);
             }
            
         }
@@ -336,7 +347,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Left);
+                uh.AddKeyForLoopTemp(Direction.Left);
             }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow) )
@@ -347,7 +360,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Right);
+                uh.AddKeyForLoopTemp(Direction.Right);
             }
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -358,7 +373,9 @@ public class GetInputs : MonoBehaviour
             }
             else
             {
+                if (forDirections.Count > 3) return;
                 forDirections.Add(Direction.Backward);
+                uh.AddKeyForLoopTemp(Direction.Backward);
             }
         }
         else if (Input.GetKeyDown(KeyCode.F))
@@ -382,7 +399,6 @@ public class GetInputs : MonoBehaviour
             //rotateToyUi.OpenIfObjectContainer();
             WaitWaitInput();
         }
-       
     }
 
     private void WaitWaitInput()
@@ -406,18 +422,12 @@ public class GetInputs : MonoBehaviour
     private void WaitForInput()
     {
         uh.forInput.gameObject.SetActive(true);
-        //uh.forInput.onValueChanged.AddListener(delegate (string text)
-        //{
-        //    if (!EventSystem.current.alreadySelecting)
-        //    {
-        //        SetForLoopCount(EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>().text);
-        //    }
-        //});
     }
 
     public void SetForLoopCount(string count)
     {
         forLoopCount = int.Parse(count);
+        uh.ShowKeyForLoopTemp(forLoopCount);
         uh.forInput.gameObject.SetActive(false);
         uh.forComplatePanel.SetActive(true);
     }

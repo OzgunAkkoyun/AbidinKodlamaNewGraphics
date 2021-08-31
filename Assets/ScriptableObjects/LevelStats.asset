@@ -55,7 +55,7 @@ MonoBehaviour:
         maxIfObjectCount: 0
         ifObjectCount: 0
         dirtCount: 0
-        passed: 0
+        passed: 1
       - subLevelName: 3
         subLevelIndex: 3
         pathLenght: 7
@@ -87,7 +87,7 @@ MonoBehaviour:
         maxIfObjectCount: 0
         ifObjectCount: 0
         dirtCount: 0
-        passed: 0
+        passed: 1
       mapSize: 9
       levelComplated: 0
     senarioComplated: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
         maxIfObjectCount: 0
         ifObjectCount: 0
         dirtCount: 0
-        passed: 0
+        passed: 1
       - subLevelName: 3
         subLevelIndex: 3
         pathLenght: 4
@@ -186,7 +186,7 @@ MonoBehaviour:
         maxIfObjectCount: 2
         ifObjectCount: 1
         dirtCount: 0
-        passed: 1
+        passed: 0
       - subLevelName: 3
         subLevelIndex: 3
         pathLenght: 4

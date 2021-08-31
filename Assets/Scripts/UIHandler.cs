@@ -37,6 +37,9 @@ public class UIHandler : MonoBehaviour
     public List<Image> codeInputsObjects = new List<Image>();
     public GameObject codeMoveObject;
     public GameObject codeForObject;
+    public GameObject codeForObjectTwoGap;
+    public GameObject codeForObjectTreeGap;
+    public GameObject codeForObjectFourGap;
     public GameObject codeIfObject;
     public GameObject codeWaitObject;
     public GameObject codeIfObjectChild;
@@ -83,8 +86,8 @@ public class UIHandler : MonoBehaviour
     }
 
     #region CodePanel
-
-    private Vector3 lastPosition = Vector3.zero;
+    [HideInInspector]
+    public Vector3 lastPosition = Vector3.zero;
     public void ScrollPanelSnapToBottom(float size)
     {
         if (scroll.rect.height >= scrollRect.rect.height - size)
@@ -95,6 +98,7 @@ public class UIHandler : MonoBehaviour
             
             scroll.anchoredPosition = vector;
             lastPosition = scroll.anchoredPosition;
+            Debug.Log(lastPosition);
         }
     }
     public void CodePanelOpen()
@@ -256,7 +260,26 @@ public class UIHandler : MonoBehaviour
         {
             panel = GameObject.Find("CodePanel/Scroll");
         }
-        var codeInputFor = Instantiate(codeForObject, codeForObject.transform.position, Quaternion.identity);
+        Destroy(tempLoopGameObject);
+        
+        GameObject codeInputFor = null;
+        if (direction.Count == 1)
+        {
+            codeInputFor = Instantiate(codeForObject, codeForObject.transform.position, Quaternion.identity);
+        }
+        else if (direction.Count == 2)
+        {
+            codeInputFor = Instantiate(codeForObjectTwoGap, codeForObjectTwoGap.transform.position, Quaternion.identity);
+        }
+        else if (direction.Count == 3)
+        {
+            codeInputFor = Instantiate(codeForObjectTreeGap, codeForObjectTreeGap.transform.position, Quaternion.identity);
+        }
+        else if (direction.Count == 4)
+        {
+            codeInputFor = Instantiate(codeForObjectFourGap, codeForObjectFourGap.transform.position, Quaternion.identity);
+        }
+        
         codeInputFor.transform.Find("LoopCountText").gameObject.GetComponent<TextMeshProUGUI>().text =
             loopCount.ToString();
         codeInputFor.transform.parent = panel.transform;
@@ -286,6 +309,42 @@ public class UIHandler : MonoBehaviour
         var height = codeInputFor.GetComponent<RectTransform>().rect.height;
         ScrollPanelSnapToBottom(height);
 
+    }
+
+    private GameObject tempLoopGameObject;
+    public GameObject tempLoopGameObjectContainer;
+    public void ShowKeyForLoopTemp(int loopCount)
+    {
+        if (panel == null)
+        {
+            panel = GameObject.Find("CodePanel/Scroll");
+        }
+
+        tempLoopGameObject = Instantiate(codeForObjectFourGap, codeForObject.transform.position, Quaternion.identity);
+        tempLoopGameObject.transform.Find("LoopCountText").gameObject.GetComponent<TextMeshProUGUI>().text =
+            loopCount.ToString();
+        tempLoopGameObject.transform.parent = tempLoopGameObjectContainer.transform;
+        tempLoopGameObject.transform.localScale = new Vector3(1, 1, 1);
+        tempLoopGameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(150, 150, 1);
+
+    }
+
+    public void AddKeyForLoopTemp(Direction direction)
+    {
+        int keyRotate = SetDirectionRotate(direction);
+
+        var codeInput = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
+        codeInput.transform.parent = tempLoopGameObject.transform.Find("CodeWhole/CodeInputArea").transform;
+        Destroy(codeInput.GetComponent<DeleteCommand>());
+
+        var codeInputForRect = tempLoopGameObject.transform.GetComponent<RectTransform>();
+
+        codeInputForRect.sizeDelta = new Vector2(codeInputForRect.sizeDelta.x, codeInputForRect.sizeDelta.y);
+        codeInput.transform.localScale = new Vector3(1f, 1f, 1f);
+
+        var arrow = codeInput.transform.Find("Image/Arrow");
+        arrow.gameObject.transform.Rotate(new Vector3(0, 0, keyRotate));
+        GameObject.Find("CodePanel").GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 0);
     }
 
     private void ShowKey(Direction direction, int commandIndex)
