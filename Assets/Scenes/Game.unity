@@ -4062,10 +4062,31 @@ MonoBehaviour:
   pathGenarator: {fileID: 2050750489}
   levelLoader: {fileID: 1404657748}
   getInputs: {fileID: 1473553583}
+  hintButton: {fileID: 546189587}
   is3DStarted: 0
   isGameOver: 0
   gameDatas: []
+  playerDatas:
+    succesedLevelCount: 0
+    failededLevelCount: 0
+    whichScenario: 0
+    whichLevel: 0
+    whichSubLevel: 0
+    whichSecondSubLevel: 0
+    lastMapSize: 0
+    winStreak: 0
+    loseStreak: 0
+    score: 0
+    showedOpeningVideo: 0
   isGameOrLoad: 0
+  currentSecondSubLevel:
+    subLevelName: 
+    subLevelIndex: 0
+    pathLenght: 0
+    maxIfObjectCount: 0
+    ifObjectCount: 0
+    dirtCount: 0
+    passed: 0
   currentSubLevel:
     subLevelName: 
     subLevelIndex: 0
@@ -4073,6 +4094,7 @@ MonoBehaviour:
     maxIfObjectCount: 0
     ifObjectCount: 0
     dirtCount: 0
+    secondSubLevels: []
     passed: 0
   currentLevel:
     levelIndex: 0
@@ -7047,16 +7069,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965040759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2132904324}
-  m_RootOrder: 1
+  m_Father: {fileID: 1421980095}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 24}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 153.03409, y: -54.53248}
   m_SizeDelta: {x: 245, y: 103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965040761
@@ -10138,6 +10160,7 @@ MonoBehaviour:
     type: 3}
   panel: {fileID: 4827462815178528173}
   gameOverReplay: {fileID: 1918703598}
+  gameOverPlayButton: {fileID: 965040759}
   codeString: {fileID: 2052145861}
   countDownText: {fileID: 1070633582}
   commandIndex: 0
@@ -10965,6 +10988,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelStats: {fileID: 11400000, guid: e09d509d420630f438e593b1a7ab2085, type: 2}
   currentLevelStats: {fileID: 0}
+  playerDatas:
+    succesedLevelCount: 0
+    failededLevelCount: 0
+    whichScenario: 0
+    whichLevel: 0
+    whichSubLevel: 0
+    whichSecondSubLevel: 0
+    lastMapSize: 0
+    winStreak: 0
+    loseStreak: 0
+    score: 0
+    showedOpeningVideo: 0
 --- !u!1 &1415076009
 GameObject:
   m_ObjectHideFlags: 0
@@ -11074,6 +11109,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419211060}
   m_CullTransparentMesh: 0
+--- !u!1 &1421980094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421980095}
+  - component: {fileID: 1421980096}
+  m_Layer: 5
+  m_Name: Buttons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1421980095
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421980094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 965040760}
+  - {fileID: 1918703599}
+  m_Father: {fileID: 2132904324}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -45}
+  m_SizeDelta: {x: 306.06818, y: 258.1299}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1421980096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421980094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 40
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!1 &1468021507 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5750902770975620155, guid: 247d4aef545613a43b667df1af53e35a,
@@ -14623,16 +14721,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918703598}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2132904324}
-  m_RootOrder: 2
+  m_Father: {fileID: 1421980095}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -111.00004}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 153.03409, y: -203.59744}
   m_SizeDelta: {x: 245, y: 103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1918703600
@@ -15388,7 +15486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1970853792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16662,8 +16760,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1287321707}
-  - {fileID: 965040760}
-  - {fileID: 1918703599}
+  - {fileID: 1421980095}
   m_Father: {fileID: 140383812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

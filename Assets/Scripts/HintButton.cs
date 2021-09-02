@@ -17,4 +17,9 @@ public class HintButton : MonoBehaviour
     {
         clickedButton.interactable = true;
     }
+
+    public void AutoPlayHint()
+    {
+        InvokeRepeating("Hint",0,5);
+    }
 }

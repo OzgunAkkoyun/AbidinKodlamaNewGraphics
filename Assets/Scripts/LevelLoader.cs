@@ -59,7 +59,7 @@ public class LevelLoader : MonoBehaviour
         }
         else
         {
-            playerDatas = new SavedPlayerData(0, 0, 1,1,1, 5, 0, 0, false);
+            playerDatas = new SavedPlayerData(0, 0, 1,1,1,1, 5, 0, 0,0, false);
         }
     }
 }

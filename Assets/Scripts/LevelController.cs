@@ -84,7 +84,6 @@ public class LevelController : MonoBehaviour
             }
         }
 
-
         if (selectedLevel.levelComplated)
         {
             //Player wants to play again, this level already completed

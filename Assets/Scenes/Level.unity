@@ -161,6 +161,7 @@ MonoBehaviour:
   videoPanel: {fileID: 2028904125}
   endPanel: {fileID: 271578503}
   textPanelButton: {fileID: 924435572}
+  videoPanelButton: {fileID: 0}
   toyImage: {fileID: 369667360}
   toyVideo: {fileID: 1123404823}
   tutorialPanel: {fileID: 1705793945}
@@ -169,6 +170,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab8307dc1eb6cea47b5296292ad71044, type: 2}
   commander: {fileID: 0}
   character: {fileID: 0}
+  deleteCommand: {fileID: 0}
   comingToyName: 
   abidinImage: {fileID: 0}
 --- !u!4 &6639949
@@ -16114,6 +16116,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 324ab565e4fbac04fa3ee9e7a98544bd, type: 2}
   - {fileID: 11400000, guid: 4fb62d32eeb82d945ac192cf54012f32, type: 2}
   - {fileID: 11400000, guid: 16d6a0288af5e57498332801771b68ed, type: 2}
+  - {fileID: 11400000, guid: 3237915b3a2835a4fb083b6b415e983f, type: 2}
   uiCanvas: {fileID: 552436019}
   inputField: {fileID: 1828873089}
 --- !u!4 &1715614112

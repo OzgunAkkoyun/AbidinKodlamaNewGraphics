@@ -22,8 +22,9 @@ public class SavedGameData
     public int scenarioIndex;
     public int levelIndex;
     public int subLevelIndex;
+    public int secondSubLevelIndex;
     public List<string> selectedIfObjects;
-    public SavedGameData(MapGenerator.Coord mapSize, int seed, float obstaclePercentages, List<Command> commands, MapGenerator.Coord startCoord, MapGenerator.Coord targetCoord, List<Coord> Path,int scenarioIndex, int levelIndex, int subLevelIndex,List<string> selectedIfObjects)
+    public SavedGameData(MapGenerator.Coord mapSize, int seed, float obstaclePercentages, List<Command> commands, MapGenerator.Coord startCoord, MapGenerator.Coord targetCoord, List<Coord> Path,int scenarioIndex, int levelIndex, int subLevelIndex,int secondSubLevelIndex, List<string> selectedIfObjects)
     {
         this.mapSize = mapSize;
         this.seed = seed;
@@ -35,10 +36,11 @@ public class SavedGameData
         this.scenarioIndex = scenarioIndex;
         this.levelIndex = levelIndex;
         this.subLevelIndex = subLevelIndex;
+        this.secondSubLevelIndex = secondSubLevelIndex;
         this.selectedIfObjects = selectedIfObjects;
     }
 }
-
+[Serializable]
 public class SavedPlayerData
 {
     public int succesedLevelCount;
@@ -46,20 +48,24 @@ public class SavedPlayerData
     public int whichScenario;
     public int whichLevel;
     public int whichSubLevel;
+    public int whichSecondSubLevel;
     public int lastMapSize;
     public int winStreak;
+    public int loseStreak;
     public int score;
     public bool showedOpeningVideo;
 
-    public SavedPlayerData(int succesedLevelCount, int failededLevelCount, int whichScenario, int whichLevel, int whichSubLevel, int lastMapSize, int winStreak, int score, bool showedOpeningVideo)
+    public SavedPlayerData(int succesedLevelCount, int failededLevelCount, int whichScenario, int whichLevel, int whichSubLevel,int whichSecondSubLevel, int lastMapSize, int winStreak,int loseStreak, int score, bool showedOpeningVideo)
     {
         this.succesedLevelCount = succesedLevelCount;
         this.failededLevelCount = failededLevelCount;
         this.whichScenario = whichScenario;
         this.whichLevel = whichLevel;
         this.whichSubLevel = whichSubLevel;
+        this.whichSecondSubLevel = whichSecondSubLevel;
         this.lastMapSize = lastMapSize;
         this.winStreak = winStreak;
+        this.loseStreak = loseStreak;
         this.score = score;
         this.showedOpeningVideo = showedOpeningVideo;
     }
@@ -78,6 +84,7 @@ public class GameManager : MonoBehaviour
     public PathGenarator pathGenarator;
     public LevelLoader levelLoader;
     public GetInputs getInputs;
+    public HintButton hintButton;
 
     public bool is3DStarted = false;
     public bool isGameOver = false;
@@ -86,12 +93,14 @@ public class GameManager : MonoBehaviour
 
     public int isGameOrLoad;
     //public int scenarioIndex;
+    public LevelStats.Senarios.Levels.SubLevels.SecondSubLevels currentSecondSubLevel;
     public LevelStats.Senarios.Levels.SubLevels currentSubLevel;
     public LevelStats.Senarios.Levels currentLevel;
     public LevelStats.Senarios currentSenario;
 
     public int[] senarioAndLevelIndexs;
-    public bool toyCanBeClicked = true;
+  
+    public bool toyCanBeClicked = true ;
     
     void Awake()
     {
@@ -105,19 +114,21 @@ public class GameManager : MonoBehaviour
 
         SoundController.instance.Play("Theme");
         uiVideoController.PrepareAllVideos();
-
+        toyCanBeClicked = true;
         WillVideoShown();
 
         CheckLevels();
 
         GameorLoadCheck();
-        //Time.timeScale = 3;
     }
 
     private void CheckLevels()
     {
         levelLoader.SetLevels();
-
+        
+        currentSecondSubLevel = levelLoader.currentLevelStats.GetSecondSubLevel(playerDatas.whichScenario,
+            playerDatas.whichLevel,
+            playerDatas.whichSubLevel.ToString(), playerDatas.whichSecondSubLevel.ToString());
         currentSubLevel = levelLoader.currentLevelStats.GetSubLevel(playerDatas.whichScenario, playerDatas.whichLevel,
             playerDatas.whichSubLevel.ToString());
 
@@ -160,7 +171,10 @@ public class GameManager : MonoBehaviour
     private void SetSelectedLevelProporties(int isRestart)
     {
         senarioAndLevelIndexs = PlayerPrefs.GetString("selectedLevelProps").Split('-').Select(int.Parse).ToArray();
-
+        
+        currentSecondSubLevel = levelLoader.currentLevelStats.GetSecondSubLevel(senarioAndLevelIndexs[0],
+            senarioAndLevelIndexs[1],
+            senarioAndLevelIndexs[2].ToString(), senarioAndLevelIndexs[3].ToString());
         currentSubLevel = levelLoader.currentLevelStats.GetSubLevel(senarioAndLevelIndexs[0],
             senarioAndLevelIndexs[1],
             senarioAndLevelIndexs[2].ToString());
@@ -218,7 +232,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playerDatas = new SavedPlayerData(0, 0, 1,1,1, 5, 0, 0, false);
+            playerDatas = new SavedPlayerData(0, 0, 1,1,1,1, 5, 0,0, 0, false);
         }
     }
 
@@ -248,7 +262,7 @@ public class GameManager : MonoBehaviour
             playerDatas.lastMapSize = 5;
         }
         map.currentMap.mapSize = new Coord(playerDatas.lastMapSize, playerDatas.lastMapSize);
-        pathGenarator.expectedPathLength = currentSubLevel.pathLenght;
+        pathGenarator.expectedPathLength = currentSecondSubLevel.pathLenght;
 
         map.GameStart();
     }
@@ -293,38 +307,50 @@ public class GameManager : MonoBehaviour
         {
             if (isSuccess)
             {
-                currentSubLevel.passed = true;
-                if (playerDatas.whichSubLevel == 3)
+                playerDatas.loseStreak = 0;
+                currentSecondSubLevel.passed = true;
+                if (playerDatas.whichSecondSubLevel == 3)
                 {
-                    playerDatas.whichSubLevel = 1;
-                    playerDatas.whichLevel++;
-                    currentLevel.levelComplated = true;
-                    playerDatas.winStreak = 0;
-                    playerDatas.showedOpeningVideo = false;
-                    
-                    ShowFinishingVideo();
+                    playerDatas.whichSecondSubLevel = 1;
+                    currentSubLevel.passed = true;
+                    if (playerDatas.whichSubLevel == 3)
+                    {
+                        playerDatas.whichSubLevel = 1;
+                        playerDatas.whichLevel++;
+                        currentLevel.levelComplated = true;
+                        playerDatas.winStreak = 0;
+                        playerDatas.showedOpeningVideo = false;
 
-                    if (playerDatas.lastMapSize != 9)
-                    {
-                        playerDatas.lastMapSize += 2;
+                        ShowFinishingVideo();
+
+                        if (playerDatas.lastMapSize != 9)
+                        {
+                            playerDatas.lastMapSize += 2;
+                        }
+                        else //New Senario
+                        {
+                            playerDatas.whichScenario++;
+                            playerDatas.whichLevel = 1;
+                            currentSenario.senarioComplated = true;
+                            playerDatas.lastMapSize = 5;
+                            playerDatas.score = 0;
+                        }
                     }
-                    else //New Senario
+                    else
                     {
-                        playerDatas.whichScenario++;
-                        playerDatas.whichLevel = 1;
-                        currentSenario.senarioComplated = true;
-                        playerDatas.lastMapSize = 5;
-                        playerDatas.score = 0;
+                        playerDatas.whichSubLevel++;
                     }
+
                 }
                 else
                 {
-                    playerDatas.whichSubLevel++;
+                    playerDatas.whichSecondSubLevel++;
                 }
             }
             else
             {
                 playerDatas.winStreak = 0;
+                playerDatas.loseStreak++;
                 playerDatas.failededLevelCount++;
                 playerDatas.score = playerDatas.score > 0 ? (playerDatas.score - 1) : 0;
             }
@@ -364,7 +390,7 @@ public class GameManager : MonoBehaviour
         }
 
         var current = map.currentMap;
-        gameDatas.Add(new SavedGameData(current.mapSize, current.seed, current.obstaclePercent, commander.commands, current.startPoint, current.targetPoint, pathGenarator.Path, currentSenario.senarioIndex, currentLevel.levelIndex, currentSubLevel.subLevelIndex, selectedAnimals));
+        gameDatas.Add(new SavedGameData(current.mapSize, current.seed, current.obstaclePercent, commander.commands, current.startPoint, current.targetPoint, pathGenarator.Path, currentSenario.senarioIndex, currentLevel.levelIndex, currentSubLevel.subLevelIndex,currentSecondSubLevel.subLevelIndex, selectedAnimals));
         
         string gameDataString = JsonConvert.SerializeObject(gameDatas, Formatting.Indented, new JsonSerializerSettings
         {
@@ -391,10 +417,10 @@ public class GameManager : MonoBehaviour
         }
         else if (Time.timeScale == 2)
         {
-            Time.timeScale = 3;
+            Time.timeScale = 5;
             buttonText.text = ">>>";
         }
-        else if (Time.timeScale == 3)
+        else if (Time.timeScale == 5)
         {
             Time.timeScale = 1;
             buttonText.text = ">";

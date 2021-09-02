@@ -22,8 +22,20 @@ public class LevelStats : ScriptableObject
                 public int maxIfObjectCount;
                 public int ifObjectCount;
                 public int dirtCount;
+
+                [Serializable]
+                public class SecondSubLevels
+                {
+                    public string subLevelName;
+                    public int subLevelIndex;
+                    public int pathLenght;
+                    public int maxIfObjectCount;
+                    public int ifObjectCount;
+                    public int dirtCount;
+                    public bool passed;
+                }
+                public SecondSubLevels[] secondSubLevels;
                 public bool passed;
-               
             }
             public SubLevels[] subLevels;
             public int mapSize;
@@ -35,6 +47,7 @@ public class LevelStats : ScriptableObject
     }
     public Senarios[] senarios;
 
+    public Senarios.Levels.SubLevels.SecondSubLevels GetSecondSubLevel(int whichSenario, int whichLevel, string name,string secondSubLevelName) => senarios[whichSenario - 1].levels[whichLevel - 1].subLevels[int.Parse(name)-1].secondSubLevels.FirstOrDefault(element => element.subLevelName == secondSubLevelName);
     public Senarios.Levels.SubLevels GetSubLevel(int whichSenario,int whichLevel,string name) => senarios[whichSenario - 1].levels[whichLevel - 1].subLevels.FirstOrDefault(element => element.subLevelName == name);
 
     public Senarios.Levels GetLevel(int whichSenario, int whichLevel) => senarios[whichSenario - 1].levels[whichLevel - 1];

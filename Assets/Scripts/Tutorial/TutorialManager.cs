@@ -52,7 +52,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         {
             whichTutorial = PlayerPrefs.GetInt("whichTutorial");
             tutorialPanel.SetActive(true);
-            senarioAction = actions[0].allTutorialTypes;
+            senarioAction = actions[whichTutorial].allTutorialTypes;
             commander.OnNewCommand.AddListener(OnNewCommand);
             StartCoroutine(StartTutorial());
         }

@@ -48,7 +48,10 @@ public class LoadGameData : MonoBehaviour
         if (gm.gameDatas.Count == 0)
             return;
         var gameData = gm.gameDatas[gm.gameDatas.Count - 1];
-
+        if (gm.playerDatas.loseStreak >= 3)
+        {
+            gm.hintButton.AutoPlayHint();
+        }
         gm.map.GameStartForLoad(gameData.mapSize, gameData.seed, gameData.startCoord, gameData.targetCoord, gameData.Path);
     }
 

@@ -55,12 +55,15 @@ public class UIInputManagerTutorial : MonoBehaviour
 
     public IEnumerator ShowPath()
     {
-        foreach (var sprite in pathSprites)
+        for (var i=0; i<commander.commands.Count; i++) 
         {
-            sprite.SetActive(true);
-            sprite.GetComponent<SpriteRenderer>().material.DOColor(new Color(127 / 255f, 255 / 255f, 202 / 255f,1), 2).SetEase(Ease.Flash);
+            codeInputsObjects[i].color = new Color(163 / 255, 255 / 255, 131 / 255);
+            if (i != 0)
+                codeInputsObjects[i - 1].color = Color.white;
+            pathSprites[i].SetActive(true);
+            pathSprites[i].GetComponent<SpriteRenderer>().material.DOColor(new Color(127 / 255f, 255 / 255f, 202 / 255f,1), 2).SetEase(Ease.Flash);
             yield return new WaitForSeconds(1);
-            sprite.GetComponent<SpriteRenderer>().material.DOColor(new Color(1, 1, 1,0), 2).SetEase(Ease.Flash);
+            pathSprites[i].GetComponent<SpriteRenderer>().material.DOColor(new Color(1, 1, 1,0), 2).SetEase(Ease.Flash);
             yield return new WaitForSeconds(1);
         }
 

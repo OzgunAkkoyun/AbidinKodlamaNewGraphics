@@ -62,6 +62,7 @@ public class UiVideoController : MonoBehaviour
 
     public void ShowEndVideo(string videoName)
     {
+        Debug.Log("videoshow");
         gm.toyCanBeClicked = false;
         var pickedVideo = allVideos.GetVideo(gm.playerDatas.whichScenario, videoName);
         videoEndControlButtons.SetActive(false);

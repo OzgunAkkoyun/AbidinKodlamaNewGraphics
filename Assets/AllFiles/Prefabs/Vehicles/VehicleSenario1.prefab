@@ -104,13 +104,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2732024070525725537}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0021505356, y: 0.3, z: -0.974}
+  m_LocalRotation: {x: 0.12359935, y: -0, z: -0, w: 0.9923323}
+  m_LocalPosition: {x: 0.0021066666, y: 0.781, z: -1.439}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 6707948385565895714}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 14.200001, y: 0, z: 0}
 --- !u!1 &5552958198052391160
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +182,9 @@ MonoBehaviour:
       waitName: 
       seconds: 0
     isVisited: 0
+    gCost: 0
+    hCost: 0
+    walkable: 0
   currentAnimal: {fileID: 0}
   currentMushroom: {fileID: 0}
 --- !u!114 &1844877065
@@ -258,13 +261,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8647615996806762846}
-  m_LocalRotation: {x: -0.044162884, y: -0, z: -0, w: 0.9990244}
-  m_LocalPosition: {x: 0, y: 3.872, z: -4.363}
+  m_LocalRotation: {x: 0.12359935, y: -0, z: -0, w: 0.9923323}
+  m_LocalPosition: {x: 0.0021066666, y: 0.781, z: -1.439}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 6707948385565895714}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -5.0620003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 14.200001, y: 0, z: 0}
 --- !u!20 &6846505429741955894
 Camera:
   m_ObjectHideFlags: 0

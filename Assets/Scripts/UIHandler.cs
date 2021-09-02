@@ -45,6 +45,8 @@ public class UIHandler : MonoBehaviour
     public GameObject codeIfObjectChild;
     public GameObject panel;
     public GameObject gameOverReplay;
+    public GameObject gameOverPlayButton;
+
 
     public TextMeshProUGUI codeString;
     public TextMeshProUGUI countDownText;
@@ -416,6 +418,7 @@ public class UIHandler : MonoBehaviour
     {
         if (gm.isGameOrLoad == 3)
         {
+            Debug.Log("3");
             PlayerPrefs.SetInt("isGameOrLoad", 3);
             if (isGameOrLoad == 0)//In game over panel pressed play button
             {
@@ -474,7 +477,7 @@ public class UIHandler : MonoBehaviour
             if (isGameOrLoad == 0) //In game over panel pressed play button
             {
                 PlayerPrefs.SetInt("isRestart", 0);
-                if (gm.currentSubLevel.subLevelName == "3")
+                if (gm.currentSubLevel.subLevelName == "3" && gm.currentSecondSubLevel.subLevelName == "3")
                 {
                     if (gm.character.isPlayerReachedTarget)
                     {
@@ -510,11 +513,12 @@ public class UIHandler : MonoBehaviour
             else if (gm.currentSubLevel.subLevelName == "3")
                 index = 2;
             gameOverScoreObject.sprite = gameOverScoreImages[index];
-            gameOverReplay.GetComponent<Button>().interactable = false;
+            //gameOverReplay.GetComponent<Button>().interactable = false;
             cm.StartAnimateCoins();
         }
         else
         {
+            gameOverPlayButton.SetActive(false);
             gameOverScoreObject.sprite = gameOverScoreImages[3];
         }
     }
@@ -603,7 +607,7 @@ public class UIHandler : MonoBehaviour
 
         hintObject = Instantiate(codeMoveObject, codeMoveObject.transform.position, Quaternion.identity);
 
-        hintObject.transform.localScale = new Vector3(1, 1, 1);
+        hintObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         hintObject.transform.parent = GameObject.Find("Canvas").transform;
 
 
