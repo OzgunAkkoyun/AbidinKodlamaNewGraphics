@@ -406,14 +406,17 @@ public class UIHandler : MonoBehaviour
             yield return new WaitForSeconds(0f);
         }
 
+        gm.toyCanBeClicked = false;
         gm.is3DStarted = true;
     }
 
-    //gm.isGameOrLoad for
-    // 0 == Game
-    // 1 == Watch previous game
-    // 2 == RestartGame
-    // 3 == Cliked On The map
+    /*
+        gm.isGameOrLoad for
+        0 == Game
+        1 == Watch previous game
+        2 == RestartGame
+        3 == Cliked On The map
+    */
     public void RestartOrNewGame(int isGameOrLoad)
     {
         if (gm.isGameOrLoad == 3)

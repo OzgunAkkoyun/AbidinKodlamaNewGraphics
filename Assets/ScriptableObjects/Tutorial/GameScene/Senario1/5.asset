@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
-  m_Name: 5
+  m_Script: {fileID: 11500000, guid: 229b96fbbcc674541a81b52ec812c17a, type: 3}
+  m_Name: 1.29
   m_EditorClassIdentifier: 
-  voice: {fileID: 8300000, guid: be6777320ad39d949979ae175c18915c, type: 3}
-  tutorialText: "\xC7ok iyi gidiyorsun! E\u011Fer yanl\u0131\u015F komut y\xFCklersen
-    her zaman geri al  butonunu kullanabilirsin. "
-  highlightObjects:
-  - DeleteLastComand
-  actionPosition: 1
-  scaleSize: 2.5
+  voice: {fileID: 8300000, guid: b23ac8995148f8449a11709b89f4d5fe, type: 3}
+  showingVideo: {fileID: 32900000, guid: 7a969de71c378d94d907a7363893c865, type: 3}

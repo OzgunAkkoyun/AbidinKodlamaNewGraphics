@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
   m_Name: 12
   m_EditorClassIdentifier: 
-  voice: {fileID: 8300000, guid: f8615c37b09088740a44c1fc0d50cffd, type: 3}
-  tutorialText: "Unutma, ne zaman yard\u0131ma ihtiyac\u0131n olursa, can simidine
-    bas\u0131p beni \xE7a\u011F\u0131rabilirsin. "
+  voice: {fileID: 8300000, guid: be6777320ad39d949979ae175c18915c, type: 3}
+  tutorialText: "\xC7ok iyi gidiyorsun! E\u011Fer yanl\u0131\u015F komut y\xFCklersen
+    her zaman geri al  butonunu kullanabilirsin. "
   highlightObjects:
-  - Hint
+  - DeleteLastComand
   actionPosition: 1
+  scaleSize: 2.5
+  butonPressSound:
+  - {fileID: 8300000, guid: f4339acb98ace3b458bb859c25a0e856, type: 3}
+  - {fileID: 8300000, guid: cdf969c332277764f96b3bb7b0cba654, type: 3}

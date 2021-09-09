@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 397a46cd90d60c649997bd64a368fdda, type: 3}
-  m_Name: 2
+  m_Script: {fileID: 11500000, guid: b2f6e63ef9efe4241ae8197e8b4514cf, type: 3}
+  m_Name: 1.2
   m_EditorClassIdentifier: 
-  voice: {fileID: 8300000, guid: f1ab43c59d9c66c4294017afaf57d1f1, type: 3}
-  tutorialText: "Devam edebilmemiz i\xE7in oyuncaklar\u0131n yan\u0131nda olmas\u0131
-    gerekiyor. Oyuncaklar yan\u0131ndaysa devam butonuna bas."
-  actionPosition: 1
+  voice: {fileID: 8300000, guid: 51e5513308711d348a5e56b986996318, type: 3}
+  showObjects: Vehicle
+  whichSecondObjectShow: 0

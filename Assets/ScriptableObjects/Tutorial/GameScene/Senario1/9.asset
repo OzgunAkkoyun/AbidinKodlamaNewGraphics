@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6a3d66eca2f9d7408425fd4cc3e36a0, type: 3}
-  m_Name: 9
+  m_Name: 1.7
   m_EditorClassIdentifier: 
   voice: {fileID: 8300000, guid: 942fbd948955bdc429969bff285b5f41, type: 3}
   tutorialText: "T\xFCm komutlar\u0131 girdin! \u0130\u015Fte buradalar. "

@@ -24,7 +24,7 @@ public class SavedGameData
     public int subLevelIndex;
     public int secondSubLevelIndex;
     public List<string> selectedIfObjects;
-    public SavedGameData(MapGenerator.Coord mapSize, int seed, float obstaclePercentages, List<Command> commands, MapGenerator.Coord startCoord, MapGenerator.Coord targetCoord, List<Coord> Path,int scenarioIndex, int levelIndex, int subLevelIndex,int secondSubLevelIndex, List<string> selectedIfObjects)
+    public SavedGameData(MapGenerator.Coord mapSize, int seed, float obstaclePercentages, List<Command> commands, MapGenerator.Coord startCoord, MapGenerator.Coord targetCoord, List<Coord> Path, int scenarioIndex, int levelIndex, int subLevelIndex, int secondSubLevelIndex, List<string> selectedIfObjects)
     {
         this.mapSize = mapSize;
         this.seed = seed;
@@ -55,7 +55,7 @@ public class SavedPlayerData
     public int score;
     public bool showedOpeningVideo;
 
-    public SavedPlayerData(int succesedLevelCount, int failededLevelCount, int whichScenario, int whichLevel, int whichSubLevel,int whichSecondSubLevel, int lastMapSize, int winStreak,int loseStreak, int score, bool showedOpeningVideo)
+    public SavedPlayerData(int succesedLevelCount, int failededLevelCount, int whichScenario, int whichLevel, int whichSubLevel, int whichSecondSubLevel, int lastMapSize, int winStreak, int loseStreak, int score, bool showedOpeningVideo)
     {
         this.succesedLevelCount = succesedLevelCount;
         this.failededLevelCount = failededLevelCount;
@@ -99,14 +99,14 @@ public class GameManager : MonoBehaviour
     public LevelStats.Senarios currentSenario;
 
     public int[] senarioAndLevelIndexs;
-  
-    public bool toyCanBeClicked = true ;
-    
+
+    public bool toyCanBeClicked = true;
+
     void Awake()
     {
         var gameDataString = PlayerPrefs.GetString("gameDatas");
         var playerDataString = PlayerPrefs.GetString("playerDatas");
-       
+
         PlayerDataCheck(playerDataString);
         GameDataCheck(gameDataString);
 
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     private void CheckLevels()
     {
         levelLoader.SetLevels();
-        
+
         currentSecondSubLevel = levelLoader.currentLevelStats.GetSecondSubLevel(playerDatas.whichScenario,
             playerDatas.whichLevel,
             playerDatas.whichSubLevel.ToString(), playerDatas.whichSecondSubLevel.ToString());
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
             else
                 SetMapAttributes();
         }
-        else if(isGameOrLoad == 1 /*|| isGameOrLoad == 2*/) // its mean loading one of the previous games
+        else if (isGameOrLoad == 1 /*|| isGameOrLoad == 2*/) // its mean loading one of the previous games
         {
             toyCanBeClicked = false;
             playerDatas.whichScenario = gameDatas[gameDatas.Count - 1].scenarioIndex;
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
     private void SetSelectedLevelProporties(int isRestart)
     {
         senarioAndLevelIndexs = PlayerPrefs.GetString("selectedLevelProps").Split('-').Select(int.Parse).ToArray();
-        
+
         currentSecondSubLevel = levelLoader.currentLevelStats.GetSecondSubLevel(senarioAndLevelIndexs[0],
             senarioAndLevelIndexs[1],
             senarioAndLevelIndexs[2].ToString(), senarioAndLevelIndexs[3].ToString());
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
             senarioAndLevelIndexs[1]);
 
         currentSenario = levelLoader.currentLevelStats.GetSenario(senarioAndLevelIndexs[0]);
-        
+
         playerDatas.whichScenario = senarioAndLevelIndexs[0];
         //scenarioIndex = senarioAndLevelIndexs[0];
         playerDatas.lastMapSize = currentLevel.mapSize;
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    
     private void PlayerDataCheck(string playerDataString)
     {
         if (playerDataString != "")
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playerDatas = new SavedPlayerData(0, 0, 1,1,1,1, 5, 0,0, 0, false);
+            playerDatas = new SavedPlayerData(0, 0, 1, 1, 1, 1, 5, 0, 0, 0, false);
         }
     }
 
@@ -277,7 +277,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameAnimationStart()
     {
-        
+
         if (isGameOrLoad != 1) //Watch game
         {
             if (getInputs.timer != null)
@@ -288,13 +288,13 @@ public class GameManager : MonoBehaviour
             {
 
             }
-            
+
         }
         character = FindObjectOfType<CharacterMovement>();
         ShowInputsCode.Instance.ShowCodesString();
 
         StartCoroutine(miniMapController.MiniMapSetStartPosition());
-    
+
         StartCoroutine(uh.CameraSmoothMovingToTargetPosition());
         //is3DStarted = true;
         commander.ApplyCommands();
@@ -370,8 +370,8 @@ public class GameManager : MonoBehaviour
 
     public void UserDataSave(bool isSuccess)
     {
-        if(isGameOrLoad != 1)
-            SaveLoadUserData.instance.SaveUserData(currentSenario.senarioIndex,currentLevel.levelIndex,currentSubLevel.subLevelIndex,getInputs.timer.Duration,isSuccess);
+        if (isGameOrLoad != 1)
+            SaveLoadUserData.instance.SaveUserData(currentSenario.senarioIndex, currentLevel.levelIndex, currentSubLevel.subLevelIndex, getInputs.timer.Duration, isSuccess);
     }
 
     public void EndGame()
@@ -386,12 +386,12 @@ public class GameManager : MonoBehaviour
         List<string> selectedAnimals = new List<string>();
         if (currentSenario.senarioIndex == 3 || currentSenario.senarioIndex == 5)
         {
-            selectedAnimals = pathGenarator.selectedAnimals.Select(v=>v.ifName).ToList();
+            selectedAnimals = pathGenarator.selectedAnimals.Select(v => v.ifName).ToList();
         }
 
         var current = map.currentMap;
-        gameDatas.Add(new SavedGameData(current.mapSize, current.seed, current.obstaclePercent, commander.commands, current.startPoint, current.targetPoint, pathGenarator.Path, currentSenario.senarioIndex, currentLevel.levelIndex, currentSubLevel.subLevelIndex,currentSecondSubLevel.subLevelIndex, selectedAnimals));
-        
+        gameDatas.Add(new SavedGameData(current.mapSize, current.seed, current.obstaclePercent, commander.commands, current.startPoint, current.targetPoint, pathGenarator.Path, currentSenario.senarioIndex, currentLevel.levelIndex, currentSubLevel.subLevelIndex, currentSecondSubLevel.subLevelIndex, selectedAnimals));
+
         string gameDataString = JsonConvert.SerializeObject(gameDatas, Formatting.Indented, new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Auto

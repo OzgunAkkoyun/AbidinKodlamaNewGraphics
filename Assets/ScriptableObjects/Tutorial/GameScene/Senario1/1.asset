@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6a3d66eca2f9d7408425fd4cc3e36a0, type: 3}
-  m_Name: 1
+  m_Name: 1.1
   m_EditorClassIdentifier: 
   voice: {fileID: 8300000, guid: a78ed2498712cc845beb6f0881b8f375, type: 3}
   tutorialText: "Tekrar merhaba. Sana verdi\u011Fim g\xF6revleri tamamlamak i\xE7in

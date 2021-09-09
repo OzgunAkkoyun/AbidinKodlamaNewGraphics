@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41c706520f9e9e4478a7a64058408992, type: 3}
-  m_Name: 11
+  m_Name: 1.9
   m_EditorClassIdentifier: 
   voice: {fileID: 8300000, guid: c8cf44b16f7168e4e9223a5d9a3e3ed6, type: 3}
   tutorialText: "Bravoo! Ba\u015Fard\u0131n seninle maceralara at\u0131lmak i\xE7in

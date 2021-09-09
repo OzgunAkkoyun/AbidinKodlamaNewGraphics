@@ -235,7 +235,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (toolName == "Left")
@@ -253,7 +253,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (toolName == "Right")
@@ -271,7 +271,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (toolName == "Backward")
@@ -289,7 +289,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
 
@@ -303,7 +303,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (toolName == "Wait" )
@@ -316,7 +316,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (toolName == "Play")
@@ -324,11 +324,12 @@ public class GetInputsTutorial : MonoBehaviour
                 if (action.toyName == "Play")
                 {
                     tm.tutorialPanel.SetActive(false);
+                    tm.CancelInvoke();
                     StartCoroutine(tm.DoApplyCommands());
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
         }
@@ -412,7 +413,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
                 
             }
@@ -431,7 +432,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -449,7 +450,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -467,7 +468,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.P))
@@ -484,7 +485,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.W))
@@ -496,7 +497,7 @@ public class GetInputsTutorial : MonoBehaviour
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
             else if ((Input.GetKeyDown(KeyCode.T)))
@@ -504,11 +505,12 @@ public class GetInputsTutorial : MonoBehaviour
                 if (action.toyName == "Play")
                 {
                     tm.tutorialPanel.SetActive(false);
+                    tm.CancelInvoke();
                     StartCoroutine(tm.DoApplyCommands());
                 }
                 else
                 {
-                    tm.audioSource.Play();
+                    tm.WrongToyPLaySound();
                 }
             }
         }

@@ -15,4 +15,6 @@ MonoBehaviour:
   voice: {fileID: 8300000, guid: 26733776a73708941bfd6dd65efaf5da, type: 3}
   tutorialText: "Devam edebilmemiz i\xE7in oyunca\u011F\u0131n yan\u0131nda olmas\u0131
     gerekiyor. Oyuncak yan\u0131ndaysa devam butonuna bas! "
+  whichSecondObjectShow: 6
   actionPosition: 1
+  actionPositionHorizantal: 0

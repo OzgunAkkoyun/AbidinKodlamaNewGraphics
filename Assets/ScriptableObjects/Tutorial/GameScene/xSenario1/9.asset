@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a3d66eca2f9d7408425fd4cc3e36a0, type: 3}
+  m_Name: 9
+  m_EditorClassIdentifier: 
+  voice: {fileID: 8300000, guid: 942fbd948955bdc429969bff285b5f41, type: 3}
+  tutorialText: "T\xFCm komutlar\u0131 girdin! \u0130\u015Fte buradalar. "
+  showObjects: CodePanel
+  actionPosition: 1
+  actionPositionHorizantal: 1

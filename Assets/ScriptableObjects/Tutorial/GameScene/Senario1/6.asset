@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
-  m_Name: 6
+  m_Script: {fileID: 11500000, guid: fe6f8973b89111d49b052c90e003ea38, type: 3}
+  m_Name: 1.4
   m_EditorClassIdentifier: 
-  voice: {fileID: 8300000, guid: 8c7ebdbce9872264f969e5d7d1c202a8, type: 3}
-  tutorialText: "T\xFCm komutlar\u0131 temizlemek i\xE7in \xE7\xF6p tenekesine benzeyen
-    butona basabilirsin."
-  highlightObjects:
-  - DeleteAllCommands
-  actionPosition: 1
-  scaleSize: 2.5
+  voice: {fileID: 8300000, guid: f56f09a3ee1e4cd47b9b7e13b5c7433c, type: 3}
+  toyImage: {fileID: 21300000, guid: 89f03cf985a4aaa498a54b1a71f3e48f, type: 3}
+  toyName: Left
+  wrongToySound: {fileID: 8300000, guid: f71fa137a89cc1f49bf1ff8cf1a56a5c, type: 3}

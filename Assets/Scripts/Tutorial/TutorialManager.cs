@@ -43,8 +43,10 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
     public string comingToyName;
     private float timeRemaining = 20;
     private int whichTutorial;
+    private float voiceRepeatRate = 10;
 
     public Image abidinImage;
+    private int howManyTimePressButtonVoiceRepeat = 0;
 
     public void Start()
     {
@@ -52,7 +54,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         {
             whichTutorial = PlayerPrefs.GetInt("whichTutorial");
             tutorialPanel.SetActive(true);
-            senarioAction = actions[whichTutorial].allTutorialTypes;
+            senarioAction = actions[0].allTutorialTypes;
             commander.OnNewCommand.AddListener(OnNewCommand);
             StartCoroutine(StartTutorial());
         }
@@ -106,20 +108,20 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
             }
         }
 
-        if (!tutorialFinished)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-            }
-            else
-            {
-                timeRemaining = 20;
-                //videoPanel.SetActive(true);
-                //PlayActionVideo();
-                audioSource.Play();
-            }
-        }
+        //if (!tutorialFinished)
+        //{
+        //    if (timeRemaining > 0)
+        //    {
+        //        timeRemaining -= Time.deltaTime;
+        //    }
+        //    else
+        //    {
+        //        timeRemaining = 20;
+        //        //videoPanel.SetActive(true);
+        //        //PlayActionVideo();
+        //        audioSource.Play();
+        //    }
+        //}
 
     }
     public IEnumerator DoApplyCommands()
@@ -168,6 +170,9 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
             currentHighLightObjects.Clear();
             timeRemaining = 20;
             tutorialFinished = false;
+            tutorialPanel.SetActive(true);
+            howManyTimePressButtonVoiceRepeat = 0;
+            CancelInvoke();
             var currentType = currentAction.GetType();
 
             if (currentType == typeof(TutorialButton))
@@ -182,7 +187,8 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 //yield return StartCoroutine(StartTextWrite("Button"));
                 PlayActionVoice();
                 yield return StartCoroutine(ShowHighLightObject());
-
+               
+                InvokeRepeating("RemindPressButtonSound", voiceRepeatRate + audioSource.clip.length, voiceRepeatRate);
                 yield return new WaitUntil(() => nextAction == true);
                 yield return new WaitForSeconds(1);
                 SetObjectsParentBack();
@@ -197,6 +203,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 videoPanel.SetActive(false);
                 toyPanel.SetActive(true);
                 ShowToyPicture();
+                InvokeRepeating("RemindCurrentAction", voiceRepeatRate + audioSource.clip.length, voiceRepeatRate);
                 yield return new WaitUntil(() => nextAction == true);
                 actionIndex++;
             }
@@ -211,6 +218,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 PlayActionVoice();
                 Invoke("OpenVideoButton", 3);
                 ShowVideo();
+                InvokeRepeating("RemindCurrentAction", voiceRepeatRate + audioSource.clip.length, voiceRepeatRate);
                 yield return new WaitUntil(() => nextAction == true);
                 actionIndex++;
             }
@@ -219,11 +227,11 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 textPanel.SetActive(true);
                 toyPanel.SetActive(false);
                 videoPanel.SetActive(false);
-                textPanelButton.SetActive(true);
-
+                
                 SetTextPanelPositionForOnlyText();
                 SetTextPanelPositionHorizontalForOnlyText();
                 yield return StartCoroutine(StartTextWrite("OnlyText"));
+                InvokeRepeating("RemindCurrentAction", voiceRepeatRate + audioSource.clip.length, voiceRepeatRate);
                 yield return new WaitUntil(() => nextAction == true);
                 actionIndex++;
             }
@@ -272,8 +280,8 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 toyPanel.SetActive(true);
                 videoPanel.SetActive(false);
                 textPanelButton.SetActive(false);
-
                 ShowToyPictureForLoop();
+                InvokeRepeating("RemindCurrentAction", voiceRepeatRate + audioSource.clip.length, voiceRepeatRate + audioSource.clip.length);
                 yield return new WaitUntil(() => forToyCliked == true);
                 toyPanel.SetActive(false);
                 PlaySecondSound();
@@ -281,9 +289,113 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 yield return new WaitUntil(() => nextAction == true);
                 actionIndex++;
             }
+            else if (currentType == typeof(ShowandHighlight))
+            {
+                textPanel.SetActive(false);
+                toyPanel.SetActive(true);
+                videoPanel.SetActive(false);
+                textPanelButton.SetActive(false);
+                tutorialPanel.SetActive(false);
+
+                ShowandHighlight();
+                yield return new WaitUntil(() => nextAction == true);
+                actionIndex++;
+            }
+            else if (currentType == typeof(ShowPath))
+            {
+                textPanel.SetActive(false);
+                toyPanel.SetActive(true);
+                videoPanel.SetActive(false);
+                textPanelButton.SetActive(false);
+                tutorialPanel.SetActive(false);
+
+                yield return StartCoroutine(ShowPath());
+                yield return new WaitForSeconds(6f);
+                nextAction = true;
+                yield return new WaitUntil(() => nextAction == true);
+                actionIndex++;
+            }
         }
         OpenTutorialEnd();
         //FinishTutorial();
+    }
+
+    private IEnumerator ShowPath()
+    {
+        var action = currentAction as ShowPath;
+        audioSource.clip = action.voice;
+        audioSource.Play();
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(FindObjectOfType<UIInputManagerTutorial>().ShowPathWithoutCodeInput());
+        
+
+    }
+    private void ShowandHighlight()
+    {
+        var action = currentAction as ShowandHighlight;
+        audioSource.clip = action.voice;
+        audioSource.Play();
+        var highLightandShowObject = GameObject.Find(action.showObjects).transform;
+        currentHighLightObjects.Add(highLightandShowObject);
+        highLightandShowObject.transform.DOScale(new Vector3(2f, 2f, 2f), 1).SetLoops(-1, LoopType.Yoyo);
+        Invoke("FinishShowandHighLight", 5+audioSource.clip.length);
+
+    }
+
+    private void RemindPressButtonSound()
+    {
+        var action = currentAction as TutorialButton;
+        if (howManyTimePressButtonVoiceRepeat == 0)
+        {
+            audioSource.clip = action.butonPressSound[0];
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.clip = action.butonPressSound[1];
+            audioSource.Play();
+        }
+
+        howManyTimePressButtonVoiceRepeat++;
+
+    }
+    private void RepeatLoopToySecondSound()
+    {
+        var action = currentAction as TutorialLoopToy;
+        audioSource.clip = action.secondSound;
+        audioSource.Play();
+    }
+    private void RemindCurrentAction()
+    {
+        //var currentType = currentAction.GetType();
+
+        audioSource.clip = currentAction.voice;
+        audioSource.Play();
+        //if (currentType == typeof(TutorialToy))
+        //{
+        //    var action = currentAction as TutorialToy;
+        //    audioSource.clip = action.voice;
+        //    audioSource.Play();
+        //}
+        //else if (currentType == typeof(OnlyVideo))
+        //{
+        //    var action = currentAction as OnlyVideo;
+        //    audioSource.clip = action.voice;
+        //    audioSource.Play();
+        //}
+        //else if (currentType == typeof(TutorialOnlyText))
+        //{
+        //    var action = currentAction as TutorialOnlyText;
+        //    audioSource.clip = action.voice;
+        //    audioSource.Play();
+        //}
+        //else if (currentType == typeof(TutorialLoopToy))
+        //{
+        //    var action = currentAction as TutorialLoopToy;
+        //    audioSource.clip = action.voice;
+        //    audioSource.Play();
+        //}
+
     }
 
     void OpenVideoButton()
@@ -327,6 +439,8 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         var action = currentAction as TutorialLoopToy;
         audioSource.clip = action.secondSound;
         audioSource.Play();
+
+        InvokeRepeating("RepeatLoopToySecondSound",voiceRepeatRate + audioSource.clip.length,voiceRepeatRate);
     }
 
     private IEnumerator WaitVoiceEnds()
@@ -366,12 +480,19 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
     {
         nextAction = true;
     }
+
+    public void FinishShowandHighLight()
+    {
+        nextAction = true;
+        ResetHighlightObjectBouncingEffect();
+    }
     private void OpenTutorialEnd()
     {
         tutorialFinished = true;
         endPanel.SetActive(true);
         textPanel.SetActive(false);
         toyPanel.SetActive(false);
+        CancelInvoke();
     }
 
     #region TutorialToy
@@ -533,6 +654,7 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
         {
             nextAction = true;
         }
+        
     }
 
     private void ResetButtonBouncingEffect()
@@ -543,6 +665,14 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
             currentHighLightObjects[i].transform.DOPause();
             currentHighLightObjects[i].transform.localScale = new Vector3(1,1,1);
         }
+    }
+
+    private void ResetHighlightObjectBouncingEffect()
+    {
+        var action = currentAction as ShowandHighlight;
+        currentHighLightObjects[0].transform.DOPause();
+        currentHighLightObjects[0].transform.localScale = new Vector3(1, 1, 1);
+        
     }
 
     private void GiveButtonBouncingEffect(GameObject highLight, float actionScaleSize)
@@ -638,6 +768,8 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
                 text.text += c;
                 yield return new WaitForSeconds(0.03f);
             }
+            yield return new WaitForSeconds(action.whichSecondObjectShow);
+            textPanelButton.SetActive(true);
         }
         else if (buttonorText == "ShowSomething")
         {
@@ -674,5 +806,12 @@ public class TutorialManager : MonoBehaviour,IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Clicked: " + eventData.pointerCurrentRaycast.gameObject.name);
+    }
+
+    public void WrongToyPLaySound()
+    {
+        var action = currentAction as TutorialToy;
+        audioSource.clip = action.wrongToySound;
+        audioSource.Play();
     }
 }

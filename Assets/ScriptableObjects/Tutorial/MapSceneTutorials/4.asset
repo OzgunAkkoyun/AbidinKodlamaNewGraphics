@@ -17,3 +17,5 @@ MonoBehaviour:
   highlightObjects:
   - Sound
   actionPosition: 1
+  scaleSize: 1.5
+  butonPressSound: {fileID: 8300000, guid: cdf969c332277764f96b3bb7b0cba654, type: 3}

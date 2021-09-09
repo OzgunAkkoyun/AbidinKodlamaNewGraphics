@@ -10,4 +10,5 @@ public class TutorialButton : TutorialType
     public List<string> highlightObjects;
     public ActionPosition actionPosition;
     public float scaleSize = 1.5f;
+    public AudioClip[] butonPressSound;
 }

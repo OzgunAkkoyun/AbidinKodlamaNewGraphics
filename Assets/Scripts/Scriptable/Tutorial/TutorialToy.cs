@@ -6,4 +6,5 @@ public class TutorialToy : TutorialType
 {
     public Sprite toyImage;
     public string toyName;
+    public AudioClip wrongToySound;
 }

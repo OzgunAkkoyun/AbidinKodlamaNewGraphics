@@ -69,6 +69,20 @@ public class UIInputManagerTutorial : MonoBehaviour
 
         yield return new WaitForSeconds(1);
     }
+
+    public IEnumerator ShowPathWithoutCodeInput()
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            pathSprites[i].SetActive(true);
+            pathSprites[i].GetComponent<SpriteRenderer>().material.DOColor(new Color(127 / 255f, 255 / 255f, 202 / 255f, 1), 2).SetEase(Ease.Flash);
+            yield return new WaitForSeconds(1);
+            pathSprites[i].GetComponent<SpriteRenderer>().material.DOColor(new Color(1, 1, 1, 0), 2).SetEase(Ease.Flash);
+            yield return new WaitForSeconds(1);
+        }
+
+        yield return new WaitForSeconds(1);
+    }
     void Start()
     {
         commander.OnNewCommand.AddListener(OnNewCommand);

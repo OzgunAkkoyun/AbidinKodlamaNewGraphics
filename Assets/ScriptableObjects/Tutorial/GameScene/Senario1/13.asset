@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322c4c3ad8a07664f87bd852636949f5, type: 3}
   m_Name: 13
   m_EditorClassIdentifier: 
-  voice: {fileID: 8300000, guid: 9992d1ff8d7cf9543b92064c4720c672, type: 3}
-  tutorialText: "En ba\u015Fa d\xF6nmek istersen de l\xFCtfen ev butonuna bas."
+  voice: {fileID: 8300000, guid: 8c7ebdbce9872264f969e5d7d1c202a8, type: 3}
+  tutorialText: "T\xFCm komutlar\u0131 temizlemek i\xE7in \xE7\xF6p tenekesine benzeyen
+    butona basabilirsin."
   highlightObjects:
-  - Home
+  - DeleteAllCommands
   actionPosition: 1
+  scaleSize: 2.5
+  butonPressSound:
+  - {fileID: 8300000, guid: f4339acb98ace3b458bb859c25a0e856, type: 3}
+  - {fileID: 8300000, guid: cdf969c332277764f96b3bb7b0cba654, type: 3}
